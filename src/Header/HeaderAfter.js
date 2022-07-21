@@ -1,6 +1,6 @@
 import './HeaderAfter.css'
 import {Link} from 'react-router-dom'
-import AHome from '../Pages/Ahome';
+import AHome from '../Home/Ahome';
 
 function Hafter({cart}){
     return(

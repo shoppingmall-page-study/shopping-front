@@ -1,16 +1,16 @@
 import React from "react";
 import {Route,Routes} from 'react-router-dom'
-import Login from "./Pages/Login";
-import Join from "./Pages/Join";
+import Login from "./Login/Login";
+import Join from "./Join/Join";
 import Hafter from "./Header/HeaderAfter";
 import Hbefore from "./Header/HeaderBefore";
-import Basket from "./Pages/Basket";
-import Goodsup from "./Pages/Goodsup";
-import Uplist from "./Pages/Uplist";
-import Orderlist from "./Pages/Orderlist";
-import Bhome from "./Pages/Bhome";
-import Ahome from "./Pages/Ahome";
-import Detail from './Pages/Detail'
+import Basket from "./Basket/Basket";
+import Goodsup from "./Goodsup/Goodsup";
+import Uplist from "./Uplist/Uplist";
+import Orderlist from "./Orderlist/Orderlist";
+import Bhome from "./Home/Bhome";
+import Ahome from "./Home/Ahome";
+import Detail from './Detail/Detail'
 import {useState} from 'react'
 
 function UserRouter(){
@@ -25,7 +25,7 @@ function UserRouter(){
     <Routes>
         <Route path="/1" element={<Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
         <Route path="/Login" element={<Login/>}/>
-        <Route path="/" element={<Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
+        <Route path="/" element={<Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
         <Route path="/Join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
