@@ -23,10 +23,10 @@ function UserRouter(){
 
     return(
     <Routes>
-        <Route path="/1" element={<Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
-        <Route path="/Login" element={<Login/>}/>
-        <Route path="/" element={<Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
-        <Route path="/Join" element={<Join/>}/>
+        <Route path="/" element={<Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/1" element={<Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
+        <Route path="/join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
