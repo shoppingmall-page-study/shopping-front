@@ -12,6 +12,9 @@ import Bhome from "./Home/Bhome";
 import Ahome from "./Home/Ahome";
 import Detail from './Detail/Detail'
 import {useState} from 'react'
+import GoogleOauthhandler from "./Oauth/GoogleOauthhandler";
+import KakaoOauthhandler from "./Oauth/KakaoOauthhandler"
+import OauthJoin from "./Oauth/OauthJoin";
 
 function UserRouter(){
     const [products, setProducts] = useState([]);
@@ -32,6 +35,9 @@ function UserRouter(){
         <Route path="/Uplist" element={<Uplist/>}/>
         <Route path="/Orderlist" element={<Orderlist/>}/>
         <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart}/>}/>
+        <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
+        <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
+        <Route path="/registration/:token" element={<OauthJoin/>}/>
     </Routes>
     );
 }

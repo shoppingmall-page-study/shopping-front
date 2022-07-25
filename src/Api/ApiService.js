@@ -5,18 +5,18 @@ const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 
 export const call = (api, method, request) => {
-  let header = new Headers({
+  let headers = new Headers({
     "Content-Type": "application/json",
   });
 
   // 로컬 스토리지에서 ACCESS TOKEN 가져오기
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   if (accessToken && accessToken != null) {
-    header.append("Authorization", null);
+    headers.append("Authorization", accessToken);
+    axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;
   }
 
   let options = {
-    headers: header,
     url: API_BASE_URL + api,
     method: method,
   };
@@ -25,7 +25,7 @@ export const call = (api, method, request) => {
     // GET method
     options.data = request;
   }
-  return axios(options)
+  return axios(options.url, options)
     .then((response) =>
      {
       if(response.status === 200){
@@ -40,6 +40,7 @@ export const call = (api, method, request) => {
       }
       
       })
+  
 }
 
 export const signin = (userDTO) => {
@@ -47,6 +48,7 @@ export const signin = (userDTO) => {
     let jwt = response.headers.authorization;
     if(jwt !== null){
       localStorage.setItem(ACCESS_TOKEN, jwt);
+      window.location.href = "/1";
     }
     
   });
@@ -62,7 +64,7 @@ export const signup = (userDTO) => {
   return call("/join", "POST", userDTO);
 }
 
-export const googlelogin =() =>{
-  return call("//oauth2/authorization/google","GET");
-
+export const registration = (userDTO) => {
+  return call("/Oauth/join", "POST", userDTO);
 }
+
