@@ -25,7 +25,7 @@ const Join = () => {
     signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber }).then(
       (response) => {
         // 계정 생성 성공 시 login페이지로 리디렉트
-        window.location.href = "/login";
+         window.location.href = "/login";
       }
     );
   };

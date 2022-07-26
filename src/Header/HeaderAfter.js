@@ -1,6 +1,7 @@
 import './HeaderAfter.css'
 import {Link} from 'react-router-dom'
 import AHome from '../Home/Ahome';
+import {signout} from '../Api/ApiService'
 
 function Hafter({cart}){
     return(
@@ -27,6 +28,7 @@ function Hafter({cart}){
             <ul>
                 <li><h3><Link to="../Uplist">등록목록</Link></h3></li>
                 <li><h3><Link to="../Orderlist">주문목록</Link></h3></li>
+                <button onClick={signout}>로그아웃</button>
             </ul>
           </ul>
         </div>
