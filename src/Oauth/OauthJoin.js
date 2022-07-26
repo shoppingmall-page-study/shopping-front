@@ -12,7 +12,7 @@ import {
   } from "@material-ui/core";
 
 function OauthJoin() {
-    const params = useParams();
+   
 
 
   const handleSubmit = (event) => {
@@ -32,11 +32,7 @@ function OauthJoin() {
   };
 
   // 랜더링 할때 토큰을 불러와서 localhost에 
-  useEffect(() => {
-    console.log(params.token);
-    localStorage.clear();
-    localStorage.setItem("ACCESS_TOKEN", params.token);
-  }, []);
+ 
 
   return (<>
         <header className="Header">

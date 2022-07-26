@@ -15,6 +15,7 @@ import {useState} from 'react'
 import GoogleOauthhandler from "./Oauth/GoogleOauthhandler";
 import KakaoOauthhandler from "./Oauth/KakaoOauthhandler"
 import OauthJoin from "./Oauth/OauthJoin";
+import OauthJoinhandler from "./Oauth/OauthJoinhandler";
 
 function UserRouter(){
     const [products, setProducts] = useState([]);
@@ -37,7 +38,8 @@ function UserRouter(){
         <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart}/>}/>
         <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
-        <Route path="/registration/:token" element={<OauthJoin/>}/>
+        <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
+        <Route path="/registration" element={<OauthJoin/>}/>
     </Routes>
     );
 }

@@ -28,17 +28,33 @@ export const call = (api, method, request) => {
   return axios(options.url, options)
     .then((response) =>
      {
+      console.log(response)
       if(response.status === 200){
         console.log("true")
-        console.log(response.ok)
         return response
-      }else if(response.status === 403){
-        window.location.href = "/login" ; // redirect
       }
-      else{
-        window.location.href = "/login" ; // redirect
-      }
-      
+      }).catch((error)=>{
+
+        console.log(error.response)
+        console.log(error.response.status)
+        let errorresponse = error.response.status;
+        if(errorresponse === 400){
+          console.log(1)
+          alert("이미 계정이 존재합니다")
+          
+        }
+        else if(errorresponse === 403){
+          window.location.href = "/login"
+
+        }
+        else if(errorresponse === 401){
+          console.log(1)
+          alert("비밀번호가 틀렸습니다.")
+        }else if(errorresponse === 500){
+          console.log(1)
+          alert("계정이 존재하지 않습니다.")
+        }
+
       })
   
 }
