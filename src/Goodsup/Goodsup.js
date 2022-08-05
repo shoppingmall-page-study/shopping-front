@@ -9,6 +9,7 @@ function Goodsup({products, setProducts, cart}){
     
     const saveFileimage = (e) =>{   //파일 저장함수
         setFile(URL.createObjectURL(e.target.files[0]));
+        console.log(file)
     };
 
     const deleteFileimage = () =>{
@@ -76,7 +77,7 @@ function Goodsup({products, setProducts, cart}){
                     </div>
                 </div>
                 <div className="Register_wd">
-                    <button onClick={()=>{deleteFileimage();}} className="Register">등록하기</button>
+                    <button type="submit" onClick={()=>{deleteFileimage()}} className="Register">등록하기</button>
                 </div>
             </div>
         </div>

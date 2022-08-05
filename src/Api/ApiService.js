@@ -11,7 +11,7 @@ export const call = (api, method, request) => {
 
   // 로컬 스토리지에서 ACCESS TOKEN 가져오기
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  if (accessToken && accessToken != null) {
+  if (accessToken && accessToken != "") {
     headers.append("Authorization", accessToken);
     axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;
   }
@@ -38,7 +38,7 @@ export const call = (api, method, request) => {
         console.log(error.response)
         console.log(error.response.status)
         let errorresponse = error.response.status;
-        if(errorresponse === 400){
+        if(errorresponse === 406){
           console.log(1)
           alert("이미 계정이 존재합니다")
           
@@ -64,14 +64,14 @@ export const signin = (userDTO) => {
     let jwt = response.headers.authorization;
     if(jwt !== null){
       localStorage.setItem(ACCESS_TOKEN, jwt);
-      window.location.href = "/1";
+      window.location.href = "/";
     }
     
   });
 }
 
 export const signout = () => {
-  localStorage.setItem(ACCESS_TOKEN, null);
+  localStorage.setItem(ACCESS_TOKEN,"");
   window.location.href = "/login";
 }
 

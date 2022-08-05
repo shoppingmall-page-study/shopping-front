@@ -28,7 +28,10 @@ function Hafter({cart}){
             <ul>
                 <li><h3><Link to="../Uplist">등록목록</Link></h3></li>
                 <li><h3><Link to="../Orderlist">주문목록</Link></h3></li>
-                <button onClick={signout}>로그아웃</button>
+            </ul>
+            <ul>
+              <li><h3>000님</h3></li>
+              <li><button id="logoutbtn" onClick={signout}>로그아웃</button></li>
             </ul>
           </ul>
         </div>

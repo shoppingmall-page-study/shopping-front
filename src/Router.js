@@ -24,12 +24,13 @@ function UserRouter(){
     const convertPrice = (price) => {
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
+    
+    const token = localStorage.getItem("ACCESS_TOKEN")
 
     return(
     <Routes>
-        <Route path="/" element={<Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
+        <Route path="/" element={!token ? <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/> : <Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/1" element={<Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
         <Route path="/join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
