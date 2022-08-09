@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
 import Hafter from "../Header/HeaderAfter";
@@ -26,12 +27,37 @@ function Goodsup({products, setProducts, cart}){
         }
     };
 
+    const HandleUpEvent = (e) =>{
+        e.preventDefault();
+        const data = new FormData(e.target)
+        const title = data.get("title")
+        const name = data.get("name")
+        const price = data.get("price")
+        const content = data.get("content")
+        const total = goodscount
+        const imgUrl = file
+        axios({
+            method: 'post',
+            url: '/product/create',
+            data:{
+                title: title,
+                content: content,
+                name: name,
+                price: price,
+                total: total,
+                imgUrl: imgUrl
+            }
+        })
+        deleteFileimage()
+    }
+
     return(
         <div className="GoodsUp">
             <header className="Header">
                 <Hafter cart={cart}/>
             </header>
             <div className="content">
+                <form onSubmit={HandleUpEvent}>
                 <div className="goods_info">
                     <div className="img_look">
                         <div className="sample_img_wd">
@@ -44,15 +70,23 @@ function Goodsup({products, setProducts, cart}){
                         <input type="file" name="Goods_img_file" onChange={saveFileimage} className="upload"/>
                     </div>
                     <div className="form_goodsup">
-                        <input type="text" name="Goods_name" placeholder="이름" className="goods_name"/>
-                        <div className="line"></div>
-                        <input type="price" name="Goods_price" placeholder="가격" className="goods_price"/>
-                        <div className="line"></div>
-                        <input type="text" name="Seller_an" placeholder="판매자 계좌번호" className="Seller_an"/>
-                        <div className="line"></div>
+                        <TextField name="title" 
+                            label="제목" 
+                            className="goods_title"
+                            variant="outlined"/>
+                        <div className='floor'></div>
+                        <TextField name="name" 
+                            label="상품이름"                           
+                            className="goods_name"
+                            variant="outlined"/>
+                        <div className='floor'></div>
+                        <TextField name="price"
+                            label="가격"
+                            className="goods_price"
+                            variant="outlined"/>
+                        <div className='floor'></div>
                         <div className='pay'>
                             <span className='soo'>수량 : </span>
-                            <div className='line'></div>
                             <div className="amount">
                                 <img
                                 className="minus"
@@ -73,12 +107,19 @@ function Goodsup({products, setProducts, cart}){
                                 />
                             </div>
                         </div>
-                        <input type="text" name="Goods_explain" className="Goods_explain"/>
+                        <div className='floor'></div>
+                        <TextField name="content"
+                            label="설명"
+                            className="Goods_explain"
+                            variant="outlined"
+                            multiline
+                            maxRows={2}/>
                     </div>
                 </div>
                 <div className="Register_wd">
-                    <button type="submit" onClick={()=>{deleteFileimage()}} className="Register">등록하기</button>
+                    <button type="submit" className="Register">등록하기</button>
                 </div>
+                </form>
             </div>
         </div>
     );    

@@ -29,7 +29,7 @@ function UserRouter(){
 
     return(
     <Routes>
-        <Route path="/" element={!token ? <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/> : <Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
+        <Route path="/" element={token ? <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/> : <Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice}/>}/>

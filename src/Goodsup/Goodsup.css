@@ -82,6 +82,11 @@ input{
     cursor: pointer;
 }
 
+.floor{
+    height: 2px;
+    margin: 20px auto;
+}
+
 @media (max-width: 1440px) {
     .goods_info {
       flex-direction: column;

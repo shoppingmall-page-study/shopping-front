@@ -6,4 +6,5 @@ function getProducts(){
     const res = axios(url);
     return res;
 }
+
 export default getProducts;
