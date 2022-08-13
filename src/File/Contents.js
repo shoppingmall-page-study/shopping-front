@@ -6,10 +6,17 @@ import Hafter from "../Header/HeaderAfter";
 
 function Contents({products, setProducts, convertPrice}){
     useEffect(()=>{
-       getProducts().then((data)=>{
-        setProducts(data.data.products);
+       getProducts().then((response)=>{
+        setProducts(response.data.products);
        })
     }, [setProducts]);
+
+    //서버 정상작동 할 때
+    // useEffect(()=>{
+    //     getProducts().then((res) => {
+    //         setProducts(res.data.data);
+    //     })
+    // }, [setProducts])
 
     return(
         <div className="flex_wrap">

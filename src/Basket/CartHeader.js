@@ -8,7 +8,6 @@ function CartHeader(){
           <span>상품정보</span>
           <span>수량</span>
           <span>상품금액</span>
-
           <p>전체선택</p>
         </div>
       </div>

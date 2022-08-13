@@ -4,14 +4,15 @@
     margin: 0;
 }
 .Menu{
-  display: flex;  
-  justify-content: space-evenly;
-  text-align: center;
-  align-items: center;
-  height: 130px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+    display: flex;  
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+    height: 130px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
 .Logo{
     margin-right: 30px;
 }

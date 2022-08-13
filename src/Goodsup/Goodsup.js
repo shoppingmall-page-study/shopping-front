@@ -56,7 +56,7 @@ function Goodsup({products, setProducts, cart}){
             <header className="Header">
                 <Hafter cart={cart}/>
             </header>
-            <div className="content">
+            <div className="Content">
                 <form onSubmit={HandleUpEvent}>
                 <div className="goods_info">
                     <div className="img_look">
