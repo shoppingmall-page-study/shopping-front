@@ -3,20 +3,24 @@ import './Contents.css'
 import Product from "./Product";
 import getProducts from "../Service/Fetcher";
 import Hafter from "../Header/HeaderAfter";
+import { productGet } from "../Api/ApiService";
 
 function Contents({products, setProducts, convertPrice}){
-    useEffect(()=>{
-       getProducts().then((response)=>{
-        setProducts(response.data.products);
-       })
-    }, [setProducts]);
-
-    //서버 정상작동 할 때
     // useEffect(()=>{
-    //     getProducts().then((res) => {
-    //         setProducts(res.data.data);
-    //     })
-    // }, [setProducts])
+    //    getProducts().then((response)=>{
+    //     setProducts(response.data.products);
+    //    })
+    // }, [setProducts]);
+
+    useEffect(()=>{
+        productGet().then((res) => {
+            setProducts(res.data.data);
+        })
+
+        // getProducts().then((res) => {
+        //     setProducts(res.data.data);
+        // })
+    }, [setProducts])
 
     return(
         <div className="flex_wrap">

@@ -324,10 +324,6 @@
   color: #ffffff;
 }
 
-.for{
-  height: 300px;
-}
-
 @media (max-width: 1440px) {
   .main {
     flex-direction: column;
