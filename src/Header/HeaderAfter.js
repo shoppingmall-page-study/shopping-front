@@ -1,10 +1,9 @@
 import './HeaderAfter.css'
 import {Link} from 'react-router-dom'
 import AHome from '../Home/Ahome';
-import {signout} from '../Api/ApiService'
+import {cartGet, signout} from '../Api/ApiService'
 
 function Hafter({cart}){
-
   return(
     <div className="Menu">
       <div className="Logo">
@@ -21,7 +20,7 @@ function Hafter({cart}){
               <li><h3><Link to="../Basket">장바구니</Link></h3></li>
               {cart.length >= 1 ? (
                 <div className="new_shopping_cart">
-                  <p>{cart.length}</p>
+                  <p>{cart}</p>
                 </div>
               ) : ("")}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>

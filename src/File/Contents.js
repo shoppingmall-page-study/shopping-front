@@ -25,7 +25,7 @@ function Contents({products, setProducts, convertPrice}){
     return(
         <div className="flex_wrap">
             {products.map((product) => {
-                return <Product key={`key-${product.id}`} product={product} convertPrice={convertPrice}/>
+                return <Product key={`key-${product.productId}`} product={product} convertPrice={convertPrice}/>
             })}
         </div>
     );        

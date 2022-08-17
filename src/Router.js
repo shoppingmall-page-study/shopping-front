@@ -25,7 +25,7 @@ function UserRouter(){
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
     
-    const token = 1//localStorage.getItem("ACCESS_TOKEN")
+    const token = localStorage.getItem("ACCESS_TOKEN")
 
     return(
     <Routes>

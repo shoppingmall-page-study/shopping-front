@@ -89,5 +89,13 @@ export const productCreate = (goodsDTO) => {
 }
 
 export const productGet = () => {
-  return call("/products")
+  return call("/products","GET","")
+}
+
+export const cartCreate = (cartDTO) => {
+  return call(`/cart/create/${cartDTO.productId}`,"GET",cartDTO)
+}
+
+export const cartGet = () => {
+  return call("/cart/list", "GET", "")
 }

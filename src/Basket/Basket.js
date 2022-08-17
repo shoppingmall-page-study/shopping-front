@@ -4,13 +4,16 @@ import CartList from './CartList';
 import TotalCart from './TotalCart';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
+import { cartGet } from '../Api/ApiService';
+import { Children } from 'react';
 
 function Basket({cart, setCart, convertPrice, token}){
 
-  const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
+const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
     return token ? <Hafter cart={cart}/> : <Hbefore/>
-  }
-  return (
+}
+
+return (
     <>
       <header className="Header">
         {TokenHeaderView(token)}
@@ -23,7 +26,7 @@ function Basket({cart, setCart, convertPrice, token}){
             <p>원하는 상품을 장바구니에 담아보세요!</p>
         </div>
       ) : cart.map((cart)=>{
-        return <CartList key={`key-${cart.id}`} cart={cart} setCart={setCart} convertPrice={convertPrice}/>
+        return <CartList key={`key-${cart.productId}`} cart={cart} setCart={setCart} convertPrice={convertPrice}/>
       })}
       {cart.length === 0 ? "" : <TotalCart/>}      
       </div>

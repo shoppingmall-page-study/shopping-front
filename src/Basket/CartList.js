@@ -6,13 +6,13 @@ function CartList({cart, setCart, convertPrice}){
         <input type="checkbox" />
         <div className="cart_product_wrap">
           <div className="cart_product_image">
-            <img src={cart.image} alt="product-img" />
+            <img src={cart.imgUrl} alt="product-img" />
           </div>
 
           <div className="cart_product_info">
-            <p className="seller_store">{cart.provider}</p>
+            <p className="seller_store">{cart.title}</p>
             <p className="product_name">{cart.name}</p>
-            <p className="price">{convertPrice(cart.price * cart.quantity)}원</p>
+            <p className="price">{convertPrice(cart.price * cart.total)}원</p>
             <p className="delivery">택배배송 / 무료배송</p>
           </div>
         </div>
@@ -25,7 +25,7 @@ function CartList({cart, setCart, convertPrice}){
           />
 
           <div className="count">
-            <span>{cart.quantity}</span>
+            <span>{cart.total}</span>
           </div>
           <img
             className="plus"
