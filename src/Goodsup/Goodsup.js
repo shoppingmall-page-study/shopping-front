@@ -2,6 +2,7 @@ import { TextField } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
 import Hafter from "../Header/HeaderAfter";
+import { productCreate } from "../Api/ApiService";
 import './Goodsup.css'
 
 function Goodsup({products, setProducts, cart}){
@@ -36,18 +37,7 @@ function Goodsup({products, setProducts, cart}){
         const content = data.get("content")
         const total = goodscount
         const imgUrl = file
-        axios({
-            method: 'post',
-            url: '/product/create',
-            data:{
-                title: title,
-                content: content,
-                name: name,
-                price: price,
-                total: total,
-                imgUrl: imgUrl
-            }
-        })
+        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl});
         deleteFileimage()
     }
 
@@ -56,7 +46,7 @@ function Goodsup({products, setProducts, cart}){
             <header className="Header">
                 <Hafter cart={cart}/>
             </header>
-            <div className="content">
+            <div className="Content">
                 <form onSubmit={HandleUpEvent}>
                 <div className="goods_info">
                     <div className="img_look">

@@ -29,14 +29,14 @@ function UserRouter(){
 
     return(
     <Routes>
-        <Route path="/" element={token ? <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/> : <Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/>}/>
+        <Route path="/" element={token ? <Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
-        <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice}/>}/>
+        <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
         <Route path="/Orderlist" element={<Orderlist/>}/>
-        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart}/>}/>
+        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token}/>}/>
         <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>

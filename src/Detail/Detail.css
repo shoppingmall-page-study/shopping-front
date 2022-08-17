@@ -7,7 +7,7 @@
 
 .detail{
   width: 400px;
-  height: 600px;
+  height: 661px;
   display: flex;
   flex-direction: column;
 }
@@ -235,6 +235,95 @@
   color: #ffffff;
 }
 
+.review-content{
+  margin: 20px 20%;
+  justify-content: space-evenly;
+}
+
+.review-title{
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+  border-bottom: 2px solid black;
+}
+
+.review-btn{
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.btn-review-up{
+  width: 20%;
+  height: 50px;
+  border-radius: 10px;
+  background: #19ce60;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 44px;
+}
+
+.btn-review-look{
+  width: 20%;
+  height: 50px;
+  border-radius: 10px;
+  background: #767676;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.pop{
+  position: relative;
+}
+
+.review-up-title{
+  width: 60%;
+}
+
+.review-up-line{
+  width: 60%;
+  margin: 20px 0;
+  border: 1px solid black;
+}
+
+.review-up-content{
+  width: 60%;
+}
+
+#review-look-form{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  display: block;
+}
+
+#review-up-form{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  display: block;
+}
+
+.review-up-btn{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  height: 50px;
+  border-radius: 10px;
+  background: #767676;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
 @media (max-width: 1440px) {
   .main {
     flex-direction: column;
@@ -242,5 +331,23 @@
 
   .sum .total_price1 {
     font-size: 24px;
+  }
+
+  .review-content{
+    margin: 0 30%;
+  }
+  
+  .review-up-title, .review-up-content, .review-up-line{
+    width: 100%;
+  }
+
+  .review-up-btn-box{
+    position: relative;
+  }
+
+  .review-up-btn{
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
   }
 }

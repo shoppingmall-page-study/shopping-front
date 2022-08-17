@@ -83,4 +83,19 @@ export const signup = (userDTO) => {
 export const registration = (userDTO) => {
   return call("/Oauth/join", "POST", userDTO);
 }
+ 
+export const productCreate = (goodsDTO) => {
+  return call("/product/create", "POST", goodsDTO)
+}
 
+export const productGet = () => {
+  return call("/products","GET","")
+}
+
+export const cartCreate = (cartDTO) => {
+  return call(`/cart/create/${cartDTO.productId}`,"GET",cartDTO)
+}
+
+export const cartGet = () => {
+  return call("/cart/list", "GET", "")
+}

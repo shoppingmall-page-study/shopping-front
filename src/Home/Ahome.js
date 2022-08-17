@@ -8,7 +8,7 @@ function AHome({products, setProducts, convertPrice, cart, setCart}){
             <header className="Header">
                 <Hafter cart={cart} setCart={setCart}/>
             </header>
-            <div>
+            <div className="Content">
                 <Contents products={products} setProducts={setProducts} convertPrice={convertPrice}/>
             </div>
         </div>

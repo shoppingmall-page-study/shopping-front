@@ -9,4 +9,13 @@ li{
 
 .Header{
     border-bottom: 4px solid #000;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+    background-color: white;
+}
+
+.Content{
+    padding-top: 154px;
 }
