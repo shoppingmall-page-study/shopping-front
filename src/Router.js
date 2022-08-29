@@ -1,5 +1,5 @@
 import React from "react";
-import {Route,Routes} from 'react-router-dom'
+import {Route,Routes, useParams} from 'react-router-dom'
 import Login from "./Login/Login";
 import Join from "./Join/Join";
 import Hafter from "./Header/HeaderAfter";
@@ -11,15 +11,17 @@ import Orderlist from "./Orderlist/Orderlist";
 import Bhome from "./Home/Bhome";
 import Ahome from "./Home/Ahome";
 import Detail from './Detail/Detail'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import GoogleOauthhandler from "./Oauth/GoogleOauthhandler";
 import KakaoOauthhandler from "./Oauth/KakaoOauthhandler"
 import OauthJoin from "./Oauth/OauthJoin";
 import OauthJoinhandler from "./Oauth/OauthJoinhandler";
 import UserInformation from "./User/userInformation"
 import UserModify from "./User/userModify";
+import { userGet } from "./Api/ApiService";
 
 function UserRouter(){
+    const {id} = useParams()
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
     const convertPrice = (price) => {
@@ -30,7 +32,7 @@ function UserRouter(){
 
     return(
     <Routes>
-        <Route path="/" element={token ? <Ahome products={products} setProducts={setProducts}  convertPrice={convertPrice} cart={cart}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
+        <Route path="/" element={token ? <Ahome products={products} setProducts={setProducts} convertPrice={convertPrice}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token}/>}/>

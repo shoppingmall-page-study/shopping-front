@@ -1,11 +1,18 @@
 import './HeaderAfter.css'
 import {Link} from 'react-router-dom'
 import AHome from '../Home/Ahome';
-import {cartGet, signout} from '../Api/ApiService'
-import {useState } from 'react'
+import {cartGet, signout, userGet} from '../Api/ApiService'
+import {useEffect, useState } from 'react'
 
 function Hafter({cart}){
-  const [userState,setUserState] = useState("down")
+  const [userState,setUserState] = useState("down");
+  const [user,setUser] = useState([])
+
+  useEffect(() => {
+    userGet().then((res) => {
+      setUser(res.data)
+    })
+  },[])
 
   const HandleUserState = () => {
     if(userState === "down"){
@@ -13,6 +20,7 @@ function Hafter({cart}){
     }else{
       setUserState("down")
     }
+    // console.log(user)
   }
 
   return(
@@ -35,7 +43,7 @@ function Hafter({cart}){
                 </div>
               ) : ("")} */}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
-              <li><h3 className='user'><Link to="" onClick={HandleUserState}>000님</Link></h3></li>
+              <li><h3 className='user'><Link to="" onClick={HandleUserState}>{user.username}님</Link></h3></li>
               {
               userState === "up" ? (
               <div className='userBox'>
