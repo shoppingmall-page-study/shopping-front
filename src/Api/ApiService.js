@@ -115,3 +115,7 @@ export const reviewGet = (id) => {
 export const cartDelete = (id) => {
   return call(`/cart/delete/${id}`,"DELETE","")
 }
+
+export const userGet = () => {
+  return call("/user/info", "GET", "")
+}

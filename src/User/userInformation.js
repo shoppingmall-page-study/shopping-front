@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { userGet } from "../Api/ApiService";
 import Hafter from "../Header/HeaderAfter";
 import "./userInformation.css"
 
 function UserInformation(){
+    const [user,setUser] = useState([])
+    const {id} = useParams()
+    useEffect(() => {
+        userGet().then((res) => {
+            setUser(res.data)
+        })
+    },[id])
     return(
         <div>
             <div className="Header">
@@ -20,10 +29,10 @@ function UserInformation(){
                         <li>전화번호</li>
                     </ol>
                     <ol id="left">
-                        <li>이상민</li>
-                        <li>12341234</li>
-                        <li>없음</li>
-                        <li>000-0000-0000</li>
+                        <li>{user.username}</li>
+                        <li>{user.address}</li>
+                        <li>{user.nickname}</li>
+                        <li>{user.phoneNumber}</li>
                     </ol>
                     </div>
                     <Link to="./Modify" id="user_modift_btn">회원 정보 수정</Link>
