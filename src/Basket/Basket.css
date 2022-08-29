@@ -10,17 +10,20 @@
 .tab_title {
   max-width: 1280px;
   height: 60px;
-  border-radius: 10px;
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
+  background-color: white;
+  color: black;
+  border: solid 2px black;
   margin: 0 auto;
-  margin-top: 52px;
+  /* margin-top: 52px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
 }
 
 .tab_title span {
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
+  font-weight: bold;
 }
 
 .tab_title input[type="checkbox"] {
@@ -37,20 +40,21 @@
   border: none;
 }
 
-.tab_title p {
+/* .tab_title p {
   display: none;
   background: #f2f2f2;
   font-size: 18px;
   color: #767676;
-}
+} */
 
 /* cartList*/
 .cart_product_list {
   position: relative;
   max-width: 1280px;
   height: 200px;
-  border-radius: 10px;
-  border: 1px solid #c4c4c4;
+  /* border-radius: 10px; */
+  /* border: 1px solid #c4c4c4; */
+  border: solid 1px black;
   margin: 0 auto;
   margin-top: 35px;
   display: grid;
@@ -183,13 +187,16 @@
 .cart_product_price .btn_submit {
   width: 130px;
   height: 40px;
-  background: #19ce60;
-  border-radius: 5px;
-  border: none;
+  /* background: #19ce60; */
+  background-color: black;
+  /* border-radius: 5px; */
+  border: 1px solid black;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 20px;
-  color: #ffffff;
+  font-weight: bold;
+  /* color: #ffffff; */
+  color: white;
 }
 
 /* cart */
@@ -219,8 +226,10 @@
 .total {
   max-width: 1280px;
   height: 150px;
-  background: #f2f2f2;
-  border-radius: 10px;
+  /* background: #f2f2f2; */
+  background-color: white;
+  /* border-radius: 10px; */
+  border: 1px solid black;
   margin: 0 auto;
   margin-top: 35px;
   display: grid;
@@ -231,7 +240,7 @@
 .total p,
 .total div,
 .total img {
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
 }
 
 .total .total_price, 
@@ -251,6 +260,7 @@
   line-height: 20px;
   color: #000000;
   margin-bottom: 12px;
+  font-weight: bold;
 }
 
 .total_price .cart_product_price,
