@@ -35,7 +35,7 @@ const Join = () => {
     <header className="Header">
             <Hbefore/>
         </header>
-     <Container component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
+     <Container className="Content" component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

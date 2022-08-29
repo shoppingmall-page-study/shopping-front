@@ -99,3 +99,11 @@ export const cartCreate = (cartDTO) => {
 export const cartGet = () => {
   return call("/cart/list", "GET", "")
 }
+
+export const reviewCreate = (reviewDTO) => {
+  return call(`/review/create/${reviewDTO.productId}`,"POST",reviewDTO)
+}
+
+export const reviewGet = (id) => {
+  return call(`/review/list/product/${id}`,"GET","")
+}

@@ -18,20 +18,14 @@ function Hafter({cart}){
         <ul id="List">
           <ul id="SemiList">
               <li><h3><Link to="../Basket">장바구니</Link></h3></li>
-              {cart.length >= 1 ? (
+              {/* {cart.length >= 1 ? (
                 <div className="new_shopping_cart">
                   <p>{cart}</p>
                 </div>
-              ) : ("")}
+              ) : ("")} */}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
-          </ul>
-          <ul>
-              <li><h3><Link to="../Uplist">등록목록</Link></h3></li>
-              <li><h3><Link to="../Orderlist">주문목록</Link></h3></li>
-          </ul>
-          <ul>
-            <li><h3>000님</h3></li>
-            <li><button id="logoutbtn" onClick={signout}>로그아웃</button></li>
+              <li><h3 className='user'><Link to="../User">000님</Link></h3></li>
+              <li><button id="logoutbtn" onClick={signout}>로그아웃</button></li>
           </ul>
         </ul>
       </div>
