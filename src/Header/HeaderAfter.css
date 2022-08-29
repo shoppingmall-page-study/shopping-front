@@ -75,6 +75,7 @@
 }
 
 .userBox{
+    background-color: white;
     position: absolute;
     width: 150px;
     border: solid 1px black;
@@ -89,5 +90,5 @@
 }
 
 p{
-    margin: 9px;
+    margin: 8px;
 }

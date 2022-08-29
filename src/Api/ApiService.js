@@ -85,7 +85,11 @@ export const registration = (userDTO) => {
 }
  
 export const productCreate = (goodsDTO) => {
-  return call("/product/create", "POST", goodsDTO)
+  return call("/product/create", "POST", goodsDTO).then((response)=>{
+    if(response.status == 200){
+      window.location.href = "/"
+    }
+  })
 }
 
 export const productGet = () => {
@@ -106,4 +110,8 @@ export const reviewCreate = (reviewDTO) => {
 
 export const reviewGet = (id) => {
   return call(`/review/list/product/${id}`,"GET","")
+}
+
+export const cartDelete = (id) => {
+  return call(`/cart/delete/${id}`,"DELETE","")
 }

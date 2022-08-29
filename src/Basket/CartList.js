@@ -1,7 +1,26 @@
+import { cartDelete } from '../Api/ApiService';
 import './Basket.css';
 
-function CartList({cart, setCart, convertPrice}){
-    return(
+function CartList({cart, setCart, convertPrice, s, setS}){
+
+  //하야할 일
+  //장바구니 체크박스
+
+  //장바구니 삭제
+  const HandleCartRemove = () => {
+    cartDelete(cart.cartId).then((respons) => {
+      if(respons.status == 200){
+        if(s == "a"){
+          setS("b")
+        }else{
+          setS("a")
+        }
+      }
+    })
+  }
+  //장바구니 총 상품가격 Hooks 수정
+  
+  return(
         <section className="cart_product_list">
         <input type="checkbox" />
         <div className="cart_product_wrap">
@@ -39,7 +58,7 @@ function CartList({cart, setCart, convertPrice}){
         </div>
 
         <div className="product_remove">
-          <img src="/images/icon-delete.svg" alt="delete" />
+          <img src="/images/icon-delete.svg" alt="delete" onClick={HandleCartRemove}/>
         </div>
       </section>
     );
