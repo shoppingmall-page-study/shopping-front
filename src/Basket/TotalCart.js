@@ -1,11 +1,11 @@
 import './Basket.css';
 
-function TotalCart(){
+function TotalCart({cart, setCart}){
     return(
         <div className="total">
         <div className="total_price">
           <p className="cart_product_total_price">총 상품금액</p>
-          <p className="cart_product_price">0</p>
+          <p className="cart_product_price">{cart.totalsum}</p>
         </div>
         <div className="pay_minus">
           <img src="/images/icon-minus-line.svg" alt="minus" />

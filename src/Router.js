@@ -16,11 +16,12 @@ import GoogleOauthhandler from "./Oauth/GoogleOauthhandler";
 import KakaoOauthhandler from "./Oauth/KakaoOauthhandler"
 import OauthJoin from "./Oauth/OauthJoin";
 import OauthJoinhandler from "./Oauth/OauthJoinhandler";
+import UserInformation from "./User/userInformation"
+import UserModify from "./User/userModify";
 
 function UserRouter(){
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
-
     const convertPrice = (price) => {
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
@@ -41,6 +42,8 @@ function UserRouter(){
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
         <Route path="/registration" element={<OauthJoin/>}/>
+        <Route path="/User" element={<UserInformation/>}/>
+        <Route path="/User/Modify" element={<UserModify/>}/>
     </Routes>
     );
 }

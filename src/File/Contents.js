@@ -15,7 +15,7 @@ function Contents({products, setProducts, convertPrice}){
     useEffect(()=>{
         productGet().then((res) => {
             setProducts(res.data.data);
-        })
+    })
 
         // getProducts().then((res) => {
         //     setProducts(res.data.data);

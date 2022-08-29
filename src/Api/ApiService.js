@@ -13,7 +13,7 @@ export const call = (api, method, request) => {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   if (accessToken && accessToken != "") {
     headers.append("Authorization", accessToken);
-    axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;
+    axios.defaults.headers.common['Authorization'] = "Bearer  " + accessToken;
   }
 
   let options = {
@@ -93,9 +93,17 @@ export const productGet = () => {
 }
 
 export const cartCreate = (cartDTO) => {
-  return call(`/cart/create/${cartDTO.productId}`,"GET",cartDTO)
+  return call(`/cart/create/${cartDTO.productId}`,"POST",cartDTO)
 }
 
 export const cartGet = () => {
   return call("/cart/list", "GET", "")
+}
+
+export const reviewCreate = (reviewDTO) => {
+  return call(`/review/create/${reviewDTO.productId}`,"POST",reviewDTO)
+}
+
+export const reviewGet = (id) => {
+  return call(`/review/list/product/${id}`,"GET","")
 }

@@ -1,0 +1,32 @@
+.user_window{
+    text-align: center;
+}
+.user_view{
+    display: flex;
+    justify-content: center;
+}
+
+#left{
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+ol{
+    margin: 0;
+}
+
+#left li{
+    margin-bottom: 20px;
+}
+
+#user_modift_btn{
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    border: 2px solid black;
+    font-weight: bold;
+    cursor: pointer;
+}

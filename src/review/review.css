@@ -1,0 +1,19 @@
+.review_window{
+    width: 60%;
+    border: 1px solid gray;
+    margin-bottom: 20px;
+}
+
+.review_title{
+    padding-left: 20px;
+    width: 60%;
+}
+
+.review_see_line{
+    border: 1px solid black;
+}
+
+.review_content{
+    padding-left: 20px;
+    width: 60%; 
+}
