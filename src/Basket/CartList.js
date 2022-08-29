@@ -11,7 +11,7 @@ function CartList({cart, setCart, convertPrice}){
 
           <div className="cart_product_info">          
             <p className="product_name">{cart.productName}</p>
-            <p className="price">{convertPrice(cart.productPrice * cart.productTotal)}원</p>
+            <p className="price">{convertPrice(cart.productPrice * cart.carttotal)}원</p>
             <p className="delivery">택배배송 / 무료배송</p>
           </div>
         </div>
@@ -24,7 +24,7 @@ function CartList({cart, setCart, convertPrice}){
           />
 
           <div className="count">
-            <span>{cart.productTotal}</span>
+            <span>{cart.carttotal}</span>
           </div>
           <img
             className="plus"

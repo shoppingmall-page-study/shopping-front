@@ -17,7 +17,7 @@ import KakaoOauthhandler from "./Oauth/KakaoOauthhandler"
 import OauthJoin from "./Oauth/OauthJoin";
 import OauthJoinhandler from "./Oauth/OauthJoinhandler";
 import UserInformation from "./User/userInformation"
-import User from "./User/user";
+import UserModify from "./User/userModify";
 
 function UserRouter(){
     const [products, setProducts] = useState([]);
@@ -42,7 +42,8 @@ function UserRouter(){
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
         <Route path="/registration" element={<OauthJoin/>}/>
-        <Route path="/User" element={<User/>}/>
+        <Route path="/User" element={<UserInformation/>}/>
+        <Route path="/User/Modify" element={<UserModify/>}/>
     </Routes>
     );
 }

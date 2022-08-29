@@ -2,8 +2,19 @@ import './HeaderAfter.css'
 import {Link} from 'react-router-dom'
 import AHome from '../Home/Ahome';
 import {cartGet, signout} from '../Api/ApiService'
+import {useState } from 'react'
 
 function Hafter({cart}){
+  const [userState,setUserState] = useState("down")
+
+  const HandleUserState = () => {
+    if(userState === "down"){
+      setUserState("up")
+    }else{
+      setUserState("down")
+    }
+  }
+
   return(
     <div className="Menu">
       <div className="Logo">
@@ -24,7 +35,20 @@ function Hafter({cart}){
                 </div>
               ) : ("")} */}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
-              <li><h3 className='user'><Link to="../User">000님</Link></h3></li>
+              <li><h3 className='user'><Link to="" onClick={HandleUserState}>000님</Link></h3></li>
+              {
+              userState === "up" ? (
+              <div className='userBox'>
+                <p><Link to="../user">회원정보</Link></p>
+                <div id='textline'></div>
+                <p><Link to="">리뷰 목록</Link></p>
+                <div id='textline'></div>
+                <p><Link to="">주문 목록</Link></p>
+                <div id='textline'></div>
+                <p><Link to="">등록 상품 목록</Link></p>
+              </div>)
+              : ""
+              }
               <li><button id="logoutbtn" onClick={signout}>로그아웃</button></li>
           </ul>
         </ul>

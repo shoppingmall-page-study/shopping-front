@@ -7,6 +7,7 @@ import Hbefore from '../Header/HeaderBefore';
 import getProducts from '../Service/Fetcher';
 import { productGet, cartCreate, cartGet, reviewCreate, reviewGet } from '../Api/ApiService';
 import './Detail.css'
+import Review from '../review/review';
 
 function Detail({convertPrice, cart, setCart, token}){
     const { id } = useParams();
@@ -44,7 +45,7 @@ function Detail({convertPrice, cart, setCart, token}){
     // const setQuantity = (id, quantity) => { //장바구니 물건=> 중복된 물건인 경우
     //     const found = cart.filter((el) => el.id === id)[0];
     //     const idx = cart.indexOf(found);
-    //     const cartItem = {
+    //     const cartItem = { 
     //         id: product.productId,
     //         image: product.imgUrl,
     //         name: product.name,
@@ -85,7 +86,7 @@ function Detail({convertPrice, cart, setCart, token}){
           }
         }else{
           cartCreate({title: product.title, name: product.name, content: product.content,
-                    price: product.price, total: count, imgUrl: product.imgUrl, productId: product.productId});
+                    price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId});
           // const cartItem = {
           //   title: product.title, name: product.name, content: product.content,
           //           price: product.price, total: count, imgUrl: product.imgUrl, productId: product.productId 
@@ -237,13 +238,17 @@ function Detail({convertPrice, cart, setCart, token}){
               <div id="review-look-form">
               { reviewlist.length === 0 ?(
               <p>해당 상품에 등록된 리뷰가 없습니다.</p>)
-              : <Hafter/>
+              : reviewlist.map((reviewlist) => {
+                return <Review key={`reviewkey-${product.productId}`} reviewlist={reviewlist} setReviewList={setReviewList}/>
+              })
               }
               </div>
               }
             </div>
           </div>
         </div>
+        <footer>
+        </footer>
       </main>
     )
     );

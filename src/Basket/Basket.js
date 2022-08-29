@@ -23,7 +23,7 @@ useEffect(() => {
     setCart(res.data.data)
     setCartLength(res.data.data.length)
   })
-},[id])
+},[id]) 
 {console.log(cart)}
 
 //return cartlength === 0 ? <Hbefore/> : <Hafter/>
