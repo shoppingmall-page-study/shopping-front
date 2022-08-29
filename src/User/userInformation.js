@@ -6,12 +6,12 @@ import "./userInformation.css"
 
 function UserInformation(){
     const [user,setUser] = useState([])
-    const {id} = useParams()
+    // const {id} = useParams()
     useEffect(() => {
         userGet().then((res) => {
             setUser(res.data)
         })
-    },[id])
+    },[])
     return(
         <div>
             <div className="Header">
