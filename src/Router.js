@@ -27,6 +27,9 @@ function UserRouter(){
     const convertPrice = (price) => {
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
+    const convertPhoneNumber = (phoneNumber) => {
+        return (Object(phoneNumber).toString().replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3"));
+    }
     
     const token = localStorage.getItem("ACCESS_TOKEN")
 
@@ -44,7 +47,7 @@ function UserRouter(){
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
         <Route path="/registration" element={<OauthJoin/>}/>
-        <Route path="/User" element={<UserInformation/>}/>
+        <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber}/>}/>
         <Route path="/User/Modify" element={<UserModify/>}/>
     </Routes>
     );

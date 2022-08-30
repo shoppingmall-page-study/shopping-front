@@ -29,7 +29,7 @@ useEffect(() => {
 },[s])
 {console.log(cart)}
 
-//return cartlength === 0 ? <Hbefore/> : <Hafter/>
+// return cartlength === 0 ? <Hbefore/> : <Hafter/>
 
 return (
     <div>
@@ -38,7 +38,7 @@ return (
       </header>
       <div className='Content'>
       <CartHeader/>
-      {cartlength === 0 ? (
+      {cart.length === 0 ? (
         <div className="not">
             <h2>장바구니에 담긴 상품이 없습니다.</h2>
             <p>원하는 상품을 장바구니에 담아보세요!</p>
