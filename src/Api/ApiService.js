@@ -119,3 +119,16 @@ export const cartDelete = (id) => {
 export const userGet = () => {
   return call("/user/info", "GET", "")
 }
+
+// export const cartUpdate = (cartDTO) => {
+//   return call(`/cart/update/${cartDTO.cartId}`,"PUT",{carttotal: cartDTO.carttotal})
+// }
+
+export const userUpdate = (userDTO) => {
+  return call("/user/update","PUT",userDTO).then((response) => {
+    if(response.status == 200){
+      alert("회원정보가 정상적으로 변경되었습니다.")
+      window.location.href = "/user"
+    }
+  })
+}

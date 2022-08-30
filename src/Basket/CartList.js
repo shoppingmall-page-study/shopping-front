@@ -1,10 +1,9 @@
-import { cartDelete } from '../Api/ApiService';
+import { cartDelete, cartUpdate } from '../Api/ApiService';
 import './Basket.css';
 
 function CartList({cart, setCart, convertPrice, s, setS}){
-
   //하야할 일
-  //장바구니 체크박스
+  //장바구니 체크박스0
 
   //장바구니 삭제
   const HandleCartRemove = () => {
@@ -20,6 +19,14 @@ function CartList({cart, setCart, convertPrice, s, setS}){
   }
   //장바구니 총 상품가격 Hooks 수정
   
+  const HandleCartUpdate =(type) => {
+    if(type === "plus"){
+      
+    }else{
+
+    }
+  }
+
   return(
         <section className="cart_product_list">
         <input type="checkbox" />
@@ -40,6 +47,7 @@ function CartList({cart, setCart, convertPrice, s, setS}){
             className="minus"
             src="/images/icon-minus-line.svg"
             alt="minus"
+            
           />
 
           <div className="count">
@@ -49,6 +57,7 @@ function CartList({cart, setCart, convertPrice, s, setS}){
             className="plus"
             src="/images/icon-plus-line.svg"
             alt="plus"
+            onClick={() => HandleCartUpdate("plus")}
           />
         </div>
 
