@@ -1,0 +1,17 @@
+.menu_bar{
+    padding-top: 10%;
+}
+
+.menu_bar ol{
+    margin-right: 40px;
+}
+
+.menu_bar li{
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.menu_bar a:hover{
+    border-bottom: 2px solid #000;
+}

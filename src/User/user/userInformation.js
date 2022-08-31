@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { userGet } from "../Api/ApiService";
-import Hafter from "../Header/HeaderAfter";
+import { userGet } from "../../Api/ApiService";
+import Hafter from "../../Header/HeaderAfter";
+import UserMenuBar from "../userMenuBar";
 import "./userInformation.css"
 
 function UserInformation({convertPhoneNumber}){
     const [user,setUser] = useState([])
-    // const {id} = useParams()
+    const {id} = useParams()
     useEffect(() => {
         userGet().then((res) => {
             setUser(res.data)
         })
-    },[])
+    },[id])
     return(
         <div>
             <div className="Header">
@@ -20,14 +21,15 @@ function UserInformation({convertPhoneNumber}){
             </div>
             <div className="Content">
                 <div className="flex_content">
-                    <div className="menu_bar">
+                    {/* <div className="menu_bar">
                         <ol>
                             <li><Link to="/user">회원정보</Link></li>
-                            <li><Link to="">리뷰 목록</Link></li>
+                            <li><Link to="/UserReviewList">리뷰 목록</Link></li>
                             <li><Link to="">주문 목록</Link></li>
                             <li><Link to="">등록 상품 목록</Link></li>
                         </ol>
-                    </div>
+                    </div> */}
+                    <UserMenuBar/>
                     <div className="user_window">
                         <ol>
                             <h1><span id="user_bar">회원정보</span></h1>

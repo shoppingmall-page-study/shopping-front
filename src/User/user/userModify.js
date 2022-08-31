@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import Hafter from "../Header/HeaderAfter";
+import Hafter from "../../Header/HeaderAfter";
 import { TextField } from '@material-ui/core';
 import "./userModify.css"
-import { userUpdate } from "../Api/ApiService";
+import { userUpdate } from "../../Api/ApiService";
+import UserMenuBar from "../userMenuBar";
 
 function UserModify(){
 
@@ -23,14 +24,15 @@ function UserModify(){
             </div>
             <div className="Content">
                 <form className="flex_content" onSubmit={HandleUserUpdate}>
-                    <div className="menu_bar">
+                    {/* <div className="menu_bar">
                         <ol>
                             <li><Link to="/user">회원정보</Link></li>
                             <li><Link to="">리뷰 목록</Link></li>
                             <li><Link to="">주문 목록</Link></li>
                             <li><Link to="">등록 상품 목록</Link></li>
                         </ol>
-                    </div>
+                    </div> */}
+                    <UserMenuBar/>
                     <div className="user_window">
                         <ol>
                             <h1><span id="user_bar">회원정보수정</span></h1>

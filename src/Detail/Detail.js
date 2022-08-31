@@ -25,6 +25,8 @@ function Detail({convertPrice, cart, setCart, token}){
         }
     };
 
+    //수량 텍스트필드 넘버로 이용하기
+
     // useEffect(()=>{
     //     getProducts().then((response) => {
     //         setProduct(response.data.products.find((product) => product.id === parseInt(id)));

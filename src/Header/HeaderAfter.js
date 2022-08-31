@@ -1,5 +1,5 @@
 import './HeaderAfter.css'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import AHome from '../Home/Ahome';
 import {cartGet, signout, userGet,searchPost} from '../Api/ApiService'
 import {useEffect, useState } from 'react'
@@ -7,6 +7,7 @@ import { TextField, InputAdornment, Button } from '@material-ui/core';
 
 
 function Hafter({cart}){
+  const {id} = useParams()
   const [userState,setUserState] = useState("down");
   const [user,setUser] = useState([])
 
@@ -23,7 +24,7 @@ function Hafter({cart}){
     userGet().then((res) => {
       setUser(res.data)
     })
-  },[])
+  },[id])
 
   const HandleUserState = () => {
     if(userState === "down"){
@@ -76,7 +77,7 @@ function Hafter({cart}){
               <div className='userBox'>
                 <p><Link to="../user">회원정보</Link></p>
                 <div id='textline'></div>
-                <p><Link to="">리뷰 목록</Link></p>
+                <p><Link to="../UserReviewList">리뷰 목록</Link></p>
                 <div id='textline'></div>
                 <p><Link to="">주문 목록</Link></p>
                 <div id='textline'></div>

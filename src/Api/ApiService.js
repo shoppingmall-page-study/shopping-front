@@ -132,5 +132,20 @@ export const userUpdate = (userDTO) => {
     }
   })
 }
+
+export const userReviewGet = () => {
+  return call("/review/list/user","GET","")
+}
+
+export const reviewDelete = (id) => {
+  return call(`/review/delete/${id}`,"DELETE","").then((response) => {
+    if(response.status == 200){
+      alert("성공적으로 삭제되었습니다.")
+      window.location.reload()
+    }
+  })
+}
+
 export const searchPost = (searchDTO) =>{
   return call("/product/search", "POST", searchDTO)}
+

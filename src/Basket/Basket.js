@@ -35,6 +35,7 @@ return (
     <div>
       <header className="Header">
         {TokenHeaderView(token)}
+        <h1 id='basket_title'>장바구니</h1>
       </header>
       <div className='Content'>
       <CartHeader/>
@@ -51,4 +52,4 @@ return (
     </div>
   );
 };
-export default Basket; 
+export default Basket;
