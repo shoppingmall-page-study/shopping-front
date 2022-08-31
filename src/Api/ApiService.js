@@ -169,5 +169,10 @@ export const userProductDelete = (id) => {
 }
 
 export const reviewUpdate = (reviewDTO) => {
-  return call(`/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO)
+  return call(`/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO).then((response) => {
+    if(response.status == 200){
+      alert("리뷰가 정상적으로 변경되었습니다.")
+      window.location.href = "/UserReviewList"
+    }
+  })
 }

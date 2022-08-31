@@ -1,20 +1,29 @@
 import { TextField } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useRef, useState } from "react";
 import {Link, useParams} from "react-router-dom";
-import { userReviewGet } from "../../Api/ApiService";
+import { reviewUpdate, userReviewGet } from "../../Api/ApiService";
 import Hafter from '../../Header/HeaderAfter';
 import UserMenuBar from "../userMenuBar";
 import ReviewContent from "./reviewContent"
+import "./reviewModify.css"
 
-function ReviewModify(){
+function ReviewModify({reviewSelect, setReviewSelect}){
+    const HandleReviewUpdate = (e) => {
+        e.preventDefault()
+        const data = new FormData(e.target)
+        const title = data.get("user_review_title")
+        const content = data.get("reviewUpdate_content")
+        reviewUpdate({reviewId: reviewSelect.reviewId, title: title, content: content})
+    }
+
     return(
         <div>
             <div className="Header">
                 <Hafter/>
-                <h1 id="review_title">리뷰수정</h1>
+                <h1 id="review_modify_title">리뷰수정</h1>
             </div>
             <div className="Content">
-                <div className="flex_userContent">
+                <div className="flex_reviewModifyContent">
                     <UserMenuBar/>
                     {/* <div className="user_review_window">
                     {userReview.length === 0 ?(
@@ -26,33 +35,36 @@ function ReviewModify(){
                     })
                     }
                     </div> */}
-                    <div className="user_review_window">
-                    <div  className="user_reviewlist_window">
-                        <div className="user_reviewlist_title">
-                            <TextField name="user_review_title"
-                            label="제목" 
-                            className="reviewUpdate_title"
-                            variant="outlined"/>
-                            <TextField name="reviewUpdate_content"
-                            label="내용" 
-                            className="review-up-content"
-                            variant="outlined"/>
-                        </div>
-                        <div className="uer_reviewlist_line"></div>
-                            <div className="user_reviewlist_content">
-                                {/* <p>{userReview.content}</p> */}
-                                {/* <div className="user_nickname_cal">
-                                    <span>닉네임 : {.useuserReviewrNickName}</span>
-                                    <span>등록일 : {userReview.reviewCreateTime}</span>
-                                </div> */}
+                    <form className="user_review_modify_window" onSubmit={HandleReviewUpdate}>
+                        <div className="user_reviewModifylist_window">
+                            <div>
+                                <TextField name="user_review_title"
+                                required
+                                label="제목" 
+                                className="reviewUpdate_title"
+                                variant="outlined"
+                                defaultValue={reviewSelect.title}
+                                multiline
+                                maxRows={2}/>
+                            </div>
+                            <div className="user_reviewModifylist_line"></div>
+                            <div className="user_reviewModifylist_content">
+                                <TextField name="reviewUpdate_content"
+                                required
+                                label="내용" 
+                                className="reviewUpdate_content"
+                                variant="outlined"
+                                defaultValue={reviewSelect.content}
+                                multiline
+                                maxRows={4}/>
                             </div>
                         </div>
-                    <div className="user_reivewlist_form">
-                        <form className="user_reivewlist_btn">
-                            <button type="submit" name="delete">완료</button>
-                        </form>
-                    </div>
-                </div>
+                        <div className="user_reivewModify_form">
+                            <div className="user_reiveModify_btn">
+                                <button type="submit">완료</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

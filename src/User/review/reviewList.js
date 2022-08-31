@@ -6,7 +6,7 @@ import UserMenuBar from "../userMenuBar";
 import ReviewContent from "./reviewContent"
 import "./reviewList.css"
 
-function ReviewList(){
+function ReviewList({reviewSelect, setReviewSelect}){
     const [userReview, setUserReview] = useState([])    //사용자가 단 리뷰 목로들이 저장될 Hooks
     const {id} = useParams();
     useEffect(() => {
@@ -30,7 +30,7 @@ function ReviewList(){
                             <p>사용자가 등록한 리뷰목록이 존재하지 않습니다.</p>
                         </div>
                     ): userReview.map((userReview) => {
-                        return <ReviewContent key={`userreviewkey-${userReview.reviewId}`} userReview={userReview} setUserReview={setUserReview}/> 
+                        return <ReviewContent key={`userreviewkey-${userReview.reviewId}`} userReview={userReview} setUserReview={setUserReview} reviewSelect={reviewSelect} setReviewSelect={setReviewSelect}/> 
                     })
                     }
                     </div>

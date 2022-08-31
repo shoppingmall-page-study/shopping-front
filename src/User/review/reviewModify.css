@@ -1,0 +1,60 @@
+.flex_reviewModifyContent{
+    display: flex;
+}
+
+#review_modify_title{
+    margin-left: 40px;
+}
+
+.user_review_modify_window{
+padding-top: 10%;
+padding-left: 10%;
+width: 60%;
+}
+
+.user_reviewModifylist_window{
+    border-bottom: 3px solid black;
+    margin-bottom: 20px;
+    font-weight: bold;
+
+}
+
+.user_reviewModifylist_line{
+    width: 100%;
+    top: 43%;
+    border: 1px solid gray;
+    margin: 20px 0;
+}
+
+.user_reviewModifylist_content{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.user_nickname_cal{
+    text-align: right;
+    font-size: 15px;
+}
+
+.reviewUpdate_title, .reviewUpdate_content{
+    width: 100%;
+}
+
+.user_reiveModify_btn{
+    text-align: right;
+}
+
+.user_reivewlist_form{
+    display: flex;
+    justify-content: end;
+}
+
+.user_reiveModify_btn button{
+    width: 100px;
+    color: white;
+    font-size: 22px;
+    background-color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    margin-left: 20px;
+    cursor: pointer;
+}
