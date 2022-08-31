@@ -69,6 +69,11 @@ width: 60%;
     text-align: right;
 }
 
+.user_reivewlist_form{
+    display: flex;
+    justify-content: end;
+}
+
 .user_reivewlist_btn button{
     width: 120px;
     color: white;

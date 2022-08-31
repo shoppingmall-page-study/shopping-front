@@ -3,11 +3,12 @@ import "./reviewList.css"
 
 function ReviewContent({userReview, setUserReview}){
 
-    const HandleUserReviewListUpdate = () => {
-
+    const HandleUserReviewListUpdate = (e) => {
+        e.preventDefault();
     }
-    const HandleUserReviewListRemove = () => {
-        reviewDelete(userReview.reviewId)
+    const HandleUserReviewListRemove = (e) => {
+        e.preventDefault();
+        reviewDelete(userReview.productId)
     }
     return(
         <section>
@@ -24,10 +25,14 @@ function ReviewContent({userReview, setUserReview}){
                     </div>
                 </div>
             </div>
-            <form className="user_reivewlist_btn" onSubmit={HandleUserReviewListRemove()}>
-                {/* <button type="submit">수정</button> */}
-                <button type="submit">삭제</button>
-            </form>
+            <div className="user_reivewlist_form">
+                <form className="user_reivewlist_btn" onSubmit={HandleUserReviewListUpdate}>
+                    <button type="submit" name="modify">수정</button>
+                </form>
+                <form className="user_reivewlist_btn" onSubmit={HandleUserReviewListRemove}>
+                    <button type="submit" name="delete">삭제</button>
+                </form>
+            </div>
         </section>
     );
 }

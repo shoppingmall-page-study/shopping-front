@@ -145,3 +145,7 @@ export const reviewDelete = (id) => {
     }
   })
 }
+
+export const searchPost = (searchDTO) =>{
+  return call("/product/search", "POST", searchDTO)}
+

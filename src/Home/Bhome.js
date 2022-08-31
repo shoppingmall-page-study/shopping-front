@@ -1,6 +1,6 @@
 import React from "react";
 import Hbefore from "../Header/HeaderBefore";
-import Contents from '../File/Contents'
+import Contents from "../File/Contents";
 
 function BHome({products, setProducts, convertPrice}){
     return(

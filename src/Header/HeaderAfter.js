@@ -1,13 +1,24 @@
 import './HeaderAfter.css'
 import {Link, useParams} from 'react-router-dom'
 import AHome from '../Home/Ahome';
-import {cartGet, signout, userGet} from '../Api/ApiService'
+import {cartGet, signout, userGet,searchPost} from '../Api/ApiService'
 import {useEffect, useState } from 'react'
+import { TextField, InputAdornment, Button } from '@material-ui/core';
+
 
 function Hafter({cart}){
   const {id} = useParams()
   const [userState,setUserState] = useState("down");
   const [user,setUser] = useState([])
+
+  const [param, setParam] = useState();
+
+
+  const handleChange = (event) => {
+    setParam(event.target.value);
+    
+  };
+  //  response 데이터 
 
   useEffect(() => {
     userGet().then((res) => {
@@ -30,9 +41,25 @@ function Hafter({cart}){
         <h1><a href="/">Shop</a></h1>
       </div>
       <div className='SearchBar'>
-          <form className='SearchForm'>
-              <input id="Search" type="text" placeholder="검색" autoFocus></input>
-          </form>
+      <form >
+        {" "}
+        {/* submit 버튼을 누르면 handleSubmit이 실행됨. */}
+        
+         
+        <TextField id= "searchparam" label="검색" name="searchparam" fullWidth variant='outlined' autoComplete='none' onChange={handleChange}  InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <Link to={`/product/search/${param}`}>
+                <Button type='sumbit' fullWidth variant='outlined' color='default'>검색</Button>
+            </Link>
+            
+          </InputAdornment>
+        ),
+      }}/>
+          
+          
+          
+      </form>
       </div>
       <div className="UserInf">
         <ul id="List">
