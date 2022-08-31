@@ -25,7 +25,7 @@
 .SearchBar{
     width: 582px;
     height: 52px;
-    border: 3px solid black;
+    border: none;
 }
 
 .SearchForm{

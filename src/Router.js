@@ -19,11 +19,15 @@ import OauthJoinhandler from "./Oauth/OauthJoinhandler";
 import UserInformation from "./User/userInformation"
 import UserModify from "./User/userModify";
 import { userGet } from "./Api/ApiService";
-
+import Searchhome from "./Home/Searchhome";
+import SearchBhome from "./Home/SearchBhome"
 function UserRouter(){
     const {id} = useParams()
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
+   
+   
+    const [searchProducts, setSearchProducts]  = useState([]); // 상품 검색한 리스트 
     const convertPrice = (price) => {
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
@@ -49,6 +53,8 @@ function UserRouter(){
         <Route path="/registration" element={<OauthJoin/>}/>
         <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber}/>}/>
         <Route path="/User/Modify" element={<UserModify/>}/>
+        <Route path="/product/search/:name" element={token ? <Searchhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
+        
     </Routes>
     );
 }

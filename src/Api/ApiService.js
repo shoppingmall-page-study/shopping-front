@@ -132,3 +132,5 @@ export const userUpdate = (userDTO) => {
     }
   })
 }
+export const searchPost = (searchDTO) =>{
+  return call("/product/search", "POST", searchDTO)}
