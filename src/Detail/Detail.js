@@ -41,6 +41,7 @@ function Detail({convertPrice, cart, setCart, token}){
     useEffect(() => {
       productGet().then((res) => {
         setProduct(res.data.data.find((product) => product.productId === parseInt(id)));
+        console.log(product.reviewId)
       });
     }, [id]);
 
@@ -138,7 +139,7 @@ function Detail({convertPrice, cart, setCart, token}){
         setReviewList(res.data.data)
         console.log(reviewlist)
       })
-    },[state  ])
+    },[state])
 
     return(
       product && (
@@ -241,7 +242,7 @@ function Detail({convertPrice, cart, setCart, token}){
               { reviewlist.length === 0 ?(
               <p>해당 상품에 등록된 리뷰가 없습니다.</p>)
               : reviewlist.map((reviewlist) => {
-                return <Review key={`reviewkey-${product.productId}`} reviewlist={reviewlist} setReviewList={setReviewList}/>
+                return <Review key={`reviewkey-${reviewlist.reviewId}`} reviewlist={reviewlist} setReviewList={setReviewList}/>
               })
               }
               </div>

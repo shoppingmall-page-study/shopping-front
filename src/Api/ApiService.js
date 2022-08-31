@@ -105,7 +105,12 @@ export const cartGet = () => {
 }
 
 export const reviewCreate = (reviewDTO) => {
-  return call(`/review/create/${reviewDTO.productId}`,"POST",reviewDTO)
+  return call(`/review/create/${reviewDTO.productId}`,"POST",reviewDTO).then((response) => {
+    if(response.status == 200){
+      alert("성공적으로 리뷰가 등록되었습니다.")
+      window.location.reload()
+    }
+  })
 }
 
 export const reviewGet = (id) => {
@@ -144,6 +149,10 @@ export const reviewDelete = (id) => {
       window.location.reload()
     }
   })
+}
+
+export const userGoodsupGet = () => {
+  return call("/product/list/user","GET","")
 }
 
 export const searchPost = (searchDTO) =>{

@@ -22,6 +22,8 @@ import ReviewList from "./User/review/reviewList";
 import { userGet } from "./Api/ApiService";
 import Searchhome from "./Home/Searchhome";
 import SearchBhome from "./Home/SearchBhome"
+import UserGoodsUp from "./User/UserGoodsUp/userGoodsup";
+
 function UserRouter(){
     const {id} = useParams()
     const [products, setProducts] = useState([]);
@@ -54,11 +56,9 @@ function UserRouter(){
         <Route path="/registration" element={<OauthJoin/>}/>
         <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber}/>}/>
         <Route path="/User/Modify" element={<UserModify/>}/>
-
         <Route path="/UserReviewList" element={<ReviewList/>}/>
-
         <Route path="/product/search/:name" element={token ? <Searchhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
-        
+        <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice}/>}/>
 
     </Routes>
     );
