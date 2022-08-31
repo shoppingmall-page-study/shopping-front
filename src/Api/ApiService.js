@@ -167,3 +167,7 @@ export const userProductDelete = (id) => {
     }
   })
 }
+
+export const reviewUpdate = (reviewDTO) => {
+  return call(`/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO)
+}

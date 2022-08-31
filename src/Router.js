@@ -23,6 +23,7 @@ import { userGet } from "./Api/ApiService";
 import Searchhome from "./Home/Searchhome";
 import SearchBhome from "./Home/SearchBhome"
 import UserGoodsUp from "./User/UserGoodsUp/userGoodsup";
+import ReviewModify from "./User/review/reviewModify";
 
 function UserRouter(){
     const {id} = useParams()
@@ -59,7 +60,8 @@ function UserRouter(){
         <Route path="/UserReviewList" element={<ReviewList/>}/>
         <Route path="/product/search/:name" element={token ? <Searchhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
         <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice}/>}/>
-
+        <Route path="/UserReviewList/Modify" element={<ReviewModify/>}/>
+        
     </Routes>
     );
 }

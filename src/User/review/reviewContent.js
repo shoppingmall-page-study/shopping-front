@@ -1,11 +1,9 @@
-import { reviewDelete } from "../../Api/ApiService";
+import { reviewDelete, reviewUpdate } from "../../Api/ApiService";
+import { Link } from "react-router-dom";
 import "./reviewList.css"
 
 function ReviewContent({userReview, setUserReview}){
 
-    const HandleUserReviewListUpdate = (e) => {
-        e.preventDefault();
-    }
     const HandleUserReviewListRemove = (e) => {
         e.preventDefault();
         reviewDelete(userReview.reviewId)
@@ -27,9 +25,9 @@ function ReviewContent({userReview, setUserReview}){
                 </div>
             </div>
             <div className="user_reivewlist_form">
-                <form className="user_reivewlist_btn" onSubmit={HandleUserReviewListUpdate}>
-                    <button type="submit" name="modify">수정</button>
-                </form>
+                <div className="user_reivewlist_a_form">
+                    <span><Link id="user_reivewlist_a" to="/UserReviewList/Modify">수정</Link></span>
+                </div>
                 <form className="user_reivewlist_btn" onSubmit={HandleUserReviewListRemove}>
                     <button type="submit" name="delete">삭제</button>
                 </form>
