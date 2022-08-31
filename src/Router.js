@@ -23,10 +23,12 @@ import { userGet } from "./Api/ApiService";
 import Searchhome from "./Home/Searchhome";
 import SearchBhome from "./Home/SearchBhome"
 import UserGoodsUp from "./User/UserGoodsUp/userGoodsup";
+import ReviewModify from "./User/review/reviewModify";
 
 function UserRouter(){
     const {id} = useParams()
     const [products, setProducts] = useState([]);
+    const [reviewSelect, setReviewSelect] = useState([]);   //리뷰 수정을 위해 선택된 리뷰목록을 저장하는 Hooks
     const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
    
    
@@ -56,10 +58,11 @@ function UserRouter(){
         <Route path="/registration" element={<OauthJoin/>}/>
         <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber}/>}/>
         <Route path="/User/Modify" element={<UserModify/>}/>
-        <Route path="/UserReviewList" element={<ReviewList/>}/>
+        <Route path="/UserReviewList" element={<ReviewList reviewSelect={reviewSelect} setReviewSelect={setReviewSelect}/>}/>
         <Route path="/product/search/:name" element={token ? <Searchhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
         <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice}/>}/>
-
+        <Route path="/UserReviewList/Modify" element={<ReviewModify reviewSelect={reviewSelect} setReviewSelect={setReviewSelect}/>}/>
+        
     </Routes>
     );
 }
