@@ -16,8 +16,9 @@ import GoogleOauthhandler from "./Oauth/GoogleOauthhandler";
 import KakaoOauthhandler from "./Oauth/KakaoOauthhandler"
 import OauthJoin from "./Oauth/OauthJoin";
 import OauthJoinhandler from "./Oauth/OauthJoinhandler";
-import UserInformation from "./User/userInformation"
-import UserModify from "./User/userModify";
+import UserInformation from "./User/user/userInformation"
+import UserModify from "./User/user/userModify";
+import ReviewList from "./User/review/reviewList";
 import { userGet } from "./Api/ApiService";
 
 function UserRouter(){
@@ -49,6 +50,7 @@ function UserRouter(){
         <Route path="/registration" element={<OauthJoin/>}/>
         <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber}/>}/>
         <Route path="/User/Modify" element={<UserModify/>}/>
+        <Route path="/UserReviewList" element={<ReviewList/>}/>
     </Routes>
     );
 }

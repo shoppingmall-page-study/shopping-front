@@ -1,0 +1,81 @@
+/*reviewList*/
+.flex_userContent{
+    display: flex;
+}
+
+#review_title{
+    margin-left: 40px;
+}
+
+.not_userReivew{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.user_review_window{
+padding-top: 10%;
+padding-left: 10%;
+width: 60%;
+}
+
+/*reviewContent*/
+.user_reviewlist_window{
+    position: relative;
+    border-bottom: 3px solid black;
+    margin-bottom: 20px;
+    font-weight: bold;
+
+}
+
+.user_reviewlist_title{
+    height: 50px;
+    font-size: 24px;
+    padding-top: 7px;
+    padding-left: 15px;
+}
+
+.uer_reviewlist_line{
+    position: absolute;
+    width: 98%;
+    left: 15px;
+    top: 43%;
+    border: 1px solid gray;
+}
+
+.user_reviewlist_content{
+    padding-left: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.user_nickname_cal{
+    text-align: right;
+    font-size: 15px;
+}
+
+.user_nickname_cal span{
+    padding-right: 25px;
+}
+
+.user_reivewlist_btn{
+    text-align: right;
+}
+
+.user_reivewlist_btn button{
+    width: 120px;
+    color: white;
+    font-size: 22px;
+    background-color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    margin-left: 20px;
+    cursor: pointer;
+}
