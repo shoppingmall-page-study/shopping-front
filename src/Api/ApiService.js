@@ -87,6 +87,7 @@ export const registration = (userDTO) => {
 export const productCreate = (goodsDTO) => {
   return call("/product/create", "POST", goodsDTO).then((response)=>{
     if(response.status == 200){
+      alert("상품이 등록되었습니다.")
       window.location.href = "/"
     }
   })
@@ -156,5 +157,14 @@ export const userGoodsupGet = () => {
 }
 
 export const searchPost = (searchDTO) =>{
-  return call("/product/search", "POST", searchDTO)}
+  return call("/product/search", "POST", searchDTO)
+}
 
+export const userGoodsDelete = (id) => {
+  return call(`/product/delete/${id}`,"DELETE","").then((response) => {
+    if(response.status == 200){
+      alert("해당 상품이 리스트에서 삭제되었습니다.")
+      window.location.reload()
+    }
+  })
+}
