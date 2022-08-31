@@ -8,7 +8,7 @@ function GoogleOauthhandler() {
     console.log(params);
     localStorage.clear();
     localStorage.setItem("ACCESS_TOKEN",params.token);
-    window.location.replace("/1");
+    window.location.replace("/");
   }, []);
 
   return <></>;
