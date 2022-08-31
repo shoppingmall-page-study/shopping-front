@@ -8,8 +8,9 @@ function ReviewContent({userReview, setUserReview}){
     }
     const HandleUserReviewListRemove = (e) => {
         e.preventDefault();
-        reviewDelete(userReview.productId)
+        reviewDelete(userReview.reviewId)
     }
+    console.log(userReview)
     return(
         <section>
             <div  className="user_reviewlist_window">
@@ -20,8 +21,8 @@ function ReviewContent({userReview, setUserReview}){
                 <div className="user_reviewlist_content">
                     <p>{userReview.content}</p>
                     <div className="user_nickname_cal">
-                        <span>닉네임!!!!!!</span>
-                        <span>등록일: 20202020202020</span>
+                        <span>닉네임 : {userReview.userNickName}</span>
+                        <span>등록일 : {userReview.reviewCreateTime}</span>
                     </div>
                 </div>
             </div>

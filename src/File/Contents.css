@@ -24,3 +24,9 @@
     place-items: center;
     margin-top: 35px;
 }
+
+.search_product_count_a{
+    font-size: 20px;
+    margin-left: 40px;
+    font-weight: bold;
+}

@@ -30,7 +30,7 @@ function ReviewList(){
                             <p>사용자가 등록한 리뷰목록이 존재하지 않습니다.</p>
                         </div>
                     ): userReview.map((userReview) => {
-                        return <ReviewContent key={`userreviewkey-${userReview.productId}`} userReview={userReview} setUserReview={setUserReview}/> 
+                        return <ReviewContent key={`userreviewkey-${userReview.reviewId}`} userReview={userReview} setUserReview={setUserReview}/> 
                     })
                     }
                     </div>

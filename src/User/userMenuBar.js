@@ -8,7 +8,7 @@ function UserMenuBar(){
                 <li><Link to="/user">회원정보</Link></li>
                 <li><Link to="/UserReviewList">리뷰 목록</Link></li>
                 <li><Link to="">주문 목록</Link></li>
-                <li><Link to="">등록 상품 목록</Link></li>
+                <li><Link to="/UserProducList">등록 상품 목록</Link></li>
             </ol>
         </div>
     );
