@@ -1,6 +1,15 @@
+import { userProductDelete } from "../../Api/ApiService";
 import "./userGoodsUp.css"
 
 function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice}){
+
+    const HandleUserProductUpdate = (e) => {
+        e.preventDefault();
+    }
+    const HandleUserProductDelete = (e) => {
+        e.preventDefault();
+        userProductDelete(userGoodsup.productId)
+    }
     return(
         <section>
             <div  className="user_productlist_window">
@@ -21,10 +30,10 @@ function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice}){
                     </div>
                 </div>
                 <div className="user_product_event_form">
-                    <form>
+                    <form onSubmit={HandleUserProductUpdate}>
                         <button className="user_productbtn">수정</button>
                     </form>
-                    <form>
+                    <form onSubmit={HandleUserProductDelete}>
                         <button className="user_productbtn">삭제</button>
                     </form>
                 </div>
