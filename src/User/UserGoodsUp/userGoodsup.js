@@ -4,22 +4,22 @@ import { useParams } from 'react-router-dom';
 import Hafter from '../../Header/HeaderAfter';
 import UserMenuBar from "../userMenuBar";
 import GoodsUpContent from "./goodsUpContent"
-
 import "./userGoodsUp.css"
 
-function UserGoodsUp(convertPrice){
+function UserGoodsUp({convertPrice, productSelect, setProductSelect}){
     const [userGoodsup, setUserGoodsup] = useState([])    //사용자가 단 등록한 상품들이 저장될 Hooks
-    const {id} = useParams();
+    // const {id} = useParams();
+    const addressState = window.location.pathname
     useEffect(() => {
         userGoodsupGet().then((res) => {
             setUserGoodsup(res.data.data)
         })
-    },[id])
+    },[addressState])
     console.log(userGoodsup)
     return(
         <div>
             <div className="Header">
-                <Hafter/>
+                <Hafter />
                 <h1 id="userGoodsup_title">올린 상품 명</h1>
             </div>
             <div className="Content">
@@ -31,7 +31,7 @@ function UserGoodsUp(convertPrice){
                             <p>사용자가 등록한 상품이 존재하지 않습니다.</p>
                         </div>
                     ): userGoodsup.map((userGoodsup) => {
-                        return <GoodsUpContent key={`userGoodsupkey-${userGoodsup.productId}`} userGoodsup={userGoodsup} setUserGoodsup={setUserGoodsup} convertPrice={convertPrice}/> 
+                        return <GoodsUpContent key={`userGoodsupkey-${userGoodsup.productId}`} userGoodsup={userGoodsup} setUserGoodsup={setUserGoodsup} convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect}/> 
                     })
                     }
                     </div>

@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { userGet } from "../../Api/ApiService";
 import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import "./userInformation.css"
 
-function UserInformation({convertPhoneNumber}){
-    const [user,setUser] = useState([])
-    const {id} = useParams()
+function UserInformation({convertPhoneNumber, user, setUser}){
+    // const [user,setUser] = useState([])
+    const addressState = window.location.pathname
     useEffect(() => {
         userGet().then((res) => {
             setUser(res.data)
         })
-    },[id])
+    },[addressState])
     return(
         <div>
             <div className="Header">

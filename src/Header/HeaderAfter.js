@@ -2,17 +2,17 @@ import './HeaderAfter.css'
 import {Link, useParams} from 'react-router-dom'
 import AHome from '../Home/Ahome';
 import {cartGet, signout, userGet,searchPost} from '../Api/ApiService'
-import {useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { TextField, InputAdornment, Button } from '@material-ui/core';
 
 
-function Hafter({cart}){
+function Hafter({cart, setCart, a, setA}){
   const {id} = useParams()
+  const address = window.location.pathname
   const [userState,setUserState] = useState("down");
   const [user,setUser] = useState([])
-
   const [param, setParam] = useState();
-
+  const [count,setCount] = useState(0)
 
   const handleChange = (event) => {
     setParam(event.target.value);
@@ -24,7 +24,13 @@ function Hafter({cart}){
     userGet().then((res) => {
       setUser(res.data)
     })
-  },[id])
+  },[])
+
+  useEffect(() => {
+    cartGet().then((res) => {
+      setCount(res.data.data.length)
+    })
+  })
 
   const HandleUserState = () => {
     if(userState === "down"){
@@ -34,7 +40,6 @@ function Hafter({cart}){
     }
     // console.log(user)
   }
-
   return(
     <div className="Menu">
       <div className="Logo">
@@ -65,11 +70,10 @@ function Hafter({cart}){
         <ul id="List">
           <ul id="SemiList">
               <li><h3><Link to="../Basket">장바구니</Link></h3></li>
-              {/* {cart.length >= 1 ? (
-                <div className="new_shopping_cart">
-                  <p>{cart}</p>
-                </div>
-              ) : ("")} */}
+              {
+              count >= 1 ? (
+                  <span id='new_shopping_cart'><p>{count}</p></span>
+              ) : ("")}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
               <li><h3 className='user'><Link to="" onClick={HandleUserState}>{user.username}<span id='name'>님</span></Link></h3></li>
               {

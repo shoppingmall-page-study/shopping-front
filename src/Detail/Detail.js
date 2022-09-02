@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
 import getProducts from '../Service/Fetcher';
-import { productGet, cartCreate, cartGet, reviewCreate, reviewGet } from '../Api/ApiService';
+import { productGet, cartCreate, cartGet, reviewCreate, reviewGet, cartUpdate } from '../Api/ApiService';
 import './Detail.css'
 import Review from '../review/review';
 
@@ -45,6 +45,7 @@ function Detail({convertPrice, cart, setCart, token}){
       });
     }, [id]);
 
+
     // const setQuantity = (id, quantity) => { //장바구니 물건=> 중복된 물건인 경우
     //     const found = cart.filter((el) => el.id === id)[0];
     //     const idx = cart.indexOf(found);
@@ -82,11 +83,12 @@ function Detail({convertPrice, cart, setCart, token}){
         // console.log(cart);
         const found = res.data.data.find((el) => el.productId === product.productId);
         if(found){
-          if(window.confirm("이미 해당 상품이 존재합니다 장바구니로 이동하시겠습니까?")){
-            window.location.href = "/basket"
-          }else{
-            return;
-          }
+          // if(window.confirm("이미 해당 상품이 존재합니다 장바구니로 이동하시겠습니까?")){
+          //   window.location.href = "/basket"
+          // }else{
+          //   return;
+          // }
+          cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count})
         }else{
           cartCreate({title: product.title, name: product.name, content: product.content,
                     price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId});

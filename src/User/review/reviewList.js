@@ -8,12 +8,13 @@ import "./reviewList.css"
 
 function ReviewList({reviewSelect, setReviewSelect}){
     const [userReview, setUserReview] = useState([])    //사용자가 단 리뷰 목로들이 저장될 Hooks
-    const {id} = useParams();
+    // const {id} = useParams();
+    const addressState = window.location.pathname
     useEffect(() => {
         userReviewGet().then((res) => {
             setUserReview(res.data.data)
         })
-    },[id])
+    },[addressState])
     console.log(userReview)
     return(
         <div>
