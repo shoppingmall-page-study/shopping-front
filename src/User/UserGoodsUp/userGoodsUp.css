@@ -30,6 +30,7 @@
     display: flex;
     border-bottom: 3px solid #000;
     position: relative;
+    margin-bottom: 30px
 }
 
 .user_product_img{
@@ -85,3 +86,131 @@
     right: 0;
     margin-bottom: 20px;
 }
+
+.user_goodsup_modify{
+    display: block;
+    width: 100px;
+    margin-top: 2px;
+    height: 31px;
+}
+
+#user_goodsup_modify_btn{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    padding-top: 2px;
+    text-align: center;
+}
+
+/* userGoodsUpModify */
+.userGoodsModify_flex_content{
+    display: flex;
+}
+
+.userGoodsModify_window{
+    width: 70%;
+    padding-left: 10%;
+    padding-top: 10%;
+}
+
+/* input{
+    outline: none;
+} */
+
+.goodsModify_info{
+    display: flex;
+    justify-content: space-evenly;
+    place-items: center;
+}
+
+.goodsModifyimg_look{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    width: 400px;
+    height: 600px;
+}
+
+.goodsModifysample_img_wd{
+    width: 400px;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+.goodsModifysample_img{
+    width: 100%;
+    height: 400px;
+}
+
+.GoodsModifyupload{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ModifyInfo_form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+}
+
+.goodsModify_name{
+    font-weight: bold;
+    font-size: 26px;
+    border: none;
+}
+
+.goodsModify_price{
+    font-weight: bold;
+    font-size: 26px;
+    border: none;
+}
+
+.Seller_an{
+    font-weight: bold;
+    font-size: 26px;
+    border: none;
+}
+
+.Goods_explain{
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.success_wd{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.success{
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.floor{
+    height: 2px;
+    margin: 20px auto;
+}
+
+@media (max-width: 1440px) {
+    .goodsModify_info {
+      flex-direction: column;
+    }
+
+    .goods_name, .goods_price,
+    .Seller_an{
+      font-size: 18px;
+    }
+  }

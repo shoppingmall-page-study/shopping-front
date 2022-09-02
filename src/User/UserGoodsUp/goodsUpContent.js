@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import { userProductDelete } from "../../Api/ApiService";
 import "./userGoodsUp.css"
 
-function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice}){
+function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice, productSelect, setProductSelect}){
 
-    const HandleUserProductUpdate = (e) => {
-        e.preventDefault();
+    const HandleUserProductUpdate = () => {
+        setProductSelect(userGoodsup)
     }
     const HandleUserProductDelete = (e) => {
         e.preventDefault();
@@ -30,9 +31,10 @@ function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice}){
                     </div>
                 </div>
                 <div className="user_product_event_form">
-                    <form onSubmit={HandleUserProductUpdate}>
-                        <button className="user_productbtn">수정</button>
-                    </form>
+                    <div className="user_goodsup_modify">
+                        {/* <button className="user_productbtn">수정</button> */}
+                        <Link to="/UserProducList/Modify" id="user_goodsup_modify_btn" onClick={HandleUserProductUpdate}>수정</Link>
+                    </div>
                     <form onSubmit={HandleUserProductDelete}>
                         <button className="user_productbtn">삭제</button>
                     </form>

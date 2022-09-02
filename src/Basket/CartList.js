@@ -1,14 +1,16 @@
-import { cartDelete, cartUpdate } from '../Api/ApiService';
+import { useEffect, useState } from 'react';
+import { cartDelete, cartGet, cartUpdate } from '../Api/ApiService';
 import './Basket.css';
 
 function CartList({cart, setCart, convertPrice, s, setS}){
   //하야할 일
   //장바구니 체크박스0
-
+  //장바구니 총 상품가격 Hooks 수정
+ 
   //장바구니 삭제
   const HandleCartRemove = () => {
-    cartDelete(cart.cartId).then((respons) => {
-      if(respons.status == 200){
+    cartDelete(cart.cartId).then((response) => {
+      if(response.status == 200){
         if(s == "a"){
           setS("b")
         }else{
@@ -17,19 +19,35 @@ function CartList({cart, setCart, convertPrice, s, setS}){
       }
     })
   }
-  //장바구니 총 상품가격 Hooks 수정
-  
-  const HandleCartUpdate =(type) => {
+ 
+  //장바구니에서 -, + 버튼 클릭시 수량 값 수정
+  const HandleCartUpdate = (type) => {
     if(type === "plus"){
-      
+      cartUpdate({cartId: cart.cartId, carttotal: cart.carttotal + 1}).then((res) => {
+        if(res.status == 200){
+          if(s == "a"){
+            setS("b")
+          }else{
+            setS("a")
+          }
+        }
+      })
     }else{
-
+      cartUpdate({cartId: cart.cartId, carttotal: cart.carttotal - 1}).then((res) => {
+        if(res.status == 200){
+          if(s == "a"){
+            setS("b")
+          }else{
+            setS("a")
+          }
+        }
+      })
     }
   }
 
   return(
         <section className="cart_product_list">
-        <input type="checkbox" />
+        <input type="checkbox"/>
         <div className="cart_product_wrap">
           <div className="cart_product_image">
             <img src={cart.imgUrl} alt="product-img" />
@@ -47,7 +65,7 @@ function CartList({cart, setCart, convertPrice, s, setS}){
             className="minus"
             src="/images/icon-minus-line.svg"
             alt="minus"
-            
+            onClick={() => HandleCartUpdate("minus")}
           />
 
           <div className="count">
@@ -61,10 +79,10 @@ function CartList({cart, setCart, convertPrice, s, setS}){
           />
         </div>
 
-        <div className="cart_product_price">
+        {/* <div className="cart_product_price">
           <p className="total_price"></p>
           <button className="btn_submit">주문하기</button>
-        </div>
+        </div> */}
 
         <div className="product_remove">
           <img src="/images/icon-delete.svg" alt="delete" onClick={HandleCartRemove}/>

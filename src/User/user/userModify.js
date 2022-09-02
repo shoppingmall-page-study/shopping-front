@@ -5,7 +5,7 @@ import "./userModify.css"
 import { userUpdate } from "../../Api/ApiService";
 import UserMenuBar from "../userMenuBar";
 
-function UserModify(){
+function UserModify({user, setUser}){
 
     const HandleUserUpdate = (e) => {
         e.preventDefault();
@@ -47,25 +47,33 @@ function UserModify(){
                             <ol id="no_margin">
                                 <li>
                                 <TextField name="username"
+                                required
                                 label="이름" 
-                                variant="standard"/>
+                                variant="standard"
+                                defaultValue={user.username}/>
                                 </li>
                                 <li>
                                 <TextField name="address"
+                                required
                                 fullWidth
                                 label="배송주소" 
                                 className="username_form"
-                                variant="standard"/>
+                                variant="standard"
+                                defaultValue={user.address}/>
                                 </li>
                                 <li>
                                 <TextField name="nickname"
+                                required
                                 label="닉네임" 
-                                variant="standard"/>
+                                variant="standard"
+                                defaultValue={user.nickname}/>
                                 </li>
                                 <li>
                                 <TextField name="phoneNumber"
+                                required
                                 label="전화번호" 
-                                variant="standard"/>
+                                variant="standard"
+                                defaultValue={user.phoneNumber}/>
                                 </li>
                             </ol>
                         </div>
