@@ -181,3 +181,12 @@ export const reviewUpdate = (reviewDTO) => {
     }
   })
 }
+
+export const userProductUpdate = (productDTO) => {
+  return call(`/product/update/${productDTO.productId}`,"PUT",productDTO).then((response) => {
+    if(response.status == 200){
+      alert("해당 등록상품이 정상적으로 수정되었습니다.")
+      window.location.href = "/UserProducList"
+    }
+  })
+}

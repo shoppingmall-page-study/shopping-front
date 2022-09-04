@@ -5,6 +5,7 @@ import Hafter from "../../Header/HeaderAfter";
 import { productCreate } from "../../Api/ApiService";
 import UserMenuBar from "../userMenuBar";
 import "./userGoodsUp.css"
+import { userProductUpdate } from "../../Api/ApiService";
 
 function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
     const [count,setCount] = useState(productSelect.total)  //해당 등록상품의 개수를 저장할 Hooks
@@ -12,12 +13,22 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
 
     const HandleUpEvent = (e) => {
         e.preventDefault();
+        const data = new FormData(e.target)
+        const imgUrl = file
+        const title = data.get("title")
+        const name = data.get("name")
+        const content = data.get("content")
+        const price = data.get("price")
+        const total = count
+        
+        userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
     } 
 
     const handelQuantity = (type) => {
         if(type == "plus"){
             setCount(count + 1)
-        }else{
+        }else {
+            if(count == 1)return;
             setCount(count - 1)
         }
     }

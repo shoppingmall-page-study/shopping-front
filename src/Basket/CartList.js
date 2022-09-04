@@ -1,8 +1,9 @@
+import { useEventCallback } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { cartDelete, cartGet, cartUpdate } from '../Api/ApiService';
 import './Basket.css';
 
-function CartList({cart, setCart, convertPrice, s, setS}){
+function CartList({cart, setCart, convertPrice, s, setS, checkedList, setCheckedList}){
   //하야할 일
   //장바구니 체크박스0
   //장바구니 총 상품가격 Hooks 수정
@@ -32,22 +33,47 @@ function CartList({cart, setCart, convertPrice, s, setS}){
           }
         }
       })
+      // setCheckedList(checkedList.filter((el) => el.cartId !== cart.cartId))
+      // setCheckedList([...checkedList.cart])
     }else{
+      if(cart.carttotal == 1)return;
       cartUpdate({cartId: cart.cartId, carttotal: cart.carttotal - 1}).then((res) => {
         if(res.status == 200){
           if(s == "a"){
             setS("b")
           }else{
             setS("a")
-          }
-        }
-      })
+          }         
+      }})
+      // setCheckedList(checkedList.filter((el) => el.cartId !== cart.cartId))
+      // setCheckedList([...checkedList.cart])
     }
   }
 
+  // const CheckedElement = (checked) => {
+  //   if(checked){
+  //     setCheckedList([...checkedList, cart])
+  //     if(checkedList.length + 1 === cartlength){
+  //       setCheckedState("On")
+  //     }
+  //   }else{
+  //     setCheckedState("Off")
+  //     setCheckedList(checkedList.filter((el) => el.cartId !== cart.cartId))
+  //   }
+  // }
+  const handleSingleCheck = (checked, item) =>{
+    if(checked){
+      setCheckedList([...checkedList, item])
+    }
+    else{
+      setCheckedList(checkedList.filter((el) => el.cartId !== item.cartId))
+    }
+  }
+  
   return(
         <section className="cart_product_list">
-        <input type="checkbox"/>
+        <input type="checkbox" onChange={(e) => handleSingleCheck(e.target.checked, cart)}
+        checked={checkedList.find((el) => el.cartId === cart.cartId) ? true : false}/>
         <div className="cart_product_wrap">
           <div className="cart_product_image">
             <img src={cart.imgUrl} alt="product-img" />

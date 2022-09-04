@@ -34,9 +34,9 @@ function UserRouter(){
     const [user,setUser] = useState([]); //회원정보를 나타내는 Hooks
     const [searchProducts, setSearchProducts]  = useState([]); // 상품 검색한 리스트 
     const [productSelect, setProductSelect] = useState([]); //등록상품 수정이 클릭된 해당 등록상품을 저장하는 Hooks
+    const [cartCount, setCartCount] = useState(0) 
 
     const convertPrice = (price) => {
-        console.log(typeof(price))
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
     const convertPhoneNumber = (phoneNumber) => {
@@ -47,14 +47,14 @@ function UserRouter(){
 
     return(
     <Routes>
-        <Route path="/" element={token ? <Ahome cart={cart}setCart={setCart} products={products} setProducts={setProducts} convertPrice={convertPrice}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
+        <Route path="/" element={token ? <Ahome cart={cart} setCart={setCart} products={products} setProducts={setProducts} convertPrice={convertPrice}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
         <Route path="/Orderlist" element={<Orderlist/>}/>
-        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token}/>}/>
+        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token} cartCount={cartCount} setCartCount={setCartCount}/>}/>
         <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>

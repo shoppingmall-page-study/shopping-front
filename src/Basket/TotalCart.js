@@ -1,11 +1,12 @@
 import './Basket.css';
+import { useEffect, useState } from 'react';
+function TotalCart({cart, setCart, money, convertPrice, checkedList, setCheckedList, s}){
 
-function TotalCart({cart, setCart, price, setPrice, convertPrice}){
     return(
         <div className="total">
         <div className="total_price">
           <p className="cart_product_total_price">총 상품금액</p>
-          <p className="cart_product_price">{convertPrice(price)}</p>
+          <p className="cart_product_price">{convertPrice(money)}</p>
         </div>
         <div className="pay_minus">
           <img src="/images/icon-minus-line.svg" alt="minus" />
@@ -24,7 +25,7 @@ function TotalCart({cart, setCart, price, setPrice, convertPrice}){
 
         <div className="payment">
           <p className="cart_prouct_payment">결제 예정 금액</p>
-          <p className="cart_prouct_payment_price">{convertPrice(price)}</p>
+          <p className="cart_prouct_payment_price">{convertPrice(money)}</p>
         </div>
       </div>
     );
