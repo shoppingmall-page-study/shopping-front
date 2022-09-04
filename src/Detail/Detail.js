@@ -15,9 +15,11 @@ function Detail({convertPrice, cart, setCart, token}){
     //서버 작동 시
     //const [review, setReview] = useState({}); 리뷰
     const [count,setCount] = useState(1);   //  개수를 나타내는 Hooks
+    const [s,setS] = useState("a")
 
     const handelQuantity = (type) => {  //  -,+버튼을 눌렀을때 개수 변화는 함수
         if(type === "plus"){
+          if(count === product.total)return;
             setCount(count+1);
         }else{
             if(count === 1) return;
@@ -91,15 +93,14 @@ function Detail({convertPrice, cart, setCart, token}){
           cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count})
         }else{
           cartCreate({title: product.title, name: product.name, content: product.content,
-                    price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId});
+                    price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId})
           // const cartItem = {
           //   title: product.title, name: product.name, content: product.content,
           //           price: product.price, total: count, imgUrl: product.imgUrl, productId: product.productId 
           // }
           // setCart([...cart,cartItem]);
         }
-      })
-    }
+      })}
 
     const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
       return token ? <Hafter cart={cart}/> : <Hbefore/>
