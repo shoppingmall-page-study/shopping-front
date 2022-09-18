@@ -1,3 +1,8 @@
-.Header{
-    border-bottom: 3px solid black;
+#login_btn{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#not_id{
+    padding-left: 10px;
 }

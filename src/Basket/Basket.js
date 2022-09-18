@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 
 
-function Basket({cart, setCart, convertPrice, token}){
+function Basket({cart, setCart, convertPrice, token, payList, setPayList}){
 const { id } = useParams();
 const address = window.location.pathname
 const [cartlength, setCartLength] = useState(0)
@@ -21,6 +21,7 @@ const [s,setS] = useState("a")
 const [checkedList, setCheckedList] = useState([])
 //체크리스트 데이터를 넣을 Hooks
 const [money,setMoney] = useState(0)
+
 const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
     return token ? <Hafter cart={cart}/> : <Hbefore/>
 }
@@ -39,17 +40,14 @@ useEffect(() => {
   })
 },[s])
 
-
 useEffect(() => {
   var price = 0
   checkedList.map((el) => {
     price += (el.carttotal * el.productPrice)
   })
   setMoney(price)
-  console.log(money)
+  setPayList(checkedList)
 },[checkedList])
-
-
 // useEffect(() => {
 //   cartGet().then((res) =>{
 //     setCheckedList(checkedList.filter((bl) => {
@@ -75,7 +73,6 @@ useEffect(() => {
     setCheckedList(res.data.data)
   })
 },[cart])
-
 return (
     <div>
       <header className="Header">
@@ -93,7 +90,7 @@ return (
         return <CartList key={`key-${cart.productId}`} cart={cart} setCart={setCart} convertPrice={convertPrice} s={s} setS={setS} 
         checkedList={checkedList} setCheckedList={setCheckedList}/>
       })}
-      {cartlength === 0 ? "" : <TotalCart cart={cart} setCart={setCart} money={money} convertPrice={convertPrice} checkedList={checkedList} setCheckedList={setCheckedList} s={s}/>}
+      {cart.length === 0 ? "" : <TotalCart cart={cart} setCart={setCart} money={money} convertPrice={convertPrice} checkedList={checkedList} setCheckedList={setCheckedList} s={s}/>}
       </div>
     </div>
   );

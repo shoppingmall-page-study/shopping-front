@@ -11,6 +11,7 @@ function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice, productSelec
         e.preventDefault();
         userProductDelete(userGoodsup.productId)
     }
+    console.log(userGoodsup)
     return(
         <section>
             <div  className="user_productlist_window">
@@ -36,7 +37,7 @@ function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice, productSelec
                         <Link to="/UserProducList/Modify" id="user_goodsup_modify_btn" onClick={HandleUserProductUpdate}>수정</Link>
                     </div>
                     <form onSubmit={HandleUserProductDelete}>
-                        <button className="user_productbtn">삭제</button>
+                        <button type="submit" className="user_productbtn">삭제</button>
                     </form>
                 </div>
             </div>

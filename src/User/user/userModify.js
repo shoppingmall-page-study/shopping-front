@@ -14,7 +14,12 @@ function UserModify({user, setUser}){
         const address = data.get('address')
         const nickname = data.get('nickname')
         const phoneNumber = data.get('phoneNumber')
-        userUpdate({username: username, address: address, nickname: nickname, phoneNumber: phoneNumber})
+        const postCode = data.get('postCode')
+        userUpdate({username: username, address: address, nickname: nickname, phoneNumber: phoneNumber, postCode: postCode})
+    }
+
+    const HandlePhoneNumber = (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
     }
     return(
         <div>
@@ -43,6 +48,7 @@ function UserModify({user, setUser}){
                                 <li>배송주소:</li>
                                 <li>닉네임:</li>
                                 <li>전화번호:</li>
+                                <li>우편번호:</li>
                             </ol>
                             <ol id="no_margin">
                                 <li>
@@ -73,7 +79,16 @@ function UserModify({user, setUser}){
                                 required
                                 label="전화번호" 
                                 variant="standard"
-                                defaultValue={user.phoneNumber}/>
+                                maxLength={13}
+                                defaultValue={user.phoneNumber}
+                                onChange={HandlePhoneNumber}/>
+                                </li>
+                                <li>
+                                <TextField name="postCode"
+                                required
+                                label="우편번호" 
+                                variant="standard"
+                                defaultValue={user.postCode}/>
                                 </li>
                             </ol>
                         </div>

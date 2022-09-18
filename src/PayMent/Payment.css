@@ -1,0 +1,150 @@
+/*paymentPage*/
+.payment_page_content{
+    margin-top: 110px;
+    width: 60%;
+    padding-left: 30%;
+}
+
+#pay_user{
+    border-bottom: 3px solid black;
+}
+
+.pay_user_info{
+    display: flex;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#pay_user_info_ol0{
+    padding-left: 0;
+}
+
+.pay_info_window{
+    position: relative;
+}
+#pay_info_logo{
+    border-bottom: 3px solid black;
+}
+
+.pay_info{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#pay_info_ol0{
+    padding-left: 0;
+}
+
+#payBtn{
+    position: absolute;
+    right: 0;
+    width: 150px;
+    height: 45px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+/*paymentTrue*/
+.True_payment{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: black;
+}
+#True_payment_text{
+    margin-bottom: 15px;
+}
+#True_payment_btn{
+    margin-top: 15px;
+    width: 300px;
+    height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: black;
+    border: 2px solid black;
+}
+
+/*paymentFalse*/
+.False_payment{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: black;
+}
+#False_payment_text{
+    margin-bottom: 15px;
+}
+#False_payment_btn0{
+    margin-top: 15px;
+    width: 300px;
+    height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: black;
+    border: 2px solid black;
+}
+#False_payment_btn1{
+    margin-top: 15px;
+    width: 300px;
+    height: 50px;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid black;
+}
+
+/* paymentInfo */
+.paymentInfo_window{
+    width: 100%;
+    display: flex;
+    border-bottom: 3px solid black;
+    margin-bottom: 20px;
+}
+
+#paymentInfo_img{
+    height: 130px;
+    width: 130px;
+}
+
+.payment_info{
+    width: 100%;
+    margin-left: 40px;
+    align-items: center;
+    height: 150px;
+}
+.paymentInfo_title{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.paymentInfo_content{
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+}
+
+#paymentInfo_count{
+    position: absolute;
+    right: 10%;
+}
