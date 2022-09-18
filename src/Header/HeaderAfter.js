@@ -6,24 +6,23 @@ import React, {useEffect, useState } from 'react'
 import { TextField, InputAdornment, Button } from '@material-ui/core';
 
 
-function Hafter({cart, setCart, a, setA}){
+function Hafter({cart, setCart, a, setA, s}){
   const {id} = useParams()
   const address = window.location.pathname
   const [userState,setUserState] = useState("down");
   const [user,setUser] = useState([])
   const [param, setParam] = useState();
-  const [count,setCount] = useState(0)
+  const [count,setCount] = useState(0);
 
   const handleChange = (event) => {
     setParam(event.target.value);
-    
   };
   //  response 데이터 
 
   useEffect(() => {
     userGet().then((res) => {
       setUser(res.data)
-    })
+   })
   },[])
 
   useEffect(() => {
@@ -40,6 +39,7 @@ function Hafter({cart, setCart, a, setA}){
     }
     // console.log(user)
   }
+
   return(
     <div className="Menu">
       <div className="Logo">
@@ -61,7 +61,6 @@ function Hafter({cart, setCart, a, setA}){
           </InputAdornment>
         ),
       }}/>
-          
           
           
       </form>

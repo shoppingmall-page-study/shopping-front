@@ -103,7 +103,7 @@ function Detail({convertPrice, cart, setCart, token}){
       })}
 
     const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
-      return token ? <Hafter cart={cart}/> : <Hbefore/>
+      return token ? <Hafter cart={cart} s={s}/> : <Hbefore/>
     }
     
     //서버 작동 시

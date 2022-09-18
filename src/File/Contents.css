@@ -22,11 +22,12 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     place-items: center;
-    margin-top: 35px;
+    padding-top: 20px;
 }
 
 .search_product_count_a{
     font-size: 20px;
     margin-left: 40px;
+    margin-top: 40px;
     font-weight: bold;
 }

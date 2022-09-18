@@ -5,14 +5,14 @@ import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import "./userInformation.css"
 
-function UserInformation({convertPhoneNumber, user, setUser}){
+function UserInformation({convertPhoneNumber, user, setUser, }){
     // const [user,setUser] = useState([])
-    const addressState = window.location.pathname
+    // const addressState = window.location.pathname
     useEffect(() => {
         userGet().then((res) => {
             setUser(res.data)
         })
-    },[addressState])
+    },[])
     return(
         <div>
             <div className="Header">
@@ -40,12 +40,14 @@ function UserInformation({convertPhoneNumber, user, setUser}){
                                 <li>배송주소:</li>
                                 <li>닉네임:</li>
                                 <li>전화번호:</li>
+                                <li>우편변호:</li>
                             </ol>
                             <ol>
                                 <li>{user.username}</li>
                                 <li>{user.address}</li>
                                 <li>{user.nickname}</li>
-                                <li>{convertPhoneNumber(user.phoneNumber)}</li>
+                                <li>{user.phoneNumber}</li>
+                                <li>{user.postCode}</li>
                             </ol>
                         </div>
                     </div>

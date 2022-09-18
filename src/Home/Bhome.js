@@ -1,6 +1,7 @@
 import React from "react";
 import Hbefore from "../Header/HeaderBefore";
 import Contents from "../File/Contents";
+import "./home.css";
 
 function BHome({products, setProducts, convertPrice}){
     return(
@@ -8,8 +9,10 @@ function BHome({products, setProducts, convertPrice}){
             <header className="Header">
                 <Hbefore/>
             </header>
-            <div>
+            <div className="Content">
+                <div className="mt">
                 <Contents products={products} setProducts={setProducts} convertPrice={convertPrice}/>
+                </div>
             </div>
         </div>
     );        

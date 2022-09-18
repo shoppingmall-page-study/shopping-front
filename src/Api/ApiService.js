@@ -190,3 +190,15 @@ export const userProductUpdate = (productDTO) => {
     }
   })
 }
+
+export const payMent = (payDTO) => {
+  return call('/order/create', "POST", payDTO)
+}
+
+export const payMentComplete = (payCompleteDTO) => {
+  return call("/payments/complete", "POST", payCompleteDTO)
+}
+
+export const order = () => {
+  return call("/order","GET","")
+}

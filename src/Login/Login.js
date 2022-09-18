@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import Hbefore from "../Header/HeaderBefore";
 import {signin} from "../Api/ApiService";
 import GoogleOauth from "../Oauth/GoogleOauth";
+import "./Login.css"
 
 import {
   Link,
@@ -65,14 +66,14 @@ const Login = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" fullWidth variant="contained" color="primary">
+            <Button id="login_btn" type="submit" fullWidth variant="contained" color="primary">
               로그인
             </Button>
           </Grid>
           <Link href="/join" variant="body2">
-            <Grid item>계정이 없습니까? 여기서 가입 하세요.</Grid>
+            <Grid item id="not_id">계정이 없습니까? 여기서 가입 하세요.</Grid>
           </Link>
-          <Grid item xs ={12}>
+          <Grid item xs={12}>
             <GoogleOauth/>
             <KakaoOauth/>
           </Grid>

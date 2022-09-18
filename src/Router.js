@@ -25,6 +25,10 @@ import SearchBhome from "./Home/SearchBhome"
 import UserGoodsUp from "./User/UserGoodsUp/userGoodsup";
 import ReviewModify from "./User/review/reviewModify";
 import UserGoodsUpModify from "./User/UserGoodsUp/userGoodsUpModify";
+import PaymentPage from "./PayMent/paymentPage";
+import OrderList from "./User/order/orderList";
+//일단 확인 용
+import PaymentFalse from "./PayMent/paymentFalse";
 
 function UserRouter(){
     const {id} = useParams()
@@ -35,6 +39,7 @@ function UserRouter(){
     const [searchProducts, setSearchProducts]  = useState([]); // 상품 검색한 리스트 
     const [productSelect, setProductSelect] = useState([]); //등록상품 수정이 클릭된 해당 등록상품을 저장하는 Hooks
     const [cartCount, setCartCount] = useState(0) 
+    const [payList, setPayList] = useState([])
 
     const convertPrice = (price) => {
         return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -42,7 +47,6 @@ function UserRouter(){
     const convertPhoneNumber = (phoneNumber) => {
         return (Object(phoneNumber).toString().replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
     }
-    
     const token = localStorage.getItem("ACCESS_TOKEN")
 
     return(
@@ -50,7 +54,7 @@ function UserRouter(){
         <Route path="/" element={token ? <Ahome cart={cart} setCart={setCart} products={products} setProducts={setProducts} convertPrice={convertPrice}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
-        <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token}/>}/>
+        <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token} payList={payList} setPayList={setPayList}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
         <Route path="/Orderlist" element={<Orderlist/>}/>
@@ -66,6 +70,10 @@ function UserRouter(){
         <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect}/>}/>
         <Route path="/UserReviewList/Modify" element={<ReviewModify reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} />}/>
         <Route path="/UserProducList/Modify" element={<UserGoodsUpModify convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect}/>}/>
+        <Route path="/PayMent" element={<PaymentPage convertPhoneNumber={convertPhoneNumber} payList={payList} setPayList={setPayList}/>}/>
+        <Route path="/order" element={<OrderList convertPrice={convertPrice}/>}/>
+        {/* 확인용 */}
+        <Route path="/payTrue" element={<PaymentFalse/>}/>
     </Routes>
     );
 }

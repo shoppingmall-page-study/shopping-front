@@ -22,14 +22,18 @@ const Join = () => {
     const age = data.get("age");
     const nickname = data.get("nickname");
     const phonenumber = data.get("phonenumber");
-    signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber }).then(
+    const postCode = data.get("postCode")
+    console.log(phonenumber)
+    signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber, postCode: postCode }).then(
       (response) => {
         // 계정 생성 성공 시 login페이지로 리디렉트
          window.location.href = "/login";
       }
     );
   };
-
+  const HandlePhoneNumber = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+  }
   return (
     <>
     <header className="Header">
@@ -117,6 +121,16 @@ const Join = () => {
               name="phonenumber"
               label="전화번호"
               id="phonenumber"
+              onChange={HandlePhoneNumber}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="postCode"
+              label="우편번호"
             />
           </Grid>
           <Grid item xs={12}>
