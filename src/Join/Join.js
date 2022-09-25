@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import {useDaumPostcodePopup} from "react-daum-postcode"
+
 import {
   Button,
   TextField,
@@ -11,6 +13,30 @@ import { signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
 
 const Join = () => {
+  const open = useDaumPostcodePopup('https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js');
+
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+
+    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+    console.log(data.zonecode)
+  };
+
+  const handleClick = () => {
+    open({onComplete: handleComplete});
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 바꿔줌.
@@ -83,7 +109,7 @@ const Join = () => {
               autoComplete="current-password"
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               variant="outlined"
               required
@@ -93,7 +119,8 @@ const Join = () => {
               id="address"
               autoComplete="current-address"
             />
-          </Grid>
+          </Grid> */}
+          <button type="button" onClick={handleClick}>우편번호 검색</button>
           <Grid item xs={12}>
             <TextField
               variant="outlined"
@@ -126,7 +153,7 @@ const Join = () => {
               onChange={HandlePhoneNumber}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               variant="outlined"
               required
@@ -134,7 +161,7 @@ const Join = () => {
               name="postCode"
               label="우편번호"
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               계정 생성
