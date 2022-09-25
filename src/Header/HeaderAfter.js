@@ -83,7 +83,7 @@ function Hafter({cart, setCart, a, setA, s}){
                 <div id='textline'></div>
                 <p><Link to="../UserReviewList">리뷰 목록</Link></p>
                 <div id='textline'></div>
-                <p><Link to="">주문 목록</Link></p>
+                <p><Link to="../order">주문 목록</Link></p>
                 <div id='textline'></div>
                 <p><Link to="../UserProducList">등록 상품 목록</Link></p>
               </div>)

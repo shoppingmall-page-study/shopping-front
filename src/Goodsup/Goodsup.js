@@ -33,11 +33,11 @@ function Goodsup({products, setProducts, cart}){
         const data = new FormData(e.target)
         const title = data.get("title")
         const name = data.get("name")
-        const price = data.get("price")
+        const amount = data.get("amount")
         const content = data.get("content")
         const total = goodscount
         const imgUrl = file
-        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
+        productCreate({title: title, content: content, name: name, amount: amount, total: total, imgUrl: imgUrl})
         // let formData = new FormData()
         // formData.append("file", e.target.Goods_img_file.files[0])
         // let dataSet = {
@@ -82,7 +82,7 @@ function Goodsup({products, setProducts, cart}){
                             className="goods_name"
                             variant="outlined"/>
                         <div className='floor'></div>
-                        <TextField name="price"
+                        <TextField name="amount"
                             label="가격"
                             className="goods_price"
                             variant="outlined"/>
