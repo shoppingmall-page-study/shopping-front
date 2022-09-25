@@ -41,8 +41,8 @@ function UserRouter(){
     const [cartCount, setCartCount] = useState(0) 
     const [payList, setPayList] = useState([])
 
-    const convertPrice = (price) => {
-        return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    const convertPrice = (amount) => {
+        return (amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
     const convertPhoneNumber = (phoneNumber) => {
         return (Object(phoneNumber).toString().replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
@@ -57,7 +57,7 @@ function UserRouter(){
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token} payList={payList} setPayList={setPayList}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
-        <Route path="/Orderlist" element={<Orderlist/>}/>
+        {/* <Route path="/Orderlist" element={<Orderlist/>}/> */}
         <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token} cartCount={cartCount} setCartCount={setCartCount}/>}/>
         <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>

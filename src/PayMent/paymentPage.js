@@ -4,6 +4,8 @@ import Hafter from "../Header/HeaderAfter";
 import { payMent } from "../Api/ApiService";
 import { payMentComplete } from "../Api/ApiService";
 import PaymentInfo from "./paymentInfo"
+import PaymentTrue from "./paymentTrue"
+import PaymentFalse from "./paymentFalse";
 import "./Payment.css"
 
 function PaymentPage({convertPhoneNumber, payList, setPayList}){
@@ -37,7 +39,7 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
     var proNum;
     payList.map((res)=> {
         proId = res.productId
-        proNum =res.carttotal
+        proNum = res.carttotal
     })
     payMent({productId: proId, productNumber: proNum}).then((res) => {
         console.log(res.data)
@@ -47,7 +49,7 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
         const data = {
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: " "+res.data.merchantUid,
+        merchant_uid: `${res.data.merchantUid}`,
         name: res.data.name,
         amount: res.data.amount,
         buyer_email: res.data.buyerEmail,
@@ -56,16 +58,16 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
         buyer_addr: res.data.buyerAddr,
         buyer_postcode: res.data.buyerPostcode
         };
+        console.log(data)
         IMP.request_pay(data, callback);
     })
     }
     const callback = (response) => {
     const {success, error_msg, imp_uid, merchant_uid, pay_method, paid_amount, status} = response;
+    console.log(paid_amount)
     if(success){
         payMentComplete({impUid: imp_uid, productId: parseInt(merchant_uid)}).then((res) => {
-        console.log(res.data.state)
-        console.log(res.data.status)
-        res ? alert("결제 성공") : alert(`결제 오류: ${error_msg}`)
+            // status ? alert("결제 성공") : alert(`결제 오류: ${error_msg}`)
         })
     }else{
         alert(`결제 실패: ${error_msg}`);

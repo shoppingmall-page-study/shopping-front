@@ -46,7 +46,7 @@ function Detail({convertPrice, cart, setCart, token}){
           cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count})
         }else{
           cartCreate({title: product.title, name: product.name, content: product.content,
-                    price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId}).then((response)=>{
+                    amount: product.amount, carttotal: count, imgUrl: product.imgUrl, productId: product.productId}).then((response)=>{
                       if(response.status == 200){
                         if(s == "a"){
                           setS("b")
@@ -99,7 +99,7 @@ function Detail({convertPrice, cart, setCart, token}){
                 <p className="detail_product_name">{product.name}</p>
                 <div className='line'></div>
                 <span className="detail_product_price">
-                  {convertPrice(product.price+"")}
+                  {convertPrice(product.amount+"")}
                   <span className="detail_product_unit">원</span>
                   <div className='line'></div>
                 </span>
@@ -135,7 +135,7 @@ function Detail({convertPrice, cart, setCart, token}){
                   <div className='total_price0'>
                       <span className="total_count">총 수량 : {count}개</span>
                       <span className="total_price1">
-                        {convertPrice(product.price*count)}                  
+                        {convertPrice(product.amount*count)}                  
                         <span className="total_unit">원</span>
                       </span>
                   </div>

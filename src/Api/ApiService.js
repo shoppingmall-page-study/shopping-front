@@ -164,7 +164,7 @@ export const searchPost = (searchDTO) =>{
 }
 
 export const userProductDelete = (id) => {
-  return call(`/product/delete/${id}`,"DELETE","").then((response) => {
+  return call(`/product/delete/${id}`,"PUT","").then((response) => {
     if(response.status == 200){
       alert("해당상품이 정상적으로 삭제되었습니다.")
       window.location.reload()

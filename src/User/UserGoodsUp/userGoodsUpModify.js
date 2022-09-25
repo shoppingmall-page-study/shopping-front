@@ -18,10 +18,10 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
         const title = data.get("title")
         const name = data.get("name")
         const content = data.get("content")
-        const price = data.get("price")
+        const amount = data.get("amount")
         const total = count
         
-        userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
+        userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, amount: amount, total: total})
         URL.revokeObjectURL(file);
     } 
 
@@ -73,12 +73,12 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
                                 variant="outlined"
                                 defaultValue={productSelect.name}/>
                             <div className='floor'></div>
-                            <TextField name="price"
+                            <TextField name="amount"
                                 required
                                 label="가격"
                                 className="goodsModify_price"
                                 variant="outlined"
-                                defaultValue={productSelect.price}/>
+                                defaultValue={productSelect.amount}/>
                             <div className='floor'></div>
                             <div className='pay'>
                                 <span className='soo'>수량 : </span>

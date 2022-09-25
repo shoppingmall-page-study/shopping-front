@@ -23,7 +23,7 @@ function GoodsUpContent({userGoodsup, setUserGoodsup, convertPrice, productSelec
                         <p>{userGoodsup.name}</p>
                     </div>
                     <div className="user_productlist_content">
-                        <p>가격 : {userGoodsup.price}원</p>
+                        <p>가격 : {userGoodsup.amount}원</p>
                         {/* <div className="user_nickname_cal">
                             <span>{userGoodsup.userNickname}</span>
                             <span>등록일: {userGoodsup.createTime}</span>
