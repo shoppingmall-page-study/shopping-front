@@ -29,6 +29,7 @@
 }
 
 #to_modify_btn{
+    margin-top: 2px;
     position: absolute;
     font-size: 20px;
     font-weight: bold;
