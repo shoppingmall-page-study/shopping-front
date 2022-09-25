@@ -12,8 +12,7 @@ import Review from '../review/review';
 function Detail({convertPrice, cart, setCart, token}){
     const { id } = useParams();
     const [product, setProduct] = useState({}); //상품
-    //서버 작동 시
-    //const [review, setReview] = useState({}); 리뷰
+
     const [count,setCount] = useState(1);   //  개수를 나타내는 Hooks
     const [s,setS] = useState("a")
 
@@ -26,19 +25,6 @@ function Detail({convertPrice, cart, setCart, token}){
             setCount(count-1)
         }
     };
-
-    //수량 텍스트필드 넘버로 이용하기
-
-    // useEffect(()=>{
-    //     getProducts().then((response) => {
-    //         setProduct(response.data.products.find((product) => product.id === parseInt(id)));
-    //     });
-    //     //서버 작동 시
-    //     // axios.get("/rpoduct/review").then((res) => {
-    //     //   setReview(res.data.data.find((inf) => inf.id === pareseInt(id)));
-    //     // });
-    // },[id]);
-
     
     useEffect(() => {
       productGet().then((res) => {
@@ -47,82 +33,34 @@ function Detail({convertPrice, cart, setCart, token}){
       });
     }, [id]);
 
-
-    // const setQuantity = (id, quantity) => { //장바구니 물건=> 중복된 물건인 경우
-    //     const found = cart.filter((el) => el.id === id)[0];
-    //     const idx = cart.indexOf(found);
-    //     const cartItem = { 
-    //         id: product.productId,
-    //         image: product.imgUrl,
-    //         name: product.name,
-    //         price: product.price,
-    //         content: product.content,
-    //         quantity: quantity
-    //     };
-    //     setCart([...cart.slice(0,idx), cartItem,...cart.slice(idx+1)]);
-    // };
-
-    //서버 작동 시
-    // const setQuantity = (id, quantity) => {
-    //   axios.delete(`/cart/list/${id}`);
-    //   axios({
-    //     method: 'post',
-    //     url: `/cart/list/${id}`,
-    //     data: {
-    //       title: product.title,
-    //       name: product.name,
-    //       content: product.content,
-    //       price: product.price,
-    //       total: count,
-    //       imgUrl: product.imgUrl
-    //       }
-    //   })
-    // }
+    useEffect(() => {
+      cartGet().then((res) => {
+        setCart(res.data.data)
+      })
+    },[s])
 
     const handleCart = () => {  //장바구니에 추가하는 함수
       cartGet().then((res) => {
-        // console.log(res.data.data.length);
-        // console.log(cart);
         const found = res.data.data.find((el) => el.productId === product.productId);
         if(found){
-          // if(window.confirm("이미 해당 상품이 존재합니다 장바구니로 이동하시겠습니까?")){
-          //   window.location.href = "/basket"
-          // }else{
-          //   return;
-          // }
           cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count})
         }else{
           cartCreate({title: product.title, name: product.name, content: product.content,
-                    price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId})
-          // const cartItem = {
-          //   title: product.title, name: product.name, content: product.content,
-          //           price: product.price, total: count, imgUrl: product.imgUrl, productId: product.productId 
-          // }
-          // setCart([...cart,cartItem]);
+                    price: product.price, carttotal: count, imgUrl: product.imgUrl, productId: product.productId}).then((response)=>{
+                      if(response.status == 200){
+                        if(s == "a"){
+                          setS("b")
+                        }else{
+                          setS("a")
+                        }
+                      }
+                    })
         }
       })}
 
     const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
       return token ? <Hafter cart={cart} s={s}/> : <Hbefore/>
     }
-    
-    //서버 작동 시
-    //리뷰 등록
-    // const HandleReviewUp = (e) => {
-    //   e.preventDefault();
-    //   const data = new FormData(e.target)
-    //   const reviewTitle = data.get("reviewuptitle")
-    //   const reviewContent = data.get("reviewupcontent")
-
-    //   axios({
-    //     method: 'post',
-    //     url: `review/create/${product.id}`,
-    //     data: {
-    //       reviewTitle: reviewTitle,
-    //       reviewContent: reviewContent
-    //     }
-    //   })
-    // }
 
     const HandleReivewUp = (e) => {
       e.preventDefault();
@@ -131,8 +69,6 @@ function Detail({convertPrice, cart, setCart, token}){
       const content = data.get("content")
       reviewCreate({title: title, content: content, productId: product.productId})
     }
-
-    
 
     const [state,setState] = useState("look"); //리뷰 창 상태 저장
     const [reviewlist,setReviewList] = useState([]) //리뷰 목록들

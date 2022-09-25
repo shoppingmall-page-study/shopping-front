@@ -22,6 +22,7 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
         const total = count
         
         userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
+        URL.revokeObjectURL(file);
     } 
 
     const handelQuantity = (type) => {

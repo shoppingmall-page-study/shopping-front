@@ -13,7 +13,6 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
         userGet().then((res) =>{
             setPayUser(res.data)
         })
-        console.log(payList)
         const jquery = document.createElement("script");
         jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";
         const iamport = document.createElement("script");
@@ -41,12 +40,14 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
         proNum =res.carttotal
     })
     payMent({productId: proId, productNumber: proNum}).then((res) => {
+        console.log(res.data)
         const { IMP } = window;
         IMP.init('imp54601326');
+
         const data = {
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: res.data.merchantUid.toString(),
+        merchant_uid: " "+res.data.merchantUid,
         name: res.data.name,
         amount: res.data.amount,
         buyer_email: res.data.buyerEmail,
@@ -55,21 +56,20 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
         buyer_addr: res.data.buyerAddr,
         buyer_postcode: res.data.buyerPostcode
         };
-
         IMP.request_pay(data, callback);
     })
     }
     const callback = (response) => {
     const {success, error_msg, imp_uid, merchant_uid, pay_method, paid_amount, status} = response;
     if(success){
-        payMentComplete({impUid: imp_uid, productId: merchant_uid}).then((res) => {
-        console.log(res.status)
-        // res ? alert("결제 성공") : alert(`결제 오류: ${error_msg}`)
+        payMentComplete({impUid: imp_uid, productId: parseInt(merchant_uid)}).then((res) => {
+        console.log(res.data.state)
+        console.log(res.data.status)
+        res ? alert("결제 성공") : alert(`결제 오류: ${error_msg}`)
         })
     }else{
         alert(`결제 실패: ${error_msg}`);
     }}
-    console.log(payList)
     return(
         <div>
             <div className="Header">
