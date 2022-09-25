@@ -97,12 +97,11 @@ export const productGet = () => {
 }
 
 export const cartCreate = (cartDTO) => {
-  return call(`/cart/create/${cartDTO.productId}`,"POST",cartDTO).then((response) => {
-    if(response.status == 200){
-      alert("장바구니에 해당상품이 추가되었습니다.")
-      window.location.reload()
-    }
-  })
+  return call(`/cart/create/${cartDTO.productId}`,"POST",cartDTO)
+    // if(response.status == 200){
+    //   alert("장바구니에 해당상품이 추가되었습니다.")
+    //   window.location.reload()
+    // }
 }
 
 export const cartGet = () => {

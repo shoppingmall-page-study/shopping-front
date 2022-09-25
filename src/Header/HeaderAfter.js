@@ -31,6 +31,7 @@ function Hafter({cart, setCart, a, setA, s}){
     })
   })
 
+
   const HandleUserState = () => {
     if(userState === "down"){
       setUserState("up")
@@ -46,7 +47,7 @@ function Hafter({cart, setCart, a, setA, s}){
         <h1><a href="/">Shop</a></h1>
       </div>
       <div className='SearchBar'>
-      <form >
+      <form>
         {" "}
         {/* submit 버튼을 누르면 handleSubmit이 실행됨. */}
         

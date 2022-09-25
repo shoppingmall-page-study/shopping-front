@@ -10,8 +10,8 @@ function Goodsup({products, setProducts, cart}){
     const [goodscount,setGoodsCount] = useState(1);   //  개수를 나타내는 Hooks
     
     const saveFileimage = (e) =>{   //파일 저장함수
+        e.preventDefault();
         setFile(URL.createObjectURL(e.target.files[0]));
-        console.log(file)
     };
 
     const deleteFileimage = () =>{
@@ -37,7 +37,19 @@ function Goodsup({products, setProducts, cart}){
         const content = data.get("content")
         const total = goodscount
         const imgUrl = file
-        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl});
+        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
+        // let formData = new FormData()
+        // formData.append("file", e.target.Goods_img_file.files[0])
+        // let dataSet = {
+        //     title: e.target.title.value,
+        //     name: e.target.name.value,
+        //     price: e.target.price.value,
+        //     content: e.target.content.value,
+        //     total: goodscount
+        // }
+        // let blob = new Blob([JSON.stringify(dataSet)], {type: "application/json"})
+        // formData.append("data", blob);
+        // productCreate(formData)
         deleteFileimage()
     }
 
@@ -57,7 +69,7 @@ function Goodsup({products, setProducts, cart}){
                             />
                             )}
                         </div>
-                        <input type="file" name="Goods_img_file" onChange={saveFileimage} className="upload"/>
+                        <input type="file" name="Goods_img_file" onChange={saveFileimage} className="upload" multiple="multiple"/>
                     </div>
                     <div className="form_goodsup">
                         <TextField name="title" 
