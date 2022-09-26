@@ -109,7 +109,7 @@ const Join = () => {
               autoComplete="current-password"
             />
           </Grid>
-          {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               required
@@ -119,8 +119,8 @@ const Join = () => {
               id="address"
               autoComplete="current-address"
             />
-          </Grid> */}
-          <button type="button" onClick={handleClick}>우편번호 검색</button>
+          </Grid>
+          {/* <button type="button" onClick={handleClick}>우편번호 검색</button> */}
           <Grid item xs={12}>
             <TextField
               variant="outlined"
@@ -153,7 +153,7 @@ const Join = () => {
               onChange={HandlePhoneNumber}
             />
           </Grid>
-          {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               required
@@ -161,7 +161,7 @@ const Join = () => {
               name="postCode"
               label="우편번호"
             />
-          </Grid> */}
+          </Grid>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               계정 생성
