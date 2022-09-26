@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import {useDaumPostcodePopup} from "react-daum-postcode"
-
+import React, { useEffect,useState, useRef } from "react";
+import {useDaumPostcodePopup,DaumPostcodeEmbed} from "react-daum-postcode"
+import "./join.css"
 import {
   Button,
   TextField,
@@ -8,34 +8,58 @@ import {
   Grid,
   Container,
   Typography,
+  DialogActions,
 } from "@material-ui/core";
 import { signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
 
 const Join = () => {
-//   const open = useDaumPostcodePopup('https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js');
 
-//   const handleComplete = (data) => {
-//     let fullAddress = data.address;
-//     let extraAddress = '';
+  useEffect(() => {
+    const a = document.createElement("script");
+    a.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    document.head.appendChild(a);
+    return () => {
+      document.head.removeChild(a);
+    }      
+  },[]) //우편번호 스크립트 주소추가 및 삭제
 
-//     if (data.addressType === 'R') {
-//       if (data.bname !== '') {
-//         extraAddress += data.bname;
-//       }
-//       if (data.buildingName !== '') {
-//         extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-//       }
-//       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-//     }
+  const addrView = useRef([]);
 
-//     console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-//     console.log(data.zonecode)
-//   };
+  const foldDaumPostcode = () => {
+    addrView.current[0].style.display = 'none';
+  }
 
-//   const handleClick = () => {
-//     open({onComplete: handleComplete});
-//   };
+  const HandleOnclick = () => {
+    const currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+    new window.daum.Postcode({
+      onComplete: (data) => {
+        let fullAddress = data.address;
+        let extraAddress = '';
+
+        if (data.addressType === 'R') {
+          if (data.bname !== '') {
+             extraAddress += data.bname;
+           }
+          if (data.buildingName !== '') {
+            extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+          }
+          fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+        }
+        addrView.current[1].value = data.zonecode
+        addrView.current[2].value = fullAddress
+
+        addrView.current[0].style.display = 'none';
+        document.body.scrollTop = currentScroll;
+      },
+      onresize: (size) => {
+        addrView.current[0].style.height = size.height+'px';
+      },
+      width: '100%',
+      height: '100%'
+    }).embed(addrView.current[0])
+    addrView.current[0].style.display = 'block';
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,11 +68,11 @@ const Join = () => {
     const username = data.get("username");
     const email = data.get("email");
     const password = data.get("password");
-    const address = data.get("address");
+    const address = addrView.current[2].value + ' '+addrView.current[3].value
     const age = data.get("age");
     const nickname = data.get("nickname");
     const phonenumber = data.get("phonenumber");
-    const postCode = data.get("postCode")
+    const postCode = addrView.current[1].value
     console.log(phonenumber)
     signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber, postCode: postCode }).then(
       (response) => {
@@ -119,8 +143,6 @@ const Join = () => {
               id="address"
               autoComplete="current-address"
             />
-          </Grid>
-          {/* <button type="button" onClick={handleClick}>우편번호 검색</button> */}
           <Grid item xs={12}>
             <TextField
               variant="outlined"
@@ -150,6 +172,7 @@ const Join = () => {
               label="전화번호"
               id="phonenumber"
               maxLength={13}
+              className="c"
               onChange={HandlePhoneNumber}
             />
           </Grid>
@@ -162,6 +185,44 @@ const Join = () => {
               label="우편번호"
             />
           </Grid>
+          <Grid item xs={12}>
+            <Typography component="h1" variant="h5">
+              주소
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              name="postCode"
+              placeholder="우편주소"
+              inputRef={el => (addrView.current[1] = el)}
+            />
+            <button type='button' onClick={HandleOnclick} id="Addr_btn">우편번호 찾기</button>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="address"
+              placeholder="주소"
+              inputRef={el => (addrView.current[2] = el)}
+            />
+            </Grid>
+            <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="gubun"
+              placeholder="상세주소"
+              inputRef={el => (addrView.current[3] = el)}
+            />
+            </Grid>
+            <div ref={el => (addrView.current[0] = el)} className='style'>
+              <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" onClick={foldDaumPostcode} alt="취소"/>
+            </div>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               계정 생성

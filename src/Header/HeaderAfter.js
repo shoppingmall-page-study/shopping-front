@@ -29,8 +29,8 @@ function Hafter({cart, setCart, a, setA, s}){
     cartGet().then((res) => {
       setCount(res.data.data.length)
     })
+    console.log("aaaa")
   })
-
 
   const HandleUserState = () => {
     if(userState === "down"){
@@ -40,6 +40,7 @@ function Hafter({cart, setCart, a, setA, s}){
     }
     // console.log(user)
   }
+
 
   return(
     <div className="Menu">
