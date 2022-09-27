@@ -143,6 +143,7 @@ const Join = () => {
               id="address"
               autoComplete="current-address"
             />
+            </Grid>
           <Grid item xs={12}>
             <TextField
               variant="outlined"
@@ -233,6 +234,7 @@ const Join = () => {
             <Link href="/login" variant="body2">
               이미 계정이 있습니까? 로그인 하세요.
             </Link>
+          </Grid>
           </Grid>
         </Grid>
       </form>
