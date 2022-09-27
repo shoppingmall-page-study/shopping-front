@@ -228,7 +228,6 @@ const Join = () => {
               계정 생성
             </Button>
           </Grid>
-        </Grid>
         <Grid container justifyContent="flex-end">
           <Grid item>
             <Link href="/login" variant="body2">
