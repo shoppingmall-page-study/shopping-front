@@ -49,6 +49,7 @@ const Join = () => {
         addrView.current[1].value = data.zonecode
         addrView.current[2].value = fullAddress
 
+        addrView.current[3].focus()
         addrView.current[0].style.display = 'none';
         document.body.scrollTop = currentScroll;
       },
@@ -138,17 +139,6 @@ const Join = () => {
               variant="outlined"
               required
               fullWidth
-              name="address"
-              label="주소"
-              id="address"
-              autoComplete="current-address"
-            />
-            </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
               name="age"
               label="나이"
               id="age"
@@ -175,15 +165,6 @@ const Join = () => {
               maxLength={13}
               className="c"
               onChange={HandlePhoneNumber}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              name="postCode"
-              label="우편번호"
             />
           </Grid>
           <Grid item xs={12}>
