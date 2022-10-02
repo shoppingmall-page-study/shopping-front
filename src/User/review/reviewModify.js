@@ -1,13 +1,13 @@
 import { TextField } from "@material-ui/core";
-import React,{ useEffect, useRef, useState } from "react";
-import {Link, useParams} from "react-router-dom";
-import { reviewUpdate, userReviewGet } from "../../Api/ApiService";
+import React from "react";
+// import {Link, useParams} from "react-router-dom";
+import { reviewUpdate } from "../../Api/ApiService";
 import Hafter from '../../Header/HeaderAfter';
 import UserMenuBar from "../userMenuBar";
-import ReviewContent from "./reviewContent"
+// import ReviewContent from "./reviewContent"
 import "./reviewModify.css"
 
-function ReviewModify({reviewSelect, setReviewSelect}){
+function ReviewModify({reviewSelect, setReviewSelect, cart}){
     const HandleReviewUpdate = (e) => {
         e.preventDefault()
         const data = new FormData(e.target)
@@ -19,8 +19,8 @@ function ReviewModify({reviewSelect, setReviewSelect}){
     return(
         <div>
             <div className="Header">
-                <Hafter/>
-                <h1 id="review_modify_title">리뷰수정</h1>
+                <Hafter cart={cart}/>
+                <p id="review_modify_title">리뷰수정</p>
             </div>
             <div className="Content">
                 <div className="flex_reviewModifyContent">

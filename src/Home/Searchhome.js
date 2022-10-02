@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Contents from '../File/Contents'
+// import React, { useEffect, useState } from "react";
+// import Contents from '../File/Contents'
 import Hafter from "../Header/HeaderAfter";
 import SearchContents from "../File/SearchContents";
 

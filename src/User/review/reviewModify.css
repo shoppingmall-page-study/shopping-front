@@ -3,6 +3,9 @@
 }
 
 #review_modify_title{
+    font-size: 25px;
+    font-weight: bold;
+    /* padding-left: 40px; */
     margin-left: 40px;
 }
 

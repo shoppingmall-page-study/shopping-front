@@ -1,23 +1,24 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useEffect} from "react";
+import { Link } from "react-router-dom";
 import { userGet } from "../../Api/ApiService";
 import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import "./userInformation.css"
 
-function UserInformation({convertPhoneNumber, user, setUser, }){
+function UserInformation({convertPhoneNumber, user, setUser, cart}){
     // const [user,setUser] = useState([])
     // const addressState = window.location.pathname
     useEffect(() => {
         userGet().then((res) => {
             setUser(res.data)
         })
+        console.log("회원정보 가져오기")
     },[])
     return(
         <div>
             <div className="Header">
-                <Hafter/>
-                <h1 id="user_title">회원정보</h1>
+                <Hafter cart={cart}/>
+                <p id="userinformaion_title">회원정보</p>
             </div>
             <div className="Content">
                 <div className="flex_content">
@@ -37,17 +38,15 @@ function UserInformation({convertPhoneNumber, user, setUser, }){
                         <div className="user_content">
                             <ol>
                                 <li>이름:</li>
-                                <li>배송주소:</li>
+                                <li>주소:</li>
                                 <li>닉네임:</li>
                                 <li>전화번호:</li>
-                                <li>우편변호:</li>
                             </ol>
                             <ol>
                                 <li>{user.username}</li>
-                                <li>{user.address}</li>
+                                <li>{user.postCode + " " + user.address}</li>
                                 <li>{user.nickname}</li>
                                 <li>{user.phoneNumber}</li>
-                                <li>{user.postCode}</li>
                             </ol>
                         </div>
                     </div>

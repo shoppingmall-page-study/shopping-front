@@ -1,6 +1,6 @@
 import './HeaderBefore.css'
 import {Link} from 'react-router-dom'
-import {useEffect, useState } from 'react'
+import {useState } from 'react'
 import { TextField, InputAdornment, Button } from '@material-ui/core';
 
 function Hbefore(){
@@ -15,7 +15,7 @@ function Hbefore(){
     return(
         <div className="Menu">
         <div className="Logo">
-          <h1><a href="/">Shop</a></h1>
+          <a href="/">SHOP</a>
         </div>
         <div className='SearchBar'>
           <form>

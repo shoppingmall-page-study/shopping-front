@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import Contents from '../File/Contents'
 import Hafter from "../Header/HeaderAfter";
 import "./home.css";
+// import { cartGet } from "../Api/ApiService";
 
 function AHome({products, setProducts, convertPrice, cart, setCart}){
-    console.log(cart)
+    
     return(
         <div>
             <header className="Header">

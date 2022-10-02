@@ -1,18 +1,18 @@
 import './HeaderAfter.css'
 import {Link, useParams} from 'react-router-dom'
-import AHome from '../Home/Ahome';
-import {cartGet, signout, userGet,searchPost} from '../Api/ApiService'
+// import AHome from '../Home/Ahome';
+import {signout, userGet} from '../Api/ApiService'
 import React, {useEffect, useState } from 'react'
 import { TextField, InputAdornment, Button } from '@material-ui/core';
 
 
 function Hafter({cart, setCart, a, setA, s}){
-  const {id} = useParams()
-  const address = window.location.pathname
+  // const {id} = useParams()
+  // const address = window.location.pathname
   const [userState,setUserState] = useState("down");
   const [user,setUser] = useState([])
   const [param, setParam] = useState();
-  const [count,setCount] = useState(0);
+  // const [count,setCount] = useState(0);
 
   const handleChange = (event) => {
     setParam(event.target.value);
@@ -23,14 +23,15 @@ function Hafter({cart, setCart, a, setA, s}){
     userGet().then((res) => {
       setUser(res.data)
    })
+   console.log("헤더에 사용자 닉네임 가져오기")
   },[])
 
-  useEffect(() => {
-    cartGet().then((res) => {
-      setCount(res.data.data.length)
-    })
-    console.log("aaaa")
-  })
+  // useEffect(() => {
+  //   cartGet().then((res) => {
+  //     setCount(res.data.data.length)
+  //   })
+  //   // console.log("aaaa")
+  // })
 
   const HandleUserState = () => {
     if(userState === "down"){
@@ -44,16 +45,16 @@ function Hafter({cart, setCart, a, setA, s}){
 
   return(
     <div className="Menu">
-      <div className="Logo">
-        <h1><a href="/">Shop</a></h1>
+      <div className='Logo'>
+        <a href="/">SHOP</a>
       </div>
       <div className='SearchBar'>
-      <form>
+      <form className='search_form'>
         {" "}
         {/* submit 버튼을 누르면 handleSubmit이 실행됨. */}
         
          
-        <TextField id= "searchparam" label="검색" name="searchparam" fullWidth variant='outlined' autoComplete='none' onChange={handleChange}  InputProps={{
+        <TextField id= "searchparam" placeholder="검색" name="searchparam" fullWidth variant='outlined' autoComplete='none' onChange={handleChange}  InputProps={{
         endAdornment: (
           <InputAdornment position="end">
             <Link to={`/product/search/${param}`}>
@@ -72,11 +73,11 @@ function Hafter({cart, setCart, a, setA, s}){
           <ul id="SemiList">
               <li><h3><Link to="../Basket">장바구니</Link></h3></li>
               {
-              count >= 1 ? (
-                  <span id='new_shopping_cart'><p>{count}</p></span>
+              cart.length >= 1 ? (
+                  <span id='new_shopping_cart'><p>{cart.length}</p></span>
               ) : ("")}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
-              <li><h3 className='user'><Link to="" onClick={HandleUserState}>{user.username}<span id='name'>님</span></Link></h3></li>
+              <li><h3 className='user'><Link to="" onClick={HandleUserState}>{user.nickname}<span id='name'>님</span></Link></h3></li>
               {
               userState === "up" ? (
               <div className='userBox'>

@@ -1,11 +1,25 @@
 import './Basket.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { payMent, payMentComplete } from '../Api/ApiService';
 import { Link } from 'react-router-dom';
 
-function TotalCart({cart, setCart, money, convertPrice, checkedList, setCheckedList, s, infopro}){
-const [pay,setPay] = useState([])
+function TotalCart({cart, setCart, convertPrice, checkedLists, setCheckedLists, s, total, setTotal, found}){
+  useEffect(() => {
+    if(found){
+      // const temp = found.filter((item) => item.length !== 0)
+      const sum = found.map((item) =>  item[0].productPrice * item[0].carttotal)
+      const reducer = (acc, cur) => acc + cur;
+      if(sum.length === 0){
+        setTotal(0)
+        return
+      }
+      const itemTotal = sum.reduce(reducer)
+      setTotal(itemTotal)
+    }else{
+      setTotal(0)
+    }
+    console.log("체크리스트 가격 정하기")
+  },[cart,total,found,setTotal])
+// const [pay,setPay] = useState([])
 
 // useEffect(() => {
 //   const jquery = document.createElement("script");
@@ -66,7 +80,7 @@ return(
       <div className="total">
       <div className="total_price">
         <p className="cart_product_total_price">총 상품금액</p>
-        <p className="cart_product_price">{convertPrice(money)}</p>
+        <p className="cart_product_price">{convertPrice(total)}</p>
       </div>
       <div className="pay_minus">
         <img src="/images/icon-minus-line.svg" alt="minus" />
@@ -85,7 +99,7 @@ return(
 
       <div className="payment">
         <p className="cart_prouct_payment">결제 예정 금액</p>
-        <p className="cart_prouct_payment_price">{convertPrice(money)}</p>
+        <p className="cart_prouct_payment_price">{convertPrice(total)}</p>
       </div>
     </div>
       <div className='payment_bar'>

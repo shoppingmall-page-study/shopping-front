@@ -1,5 +1,5 @@
-import React, { useEffect,useState, useRef } from "react";
-import {useDaumPostcodePopup,DaumPostcodeEmbed} from "react-daum-postcode"
+import React, { useEffect, useRef } from "react";
+// import {useDaumPostcodePopup,DaumPostcodeEmbed} from "react-daum-postcode"
 import "./join.css"
 import {
   Button,
@@ -8,7 +8,7 @@ import {
   Grid,
   Container,
   Typography,
-  DialogActions,
+  // DialogActions,
 } from "@material-ui/core";
 import { signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
@@ -69,21 +69,17 @@ const Join = () => {
     const username = data.get("username");
     const email = data.get("email");
     const password = data.get("password");
-    const address = addrView.current[2].value + ' '+addrView.current[3].value
+    const address = data.get("address")
     const age = data.get("age");
     const nickname = data.get("nickname");
     const phonenumber = data.get("phonenumber");
-    const postCode = addrView.current[1].value
+    const postCode = data.get("postCode")
     console.log(phonenumber)
-    signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber, postCode: postCode }).then(
-      (response) => {
-        // 계정 생성 성공 시 login페이지로 리디렉트
-         window.location.href = "/login";
-      }
-    );
+    signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber, postCode: postCode })
   };
   const HandlePhoneNumber = (e) => {
     e.target.value = e.target.value.substr(0,13)
+    // e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/({1,2})$/g, "");
     e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
   }
   return (
@@ -168,16 +164,11 @@ const Join = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography component="h1" variant="h5">
-              주소
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
             <TextField
               variant="outlined"
               required
-              name="postCode"
-              placeholder="우편주소"
+              size="small"
+              placeholder="우편번호"
               inputRef={el => (addrView.current[1] = el)}
             />
             <button type='button' onClick={HandleOnclick} id="Addr_btn">우편번호 찾기</button>
@@ -187,7 +178,7 @@ const Join = () => {
               variant="outlined"
               required
               fullWidth
-              name="address"
+              name="postCode"
               placeholder="주소"
               inputRef={el => (addrView.current[2] = el)}
             />
@@ -197,7 +188,7 @@ const Join = () => {
               variant="outlined"
               required
               fullWidth
-              name="gubun"
+              name="address"
               placeholder="상세주소"
               inputRef={el => (addrView.current[3] = el)}
             />

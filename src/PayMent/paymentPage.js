@@ -4,11 +4,11 @@ import Hafter from "../Header/HeaderAfter";
 import { payMent } from "../Api/ApiService";
 import { payMentComplete } from "../Api/ApiService";
 import PaymentInfo from "./paymentInfo"
-import PaymentTrue from "./paymentTrue"
-import PaymentFalse from "./paymentFalse";
+// import PaymentTrue from "./paymentTrue"
+// import PaymentFalse from "./paymentFalse";
 import "./Payment.css"
 
-function PaymentPage({convertPhoneNumber, payList, setPayList}){
+function PaymentPage({cart, convertPhoneNumber, payList, setPayList}){
     const [payUser, setPayUser] = useState([])
     
     useEffect(() => {
@@ -75,7 +75,7 @@ function PaymentPage({convertPhoneNumber, payList, setPayList}){
     return(
         <div>
             <div className="Header">
-                <Hafter/>
+                <Hafter cart={cart}/>
                 <h1 id="review_title">결제페이지</h1>
             </div>
             <div className="Content">
