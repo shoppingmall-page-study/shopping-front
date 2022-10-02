@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Hafter from "../../Header/HeaderAfter";
 import { TextField } from '@material-ui/core';
 import "./userModify.css"
 import { userUpdate } from "../../Api/ApiService";
 import UserMenuBar from "../userMenuBar";
 
-function UserModify({user, setUser}){
+function UserModify({user, setUser, cart}){
 
     const HandleUserUpdate = (e) => {
         e.preventDefault();
@@ -18,6 +18,7 @@ function UserModify({user, setUser}){
         userUpdate({username: username, address: address, nickname: nickname, phoneNumber: phoneNumber, postCode: postCode})
     }
 
+    console.log(cart)
     const HandlePhoneNumber = (e) => {
         e.target.value = e.target.value.substr(0,13)
         e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
@@ -25,8 +26,8 @@ function UserModify({user, setUser}){
     return(
         <div>
             <div className="Header">
-                <Hafter/>
-                <h1 id="user_title">회원정보수정</h1>
+                <Hafter cart={cart}/>
+                <p id="user_title">회원정보수정</p>
             </div>
             <div className="Content">
                 <form className="flex_content" onSubmit={HandleUserUpdate}>
@@ -46,51 +47,51 @@ function UserModify({user, setUser}){
                         <div className="user_content">
                             <ol>
                                 <li>이름:</li>
-                                <li>배송주소:</li>
+                                {/* <li>배송주소:</li> */}
                                 <li>닉네임:</li>
                                 <li>전화번호:</li>
-                                <li>우편번호:</li>
+                                {/* <li>우편번호:</li> */}
                             </ol>
                             <ol id="no_margin">
                                 <li>
                                 <TextField name="username"
                                 required
-                                label="이름" 
-                                variant="standard"
+                                label="이름"
+                                variant="outlined"
                                 defaultValue={user.username}/>
                                 </li>
-                                <li>
+                                {/* <li>
                                 <TextField name="address"
                                 required
                                 fullWidth
                                 label="배송주소" 
                                 className="username_form"
-                                variant="standard"
+                                variant="outlined"
                                 defaultValue={user.address}/>
-                                </li>
+                                </li> */}
                                 <li>
                                 <TextField name="nickname"
                                 required
                                 label="닉네임" 
-                                variant="standard"
+                                variant="outlined"
                                 defaultValue={user.nickname}/>
                                 </li>
                                 <li>
                                 <TextField name="phoneNumber"
                                 required
                                 label="전화번호" 
-                                variant="standard"
+                                variant="outlined"
                                 maxLength={13}
                                 defaultValue={user.phoneNumber}
                                 onChange={HandlePhoneNumber}/>
                                 </li>
-                                <li>
+                                {/* <li>
                                 <TextField name="postCode"
                                 required
                                 label="우편번호" 
-                                variant="standard"
+                                variant="outlined"
                                 defaultValue={user.postCode}/>
-                                </li>
+                                </li> */}
                             </ol>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import './Contents.css'
 import Product from "./Product";
-import getProducts from "../Service/Fetcher";
-import Hafter from "../Header/HeaderAfter";
+// import getProducts from "../Service/Fetcher";
+// import Hafter from "../Header/HeaderAfter";
 import {  searchPost } from "../Api/ApiService";
 import { useParams } from "react-router";
 
@@ -24,7 +24,7 @@ function SearchContents({convertPrice,searchProducts ,setSearchProducts}){
          searchPost({ searchparam: params.name}).then((response)=>{
             console.log(response.data.data)
             //setSearch(response.data.data)
-            if(response.status == 200){
+            if(response.status === 200){
                 setSearchProducts(response.data.data);
                 setArrlength(response.data.length);
 

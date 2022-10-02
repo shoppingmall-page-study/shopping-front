@@ -4,7 +4,7 @@ import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import OrderListContent from "./orderListContent";
 
-function OrderList({convertPrice}){
+function OrderList({convertPrice,cart}){
     const [list,setList] = useState([])
 
     useEffect(() => {
@@ -18,8 +18,8 @@ function OrderList({convertPrice}){
     return(
         <div>
             <div className="Header">
-                <Hafter />
-                <h1 id="userGoodsup_title">주문목록</h1>
+                <Hafter cart={cart}/>
+                <p id="userGoodsup_title">주문목록</p>
             </div>
             <div className="Content">
                 <div className="flex_userGooudsupContent">

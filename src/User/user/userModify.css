@@ -1,5 +1,8 @@
 #user_title{
-    padding-left: 40px;
+    /* padding-left: 40px; */
+    margin-left: 40px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .flex_content{

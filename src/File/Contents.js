@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import './Contents.css'
 import Product from "./Product";
-import getProducts from "../Service/Fetcher";
-import Hafter from "../Header/HeaderAfter";
+// import getProducts from "../Service/Fetcher";
+// import Hafter from "../Header/HeaderAfter";
 import { productGet } from "../Api/ApiService";
-import {render} from "react-dom"
+// import {render} from "react-dom"
 
 function Contents({products, setProducts, convertPrice}){
     // useEffect(()=>{

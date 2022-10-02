@@ -1,5 +1,4 @@
 import { API_BASE_URL } from "./app-config";
-import {cookie} from "react-cookie";
 import axios from 'axios';
 const ACCESS_TOKEN = "ACCESS_TOKEN";
 
@@ -11,7 +10,7 @@ export const call = (api, method, request) => {
 
   // 로컬 스토리지에서 ACCESS TOKEN 가져오기
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  if (accessToken && accessToken != "") {
+  if (accessToken && accessToken !== "") {
     headers.append("Authorization", accessToken);
     axios.defaults.headers.common['Authorization'] = "Bearer  " + accessToken;
   }
@@ -66,7 +65,6 @@ export const signin = (userDTO) => {
       localStorage.setItem(ACCESS_TOKEN, jwt);
       window.location.href = "/";
     }
-    
   });
 }
 
@@ -77,7 +75,14 @@ export const signout = () => {
 
 
 export const signup = (userDTO) => {
-  return call("/join", "POST", userDTO);
+  return call("/join", "POST", userDTO).then((res) => {
+    if(res.status === 200){
+      alert('회원가입 정상적으로 이루어졌습니다.')
+      window.location.href = "./login"
+    }else if(res.status === 400){
+      alert('에러 발생')
+    }
+  })
 }
 
 export const registration = (userDTO) => {
@@ -86,8 +91,11 @@ export const registration = (userDTO) => {
  
 export const productCreate = (goodsDTO) => {
   return call("/product/create", "POST", goodsDTO).then((response)=>{
-    if(response.status == 200){
+    if(response.status === 200){
+      alert("상품이 정상적으로 등록되었습니다.")
       window.location.href = "/"
+    }else{
+      alert("오류")
     }
   })
 }
@@ -98,10 +106,14 @@ export const productGet = () => {
 
 export const cartCreate = (cartDTO) => {
   return call(`/cart/create/${cartDTO.productId}`,"POST",cartDTO).then((response) => {
-    if(response.status == 200){
-      alert("장바구니에 해당상품이 추가되었습니다.")
-      window.location.reload()
-    }})
+    // if(response.status === 200){
+    //   alert("장바구니에 해당상품이 추가되었습니다.")
+    //   window.location.reload()
+    // }else{
+    //   alert("오류")
+    // }
+  }
+    )
 }
 
 export const cartGet = () => {
@@ -110,9 +122,11 @@ export const cartGet = () => {
 
 export const reviewCreate = (reviewDTO) => {
   return call(`/review/create/${reviewDTO.productId}`,"POST",reviewDTO).then((response) => {
-    if(response.status == 200){
+    if(response.status === 200){
       alert("성공적으로 리뷰가 등록되었습니다.")
       window.location.reload()
+    }else{
+      alert("오류")
     }
   })
 }
@@ -135,9 +149,11 @@ export const cartUpdate = (cartDTO) => {
 
 export const userUpdate = (userDTO) => {
   return call("/user/update","PUT",userDTO).then((response) => {
-    if(response.status == 200){
+    if(response.status === 200){
       alert("회원정보가 정상적으로 변경되었습니다.")
       window.location.href = "/user"
+    }else{
+      alert("오류")
     }
   })
 }
@@ -148,9 +164,11 @@ export const userReviewGet = () => {
 
 export const reviewDelete = (id) => {
   return call(`/review/delete/${id}`,"PUT","").then((response) => {
-    if(response.status == 200){
+    if(response.status === 200){
       alert("성공적으로 삭제되었습니다.")
       window.location.reload()
+    }else{
+      alert("오류")
     }
   })
 }
@@ -165,16 +183,18 @@ export const searchPost = (searchDTO) =>{
 
 export const userProductDelete = (id) => {
   return call(`/product/delete/${id}`,"PUT","").then((response) => {
-    if(response.status == 200){
+    if(response.status === 200){
       alert("해당상품이 정상적으로 삭제되었습니다.")
       window.location.reload()
+    }else{
+      alert("오류")
     }
   })
 }
 
 export const reviewUpdate = (reviewDTO) => {
   return call(`/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO).then((response) => {
-    if(response.status == 200){
+    if(response.status === 200){
       alert("리뷰가 정상적으로 변경되었습니다.")
       window.location.href = "/UserReviewList"
     }
@@ -183,7 +203,7 @@ export const reviewUpdate = (reviewDTO) => {
 
 export const userProductUpdate = (productDTO) => {
   return call(`/product/update/${productDTO.productId}`,"PUT",productDTO).then((response) => {
-    if(response.status == 200){
+    if(response.status === 200){
       alert("해당 등록상품이 정상적으로 수정되었습니다.")
       window.location.href = "/UserProducList"
     }

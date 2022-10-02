@@ -1,10 +1,9 @@
 import { TextField } from '@material-ui/core';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
-import getProducts from '../Service/Fetcher';
+// import getProducts from '../Service/Fetcher';
 import { productGet, cartCreate, cartGet, reviewCreate, reviewGet, cartUpdate } from '../Api/ApiService';
 import './Detail.css'
 import Review from '../review/review';
@@ -14,7 +13,7 @@ function Detail({convertPrice, cart, setCart, token}){
     const [product, setProduct] = useState({}); //상품
 
     const [count,setCount] = useState(1);   //  개수를 나타내는 Hooks
-    const [s,setS] = useState("a")
+    // const [s,setS] = useState("a")
 
     const handelQuantity = (type) => {  //  -,+버튼을 눌렀을때 개수 변화는 함수
         if(type === "plus"){
@@ -29,37 +28,39 @@ function Detail({convertPrice, cart, setCart, token}){
     useEffect(() => {
       productGet().then((res) => {
         setProduct(res.data.data.find((product) => product.productId === parseInt(id)));
-        console.log(product.reviewId)
       });
+      console.log("product Hooks에 해당 상품번호 저장하기")
     }, [id]);
 
-    useEffect(() => {
-      cartGet().then((res) => {
-        setCart(res.data.data)
-      })
-    },[s])
+    // useEffect(() => {
+    //   cartGet().then((res) => {
+    //     setCart(res.data.data)
+    //   })
+    // },[s])
 
     const handleCart = () => {  //장바구니에 추가하는 함수
       cartGet().then((res) => {
         const found = res.data.data.find((el) => el.productId === product.productId);
         if(found){
-          cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count})
+          const idx = cart.indexOf(found)
+          cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count}).then((res)=>{
+            if(res.status === 200){
+              setCart([...cart.slice(0,idx), res.data.data, ...cart.slice(idx+1)])
+            }
+          })
         }else{
           cartCreate({title: product.title, name: product.name, content: product.content,
-                    amount: product.amount, carttotal: count, imgUrl: product.imgUrl, productId: product.productId}).then((response)=>{
-                      if(response.status == 200){
-                        if(s == "a"){
-                          setS("b")
-                        }else{
-                          setS("a")
-                        }
+                    amount: product.amount, carttotal: count, imgUrl: product.imgUrl, productId: product.productId}).then((res) => {
+                      if(res.status === 200){
+                        console.log(res.data.data)
+                        setCart([...cart,res.data.data[0]])
                       }
                     })
-        }
-      })}
+        }})}
+      console.log(cart)
 
     const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
-      return token ? <Hafter cart={cart} s={s}/> : <Hbefore/>
+      return token ? <Hafter cart={cart}/> : <Hbefore/>
     }
 
     const HandleReivewUp = (e) => {
@@ -76,7 +77,6 @@ function Detail({convertPrice, cart, setCart, token}){
     useEffect(()=>{
       reviewGet(id).then((res) => {
         setReviewList(res.data.data)
-        console.log(reviewlist)
       })
     },[state])
 

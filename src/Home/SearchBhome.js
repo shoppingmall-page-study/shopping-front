@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Contents from '../File/Contents'
+// import React, { useEffect, useState } from "react";
+// import Contents from '../File/Contents'
 import Hbefore from "../Header/HeaderBefore";
 import SearchContents from "../File/SearchContents";
 

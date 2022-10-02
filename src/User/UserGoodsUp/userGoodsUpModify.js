@@ -1,13 +1,13 @@
 import { TextField } from "@material-ui/core";
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
 import Hafter from "../../Header/HeaderAfter";
-import { productCreate } from "../../Api/ApiService";
+// import { productCreate } from "../../Api/ApiService";
 import UserMenuBar from "../userMenuBar";
 import "./userGoodsUp.css"
 import { userProductUpdate } from "../../Api/ApiService";
 
-function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
+function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}){
     const [count,setCount] = useState(productSelect.total)  //해당 등록상품의 개수를 저장할 Hooks
     const [file,setFile] = useState(productSelect.imgUrl) //해당 등록상품의 이미지를 미리 보여줄 저장 Hooks
 
@@ -26,10 +26,10 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
     } 
 
     const handelQuantity = (type) => {
-        if(type == "plus"){
+        if(type === "plus"){
             setCount(count + 1)
         }else {
-            if(count == 1)return;
+            if(count === 1)return;
             setCount(count - 1)
         }
     }
@@ -42,7 +42,8 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect}){
     return(
         <div className="GoodsUp">
             <header className="Header">
-                <Hafter/>
+                <Hafter cart={cart}/>
+                <p id="user_goodsup_modify_title">등록상품수정</p>
             </header>
             <div className="Content">
                 <div className="userGoodsModify_flex_content">

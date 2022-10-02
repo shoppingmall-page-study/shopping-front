@@ -1,6 +1,9 @@
 /* userGoodsup */
 #userGoodsup_title{
+    /* padding-left: 40px; */
     margin-left: 40px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .flex_userGooudsupContent{
@@ -115,6 +118,13 @@
     width: 70%;
     padding-left: 10%;
     margin-top: 135px;
+}
+
+#user_goodsup_modify_title{
+    /* padding-left: 40px; */
+    margin-left: 40px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 /* input{

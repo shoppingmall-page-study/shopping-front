@@ -4,83 +4,127 @@ import CartList from './CartList';
 import TotalCart from './TotalCart';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
-import { cartGet } from '../Api/ApiService';
+import { cartDelete, cartGet, cartUpdate } from '../Api/ApiService';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 
 
-function Basket({cart, setCart, convertPrice, token, payList, setPayList}){
+function Basket({cart, setCart, convertPrice, token, payList, setPayList, checkedLists, setCheckedLists}){
 const { id } = useParams();
 const address = window.location.pathname
-const [cartlength, setCartLength] = useState(0)
+// const [cartlength, setCartLength] = useState(0)
 // const [price, setPrice] = useState(0)
 const [s,setS] = useState("a")
 // const [c,setC] = useState([])
 // const [checkedState, setCheckedState] = useState(0)
-const [checkedList, setCheckedList] = useState([])
 //체크리스트 데이터를 넣을 Hooks
-const [money,setMoney] = useState(0)
-
+// const [money,setMoney] = useState(0)
+const [total, setTotal] = useState(0) //체크리스트 가격을 나타내는 Hooks
 const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
     return token ? <Hafter cart={cart}/> : <Hbefore/>
 }
 
-const ErrorFix = (item) => {
-  return (checkedList.find((el) => el.cartId === item))
+// const ErrorFix = (item) => {
+//   return (checkedList.find((el) => el.cartId === item))
+// }
+
+useEffect(() => {
+  const found = cart.map((el) => el.cartId)
+  setCheckedLists(found)
+  console.log("처음에는 카트목록에 있는 것들이 다 checkLists에 추가")
+},[])
+
+const handleCountUpdate = (type, id, count) => {
+  const found = cart.filter((el) => el.cartId === id)[0]
+  const idx = cart.indexOf(found)
+  if(type === "plus"){
+    if(count === found.productTotal + 1) return;
+    cartUpdate({cartId: found.cartId, carttotal: count}).then((res) => {
+      if(res.status === 200){
+        setCart([...cart.slice(0, idx), res.data, ...cart.slice(idx+1)])
+      }
+    })
+  }else{
+    if(count === 0) return;
+    cartUpdate({cartId: found.cartId, carttotal: count}).then((res) => {
+      if(res.status === 200){
+        setCart([...cart.slice(0, idx), res.data, ...cart.slice(idx+1)])
+      }
+    })
+  }
 }
 
-useEffect(() => {
-  cartGet().then(res => {
-    setCart(res.data.data)
-    setCartLength(res.data.data.length)
-    // setPrice(res.data.totalsum)
-    // res.data.data.length >= 1 ? setCheckedState("On") : setCheckedState("Off")
-    setCheckedList(res.data.data.filter((el) => ErrorFix(el.cartId)))
+const HandleCartRemove = (id) => {
+  cartDelete(id).then((res) =>{
+    if(res.status === 200){
+      setCart(cart.filter((el) => el.cartId !== id))
+      setCheckedLists(checkedLists.filter((check) => check !== id))
+    }
   })
-},[s])
+}
 
-useEffect(() => {
-  var price = 0
-  checkedList.map((el) => {
-    price += (el.carttotal * el.productPrice)
-  })
-  setMoney(price)
-  setPayList(checkedList)
-},[checkedList])
+const handleCheckList = (checked, id) => {
+  if(checked){
+    setCheckedLists([...checkedLists, id])
+  }else{
+    setCheckedLists(checkedLists.filter((el) => el !== id))
+  }
+}
+
+const handleAllCheck = (checked) => {
+  if(checked){
+    const checkedItems = [];
+    cart.map((cart) => checkedItems.push(cart.cartId))
+    setCheckedLists(checkedItems)
+  }else{
+    setCheckedLists([])
+  }
+}
+
+const isAllChecked = cart.length === checkedLists.length && checkedLists.length !== 0 //cartHeader에서 체크
+
+const found = checkedLists.map((checkedList) => 
+  // cart.filter((el) => el.cartId === checkedList)
+  cart.filter((el) => el.cartId === checkedList)
+) //cart에서 체크된 리스트 목록 반환
+
 // useEffect(() => {
-//   cartGet().then((res) =>{
-//     setCheckedList(checkedList.filter((bl) => {
-//       res.data.data.map((al) =>
-//         bl.cartId === al.cartId 
-//       )
-//     }))
+//   cartGet().then(res => {
+//     setCart(res.data.data)
+//     // setCartLength(res.data.data.length)
+//     // setPrice(res.data.totalsum)
+//     // res.data.data.length >= 1 ? setCheckedState("On") : setCheckedState("Off")
+//     setCheckedList(res.data.data.filter((el) => ErrorFix(el.cartId)))
 //   })
+//   console.log("상품삭제 및 수정")
 // },[s])
 
 // useEffect(() => {
-//   setPrice(0)
-//   checkedList.map((checkedList) => {
-//     setPrice(price + (checkedList.carttotal * checkedList.productPrice))
-//     console.log(price)
+//   var price = 0
+//   checkedList.map((el) => {
+//     price += (el.carttotal * el.productPrice)
 //   })
-// },[s])
+//   setMoney(price)
+//   setPayList(checkedList)
+// },[checkedList])
 
 
 // return cartlength === 0 ? <Hbefore/> : <Hafter/>
-useEffect(() => {
-  cartGet().then((res) => {
-    setCheckedList(res.data.data)
-  })
-},[cart])
+// useEffect(() => {
+//   cartGet().then((res) => {
+//     setCheckedList(res.data.data)
+//   })
+//   console.log("장바구니 들어왔을 때 처음 전체상품 체크리스트 표현")
+// },[cart]) //문제 s가 변해도 실행된다. -> ex) 체크리스트 안되있는것도 s가 변경되면 다시 체크리스트로 됌 수정해야함
 return (
     <div>
       <header className="Header">
         {TokenHeaderView(token)}
-        <h1 id='basket_title'>장바구니</h1>
+        <p id='basket_title'>장바구니</p>
       </header>
       <div className='Content'>
-      <CartHeader cart={cart} checkedList={checkedList} setCheckedList={setCheckedList}/>
+      <CartHeader cart={cart} checkedLists={checkedLists} setCheckedLists={setCheckedLists} handleAllCheck={handleAllCheck} isAllChecked={isAllChecked}/>
       {cart.length === 0 ? (
         <div className="not">
             <h2>장바구니에 담긴 상품이 없습니다.</h2>
@@ -88,9 +132,10 @@ return (
         </div>
       ) : cart.map((cart)=>{
         return <CartList key={`key-${cart.productId}`} cart={cart} setCart={setCart} convertPrice={convertPrice} s={s} setS={setS} 
-        checkedList={checkedList} setCheckedList={setCheckedList}/>
+        checkedLists={checkedLists} setCheckedLists={setCheckedLists} handleCheckList={handleCheckList} handleCountUpdate={handleCountUpdate}
+        HandleCartRemove={HandleCartRemove}/>
       })}
-      {cart.length === 0 ? "" : <TotalCart cart={cart} setCart={setCart} money={money} convertPrice={convertPrice} checkedList={checkedList} setCheckedList={setCheckedList} s={s}/>}
+      {cart.length === 0 ? "" : <TotalCart cart={cart} setCart={setCart} convertPrice={convertPrice} checkedLists={checkedLists} setCheckedLists={setCheckedLists} s={s} total={total} setTotal={setTotal} found={found}/>}
       </div>
     </div>
   );

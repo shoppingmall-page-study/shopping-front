@@ -1,4 +1,4 @@
-import { reviewDelete, reviewUpdate } from "../../Api/ApiService";
+import { reviewDelete } from "../../Api/ApiService";
 import { Link } from "react-router-dom";
 import "./reviewList.css"
 

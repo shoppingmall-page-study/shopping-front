@@ -34,6 +34,7 @@
 .product{
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 .product_img{
   width: 250px;
@@ -69,7 +70,7 @@
 }
 
 .price_info{
-  margin-bottom: 35px;
+  /* margin-bottom: 35px; */
 }
 
 .price {
