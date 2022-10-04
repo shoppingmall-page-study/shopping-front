@@ -44,7 +44,7 @@ function UserRouter(){
 
 
     const convertPrice = (amount) => {
-        return (amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        // return (amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
     const convertPhoneNumber = (phoneNumber) => {
         return (Object(phoneNumber).toString().replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));

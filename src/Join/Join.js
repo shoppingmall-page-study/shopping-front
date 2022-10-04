@@ -72,10 +72,9 @@ const Join = () => {
     const address = data.get("address")
     const age = data.get("age");
     const nickname = data.get("nickname");
-    const phonenumber = data.get("phonenumber");
+    const phoneNumber = data.get("phoneNumber");
     const postCode = data.get("postCode")
-    console.log(phonenumber)
-    signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phonenumber, postCode: postCode })
+    signup({ email: email,  password: password , username: username, address:address, age:age, nickname: nickname, phoneNumber: phoneNumber, postCode: postCode })
   };
   const HandlePhoneNumber = (e) => {
     e.target.value = e.target.value.substr(0,13)
@@ -155,7 +154,7 @@ const Join = () => {
               variant="outlined"
               required
               fullWidth
-              name="phonenumber"
+              name="phoneNumber"
               label="전화번호"
               id="phonenumber"
               maxLength={13}

@@ -59,7 +59,7 @@ export const call = (api, method, request) => {
 }
 
 export const signin = (userDTO) => {
-  return call("/login", 'POST', userDTO).then((response) => {
+  return call("/api/login", 'POST', userDTO).then((response) => {
     let jwt = response.headers.authorization;
     if(jwt !== null){
       localStorage.setItem(ACCESS_TOKEN, jwt);
@@ -75,7 +75,7 @@ export const signout = () => {
 
 
 export const signup = (userDTO) => {
-  return call("/join", "POST", userDTO).then((res) => {
+  return call("/api/join", "POST", userDTO).then((res) => {
     if(res.status === 200){
       alert('회원가입 정상적으로 이루어졌습니다.')
       window.location.href = "./login"
@@ -90,7 +90,7 @@ export const registration = (userDTO) => {
 }
  
 export const productCreate = (goodsDTO) => {
-  return call("/product/create", "POST", goodsDTO).then((response)=>{
+  return call("/api/product/create", "POST", goodsDTO).then((response)=>{
     if(response.status === 200){
       alert("상품이 정상적으로 등록되었습니다.")
       window.location.href = "/"
@@ -101,7 +101,7 @@ export const productCreate = (goodsDTO) => {
 }
 
 export const productGet = () => {
-  return call("/products","GET","")
+  return call("/api/products","GET","")
 }
 
 export const cartCreate = (cartDTO) => {
@@ -140,7 +140,7 @@ export const cartDelete = (id) => {
 }
 
 export const userGet = () => {
-  return call("/user/info", "GET", "")
+  return call("/api/user/info", "GET", "")
 }
 
 export const cartUpdate = (cartDTO) => {
