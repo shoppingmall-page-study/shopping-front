@@ -6,7 +6,7 @@ function TotalCart({cart, setCart, convertPrice, checkedLists, setCheckedLists, 
   useEffect(() => {
     if(found){
       // const temp = found.filter((item) => item.length !== 0)
-      const sum = found.map((item) =>  item[0].productPrice * item[0].carttotal)
+      const sum = found.map((item) =>  item[0].product.price * item[0].productNum)
       const reducer = (acc, cur) => acc + cur;
       if(sum.length === 0){
         setTotal(0)

@@ -33,17 +33,12 @@ function Goodsup({products, setProducts, cart}){
         const data = new FormData(e.target)
         const title = data.get("title")
         const name = data.get("name")
-        const price = parseInt(data.get("price"))
+        const price = data.get("price")
         const content = data.get("content")
         const total = goodscount
-        const imgUrl = ""//file
+        const imgUrl = file
         // console.log(title, content, name, price, total, imgUrl)
-        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl}).then((res)=>{
-            console.log(res.data)
-            console.log(res.status)
-            console.log(res.data.msg)
-            console.log(res.data.data)
-        })
+        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
         // let formData = new FormData()
         // formData.append("file", e.target.Goods_img_file.files[0])
         // let dataSet = {

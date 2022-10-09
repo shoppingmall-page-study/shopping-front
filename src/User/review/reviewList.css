@@ -32,29 +32,50 @@
 /*reviewContent*/
 .user_reviewlist_window{
     border-bottom: 3px solid black;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
+    display: flex;
+}
 
+.reviewlist_look_img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    margin-bottom: 10px
+}
+
+.reviewlist_title_content_view{
+    padding-left: 13px;
+    width: 70%;
 }
 
 .user_reviewlist_title{
-    height: 50px;
-    font-size: 24px;
-    padding-top: 7px;
-    padding-left: 15px;
+    font-size: 22px;
+    padding: 5px;
+}
+
+.user_reviewlist_title p{
+    margin: 0;
 }
 
 .uer_reviewlist_line{
     width: 100%;
     border: 1px solid gray;
+    margin: 16px 0;
 }
 
 .user_reviewlist_content{
-    padding-left: 15px;
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    /* padding-left: 15px; */
+    font-size: 18px;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+    padding: 5px;
 }
+
+.user_reviewlist_content p{
+    margin: 0;
+}
+
 .user_nickname_cal{
     text-align: right;
     font-size: 15px;
@@ -62,6 +83,10 @@
 
 .user_nickname_cal span{
     padding-right: 25px;
+}
+
+#uplode_day{
+    padding-right: 0;
 }
 
 .user_reivewlist_btn{

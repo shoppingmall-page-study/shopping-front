@@ -9,7 +9,8 @@
     font-size: 18px;
     font-weight: bold;
     /* margin-top: 13px; */
-    margin-left: 30px;
+    /* margin-left: 30px; */
+    margin-left: 19px;
     cursor: pointer;
     height: 40px;
 }
@@ -29,4 +30,44 @@
     right: 0px;
     top: -1px;
     z-index: 1;
+}
+
+#email{
+    /* display: flex; */
+    /* width: 90%; */
+    width: 250px;
+}
+
+#email_check_btn{
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 8px;
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+#nickname{
+    width: 250px;
+}
+
+#nickname_check_btn{
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 8px;
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+#num{
+    width: 235px;
 }

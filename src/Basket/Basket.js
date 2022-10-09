@@ -28,7 +28,6 @@ const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함
 // const ErrorFix = (item) => {
 //   return (checkedList.find((el) => el.cartId === item))
 // }
-
 useEffect(() => {
   const found = cart.map((el) => el.cartId)
   setCheckedLists(found)
@@ -37,19 +36,21 @@ useEffect(() => {
 
 const handleCountUpdate = (type, id, count) => {
   const found = cart.filter((el) => el.cartId === id)[0]
+  console.log(found)
   const idx = cart.indexOf(found)
   if(type === "plus"){
     if(count === found.productTotal + 1) return;
-    cartUpdate({cartId: found.cartId, carttotal: count}).then((res) => {
+    cartUpdate({cartId: found.cartId, productNum: count}).then((res) => {
       if(res.status === 200){
-        setCart([...cart.slice(0, idx), res.data, ...cart.slice(idx+1)])
+        setCart([...cart.slice(0, idx), res.data.data, ...cart.slice(idx+1)])
       }
     })
   }else{
     if(count === 0) return;
-    cartUpdate({cartId: found.cartId, carttotal: count}).then((res) => {
+    cartUpdate({cartId: found.cartId, productNum: count}).then((res) => {
+      console.log(res.data.data)
       if(res.status === 200){
-        setCart([...cart.slice(0, idx), res.data, ...cart.slice(idx+1)])
+        setCart([...cart.slice(0, idx), res.data.data, ...cart.slice(idx+1)])
       }
     })
   }

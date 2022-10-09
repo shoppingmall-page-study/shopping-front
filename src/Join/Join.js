@@ -10,7 +10,7 @@ import {
   Typography,
   // DialogActions,
 } from "@material-ui/core";
-import { signup } from "../Api/ApiService";
+import { nicknameCheck, signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
 
 const Join = () => {
@@ -81,6 +81,13 @@ const Join = () => {
     // e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/({1,2})$/g, "");
     e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
   }
+
+  const handleNicknameCheck = (e) => {
+    nicknameCheck(addrView.current[4].value).then((res) => {
+      console.log(res)
+    })
+  }
+
   return (
     <>
     <header className="Header">
@@ -95,6 +102,7 @@ const Join = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
+
             <TextField
               autoComplete="fname"
               name="username"
@@ -107,15 +115,20 @@ const Join = () => {
             />
           </Grid>
           <Grid item xs={12}>
+          {/* <div className="email_check"> */}
             <TextField
               variant="outlined"
               required
-              fullWidth
+              // fullWidth
               id="email"
               label="이메일 주소"
               name="email"
               autoComplete="email"
+              helperText=""
             />
+            <button type="button" id="email_check_btn">중복체크</button>
+          {/* </div> */}
+
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -143,11 +156,12 @@ const Join = () => {
             <TextField
               variant="outlined"
               required
-              fullWidth
               name="nickname"
               label="닉네임"
               id="nickname"
+              inputRef={el => (addrView.current[4] = el)}
             />
+            <button type="button" onClick={handleNicknameCheck} id="nickname_check_btn">중복체크</button>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -168,6 +182,7 @@ const Join = () => {
               required
               size="small"
               placeholder="우편번호"
+              id="num"
               inputRef={el => (addrView.current[1] = el)}
             />
             <button type='button' onClick={HandleOnclick} id="Addr_btn">우편번호 찾기</button>
@@ -179,6 +194,7 @@ const Join = () => {
               fullWidth
               name="postCode"
               placeholder="주소"
+              id="postCode"
               inputRef={el => (addrView.current[2] = el)}
             />
             </Grid>

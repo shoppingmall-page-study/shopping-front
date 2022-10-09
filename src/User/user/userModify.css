@@ -1,3 +1,23 @@
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: inherit;
+    border-left-color: inherit;
+}
+
+tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: inherit;
+    border-left-color: inherit;
+    font-size: 22px;
+}
+
+
 #user_title{
     /* padding-left: 40px; */
     margin-left: 40px;
@@ -6,31 +26,41 @@
 }
 
 .flex_content{
-    display: flex;
+    text-align: left;
+    padding-top: 80px;
+    width: 100%;
 }
 
-.menu_bar a:hover{
+/* .menu_bar a:hover{
     border-bottom: 2px solid #000;
-}
+} */
 
-#user_bar{
-    border-bottom: 3px solid #000;
-}
-
+/* #user_bar_modifyr{
+} */
+/* 
 .user_window{
     padding-left: 20%;
     margin-top: 110px
-}
+} */
 
-.user_content{
+.td_flex{
     display: flex;
-    font-size: 22px;
 }
 
-.user_content li{
+/* .user_content_modify{
+    display: flex;
+    
+} */
+
+.user_content_modify th{
+    width: 100px;
+    border: 1px solid black;
+}
+
+/* .user_content li{
     margin-bottom: 30px;
     font-weight: bold;
-}
+} */
 
 .btn_window{
     position: relative;
@@ -51,9 +81,9 @@
 }
 
 #no_margin{
-    margin: 0;
+    /* margin: 0; */
 }
 
 #no_margin li{
-    margin-bottom: 9px;
+    /* margin-bottom: 9px; */
 }

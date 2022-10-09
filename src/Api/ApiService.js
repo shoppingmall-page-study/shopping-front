@@ -92,7 +92,7 @@ export const registration = (userDTO) => {
 export const productCreate = (goodsDTO) => {
   return call("/api/product/create", "POST", goodsDTO).then((response)=>{
     if(response.status === 200){
-      alert("상품이 정상적으로 등록되었습니다.")
+      alert(response.data.msg)
       window.location.href = "/"
     }else{
       alert("오류")
@@ -105,23 +105,22 @@ export const productGet = () => {
 }
 
 export const cartCreate = (cartDTO) => {
-  return call(`/cart/create/${cartDTO.productId}`,"POST",cartDTO).then((response) => {
+  return call(`/api/cart/create/${cartDTO.productId}`,"POST",cartDTO)
     // if(response.status === 200){
-    //   alert("장바구니에 해당상품이 추가되었습니다.")
-    //   window.location.reload()
+    //   // alert(response.data)
+    //   console.log(response.msg)
+    //   // window.location.reload()
     // }else{
     //   alert("오류")
     // }
-  }
-    )
 }
 
 export const cartGet = () => {
-  return call("/cart/list", "GET", "")
+  return call("/api/cart/user", "GET", "")
 }
 
 export const reviewCreate = (reviewDTO) => {
-  return call(`/review/create/${reviewDTO.productId}`,"POST",reviewDTO).then((response) => {
+  return call(`/api/review/create/${reviewDTO.productId}`,"POST",reviewDTO).then((response) => {
     if(response.status === 200){
       alert("성공적으로 리뷰가 등록되었습니다.")
       window.location.reload()
@@ -132,11 +131,11 @@ export const reviewCreate = (reviewDTO) => {
 }
 
 export const reviewGet = (id) => {
-  return call(`/review/list/product/${id}`,"GET","")
+  return call(`/api/review/${id}`,"GET","")
 }
 
 export const cartDelete = (id) => {
-  return call(`/cart/delete/${id}`,"PUT","")
+  return call(`/api/cart/delete/${id}`,"DELETE","")
 }
 
 export const userGet = () => {
@@ -144,7 +143,7 @@ export const userGet = () => {
 }
 
 export const cartUpdate = (cartDTO) => {
-  return call(`/cart/update/${cartDTO.cartId}`,"PUT",cartDTO)
+  return call(`/api/cart/update/${cartDTO.cartId}`,"PUT",cartDTO)
 }
 
 export const userUpdate = (userDTO) => {
@@ -159,11 +158,11 @@ export const userUpdate = (userDTO) => {
 }
 
 export const userReviewGet = () => {
-  return call("/review/list/user","GET","")
+  return call("/api/review/user","GET","")
 }
 
 export const reviewDelete = (id) => {
-  return call(`/review/delete/${id}`,"PUT","").then((response) => {
+  return call(`/api/review/delete/${id}`,"DELETE","").then((response) => {
     if(response.status === 200){
       alert("성공적으로 삭제되었습니다.")
       window.location.reload()
@@ -174,7 +173,7 @@ export const reviewDelete = (id) => {
 }
 
 export const userGoodsupGet = () => {
-  return call("/product/list/user","GET","")
+  return call("/api/products/user","GET","")
 }
 
 export const searchPost = (searchDTO) =>{
@@ -182,7 +181,7 @@ export const searchPost = (searchDTO) =>{
 }
 
 export const userProductDelete = (id) => {
-  return call(`/product/delete/${id}`,"PUT","").then((response) => {
+  return call(`/api/product/delete/${id}`,"DELETE","").then((response) => {
     if(response.status === 200){
       alert("해당상품이 정상적으로 삭제되었습니다.")
       window.location.reload()
@@ -193,7 +192,7 @@ export const userProductDelete = (id) => {
 }
 
 export const reviewUpdate = (reviewDTO) => {
-  return call(`/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO).then((response) => {
+  return call(`/api/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO).then((response) => {
     if(response.status === 200){
       alert("리뷰가 정상적으로 변경되었습니다.")
       window.location.href = "/UserReviewList"
@@ -202,7 +201,7 @@ export const reviewUpdate = (reviewDTO) => {
 }
 
 export const userProductUpdate = (productDTO) => {
-  return call(`/product/update/${productDTO.productId}`,"PUT",productDTO).then((response) => {
+  return call(`/api/product/update/${productDTO.productId}`,"PUT",productDTO).then((response) => {
     if(response.status === 200){
       alert("해당 등록상품이 정상적으로 수정되었습니다.")
       window.location.href = "/UserProducList"
@@ -220,4 +219,8 @@ export const payMentComplete = (payCompleteDTO) => {
 
 export const order = () => {
   return call("/order","GET","")
+}
+
+export const nicknameCheck = (nicknameDTO) => {
+  return call(`/api/join/nickname-check/${nicknameDTO}`,"GET","")
 }

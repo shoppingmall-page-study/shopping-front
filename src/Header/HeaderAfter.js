@@ -21,7 +21,7 @@ function Hafter({cart, setCart, a, setA, s}){
 
   useEffect(() => {
     userGet().then((res) => {
-      setUser(res.data)
+      setUser(res.data.data)
    })
    console.log("헤더에 사용자 닉네임 가져오기")
   },[])
