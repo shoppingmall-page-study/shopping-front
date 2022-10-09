@@ -1,19 +1,36 @@
 .review_window{
-    width: 60%;
-    border: 1px solid gray;
+    width: 100%;
+    /* border: 1px solid gray; */
     margin-bottom: 20px;
+    display: flex;
 }
 
-.review_title{
-    padding-left: 20px;
-    width: 60%;
-}
-
-.review_see_line{
+.review_uploaded_img{
+    width: 150px;
+    height: 150px;
     border: 1px solid black;
 }
 
-.review_content{
-    padding-left: 20px;
-    width: 60%; 
+.reviw_content_title_content{
+    padding-left: 13px;
+    width: 60%;
+}
+
+#review_see_looks_title{
+    color: black;
+    font-weight: 550;
+    font-size: 22px;
+}
+
+.review_see_line{
+    margin: 14px 0;
+    border: 1px solid black;
+}
+
+#review_see_looks_content{
+    /* padding: 8px; */
+    /* font-weight: bold; */
+    color: black;
+    font-size: 18px;
+    font-weight: 550;
 }

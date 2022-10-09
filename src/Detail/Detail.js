@@ -11,7 +11,7 @@ import Review from '../review/review';
 function Detail({convertPrice, cart, setCart, token}){
     const { id } = useParams();
     const [product, setProduct] = useState({}); //상품
-
+    const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
     const [count,setCount] = useState(1);   //  개수를 나타내는 Hooks
     // const [s,setS] = useState("a")
 
@@ -24,51 +24,56 @@ function Detail({convertPrice, cart, setCart, token}){
             setCount(count-1)
         }
     };
-    
     useEffect(() => {
       productGet().then((res) => {
         setProduct(res.data.data.find((product) => product.productId === parseInt(id)));
       });
       console.log("product Hooks에 해당 상품번호 저장하기")
     }, [id]);
-
     // useEffect(() => {
     //   cartGet().then((res) => {
     //     setCart(res.data.data)
     //   })
     // },[s])
+    const saveFileimage = (e) =>{   //파일 저장함수
+      e.preventDefault();
+      setFile(URL.createObjectURL(e.target.files[0]));
+    };
+
+    const deleteFileimage = () =>{
+        URL.revokeObjectURL(file);
+        setFile("");
+    };
 
     const handleCart = () => {  //장바구니에 추가하는 함수
-      cartGet().then((res) => {
-        const found = res.data.data.find((el) => el.productId === product.productId);
+        const found = cart.find((el) => el.product.productId === product.productId)
         if(found){
           const idx = cart.indexOf(found)
-          cartUpdate({cartId: found.cartId, carttotal: found.carttotal + count}).then((res)=>{
+          cartUpdate({cartId: found.cartId, productNum: found.productNum + count}).then((res)=>{
+            console.log(res.data.data)
             if(res.status === 200){
               setCart([...cart.slice(0,idx), res.data.data, ...cart.slice(idx+1)])
             }
           })
         }else{
-          cartCreate({title: product.title, name: product.name, content: product.content,
-                    amount: product.amount, carttotal: count, imgUrl: product.imgUrl, productId: product.productId}).then((res) => {
+          cartCreate({productNum: count, productId: product.productId}).then((res) => {
                       if(res.status === 200){
-                        console.log(res.data.data)
-                        setCart([...cart,res.data.data[0]])
+                        setCart([...cart,res.data])
                       }
                     })
-        }})}
-      console.log(cart)
+        }}
+        console.log(cart)
 
     const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
       return token ? <Hafter cart={cart}/> : <Hbefore/>
     }
-
     const HandleReivewUp = (e) => {
       e.preventDefault();
       const data = new FormData(e.target)
       const title = data.get("title")
       const content = data.get("content")
-      reviewCreate({title: title, content: content, productId: product.productId})
+      const imgUrl = file
+      reviewCreate({imgUrl: imgUrl, title: title, content: content, productId: product.productId})
     }
 
     const [state,setState] = useState("look"); //리뷰 창 상태 저장
@@ -79,7 +84,6 @@ function Detail({convertPrice, cart, setCart, token}){
         setReviewList(res.data.data)
       })
     },[state])
-
     return(
       product && (
       <main>
@@ -99,7 +103,7 @@ function Detail({convertPrice, cart, setCart, token}){
                 <p className="detail_product_name">{product.name}</p>
                 <div className='line'></div>
                 <span className="detail_product_price">
-                  {convertPrice(product.amount+"")}
+                  {convertPrice(product.price+"")}
                   <span className="detail_product_unit">원</span>
                   <div className='line'></div>
                 </span>
@@ -135,7 +139,7 @@ function Detail({convertPrice, cart, setCart, token}){
                   <div className='total_price0'>
                       <span className="total_count">총 수량 : {count}개</span>
                       <span className="total_price1">
-                        {convertPrice(product.amount*count)}                  
+                        {convertPrice(product.price*count)}                  
                         <span className="total_unit">원</span>
                       </span>
                   </div>
@@ -158,9 +162,17 @@ function Detail({convertPrice, cart, setCart, token}){
             <div className='pop'>
               { state === "up" ?
               <form id="review-up-form" onSubmit={HandleReivewUp}> 
-              {/* onSubmit={HandleReviewUp}> */}
+                <div className="sample_reveiw_img_wd">
+                            <img className="sample_review_img"
+                                // alt="sample"
+                                src={file}
+                            />
+                <input type="file" name='imgUrl' onChange={saveFileimage} className='review_img_upload' multiple="multiple"/>
+              </div>
+              <div className='input_review'>
                 <TextField name="title"
                   label="제목" 
+                  fullWidth
                   className="review-up-title"
                   variant="outlined"
                   multiline
@@ -168,12 +180,14 @@ function Detail({convertPrice, cart, setCart, token}){
                 <div className='review-up-line'></div>
                 <TextField name="content"
                   label="내용" 
+                  fullWidth
                   className="review-up-content"
                   variant="outlined"
                   multiline
                   maxRows={4}/>
                 <div className='review-up-btn-box'>
-                  <button type='submit' className='review-up-btn'>등록하기</button>
+                  <button type='submit' onClick={deleteFileimage} className='review-up-btn'>등록하기</button>
+                </div>
                 </div>
               </form>
               :

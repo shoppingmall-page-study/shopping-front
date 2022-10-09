@@ -43,22 +43,21 @@ function UserRouter(){
     const [checkedLists, setCheckedLists] = useState([])  //체크리스트 목록
 
 
-    const convertPrice = (amount) => {
-        // return (amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    const convertPrice = (price) => {
+        // console.log(price)
+        return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
     const convertPhoneNumber = (phoneNumber) => {
         return (Object(phoneNumber).toString().replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
     }
     const token = localStorage.getItem("ACCESS_TOKEN")
     // var cnt = 0
-    // useEffect(()=>{
-    //     cartGet().then((res) => {
-    //         setCart(res.data.data)
-    //     })
-        
-    //     cnt += 1
-    //     console.log("홈에서 장바구니 개수 가져오기",cnt)
-    // },[])
+    useEffect(()=>{
+        cartGet().then((res) => {
+            setCart(res.data.data)
+        })
+        console.log("홈에서 장바구니 개수 가져오기")
+    },[])
 
     // console.log(token)
     return(

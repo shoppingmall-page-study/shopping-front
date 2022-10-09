@@ -1,5 +1,6 @@
 import { TextField } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 // import {Link, useParams} from "react-router-dom";
 import { reviewUpdate } from "../../Api/ApiService";
 import Hafter from '../../Header/HeaderAfter';
@@ -8,14 +9,28 @@ import UserMenuBar from "../userMenuBar";
 import "./reviewModify.css"
 
 function ReviewModify({reviewSelect, setReviewSelect, cart}){
+    const [file,setFile] = useState(reviewSelect.imgUrl)
     const HandleReviewUpdate = (e) => {
         e.preventDefault()
         const data = new FormData(e.target)
-        const title = data.get("user_review_title")
-        const content = data.get("reviewUpdate_content")
-        reviewUpdate({reviewId: reviewSelect.reviewId, title: title, content: content})
+        const imgUrl = file
+        const title = data.get("title")
+        const content = data.get("content")
+        reviewUpdate({reviewId: reviewSelect.reviewId, imgUrl: file, title: title, content: content})
+        deleteFileimage()
     }
 
+    const saveFileReviewimage = (e) => {
+        e.preventDefault();
+        console.log(e.target.files[0])
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
+
+    const deleteFileimage = () =>{
+        URL.revokeObjectURL(file);
+        setFile("");
+    };
+    console.log(file)
     return(
         <div>
             <div className="Header">
@@ -24,7 +39,7 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
             </div>
             <div className="Content">
                 <div className="flex_reviewModifyContent">
-                    <UserMenuBar/>
+                    {/* <UserMenuBar/> */}
                     {/* <div className="user_review_window">
                     {userReview.length === 0 ?(
                         <div className="not_userReivew">
@@ -35,7 +50,7 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
                     })
                     }
                     </div> */}
-                    <form className="user_review_modify_window" onSubmit={HandleReviewUpdate}>
+                    {/* <form className="user_review_modify_window" onSubmit={HandleReviewUpdate}>
                         <div className="user_reviewModifylist_window">
                             <div>
                                 <TextField name="user_review_title"
@@ -64,6 +79,40 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
                                 <button type="submit">완료</button>
                             </div>
                         </div>
+                    </form> */}
+                    <form onSubmit={HandleReviewUpdate} className="user_review_modify_window">
+                    <div className="user_reviewModifylist_window">
+                        <div className="reviewModifyimg_look">
+                            <div className="reviewModifysample_img_wd">
+                                <img className="reviewModifysample_img"
+                                    alt="sample"
+                                    src={file}
+                                />
+                            </div>
+                            <input type="file" name="GoodsModify_img_file" onChange={saveFileReviewimage} className="GoodsModifyupload"/>
+                        </div>
+                        <div className="reviewInfo_form">
+                            <TextField name="title"
+                                required
+                                label="제목" 
+                                // className="goodsModify_title"
+                                variant="outlined"
+                                defaultValue={reviewSelect.title}/>
+                            <div className='floor'></div>
+                            <TextField name="content"
+                                required
+                                label="설명"
+                                // className="Goods_explain"
+                                variant="outlined"
+                                multiline
+                                maxRows={2}
+                                defaultValue={reviewSelect.content}/>
+                        </div>
+                    </div>
+                    <div className="review_success_wd1">
+                        <Link to="/UserReviewList" className="reviewList_return">돌아가기</Link>
+                        <button type="submit" className="success1">완료</button>
+                    </div>
                     </form>
                 </div>
             </div>

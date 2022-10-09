@@ -72,6 +72,7 @@ function CartList({cart, setCart, convertPrice, s, setS, checkedLists, setChecke
   //   }
   // }
   // console.log(checkedList)
+  console.log(cart)
   return(
         <section className="cart_product_list">
         {/* <input type="checkbox" onChange={(e) => handleSingleCheck(e.target.checked, cart)}
@@ -82,12 +83,12 @@ function CartList({cart, setCart, convertPrice, s, setS, checkedLists, setChecke
         />
         <div className="cart_product_wrap">
           <div className="cart_product_image">
-            <img src={cart.imgUrl} alt="product-img" />
+            <img src={cart.product.imgUrl} alt="product-img" />
           </div>
 
           <div className="cart_product_info">          
-            <p className="product_name">{cart.productName}</p>
-            <p className="price">{convertPrice(cart.productPrice * cart.carttotal)}원</p>
+            <p className="product_name">{cart.product.name}</p>
+            <p className="price">{convertPrice(cart.product.price * cart.productNum)}원</p>
             <p className="delivery">택배배송 / 무료배송</p>
           </div>
         </div>
@@ -98,18 +99,18 @@ function CartList({cart, setCart, convertPrice, s, setS, checkedLists, setChecke
             src="/images/icon-minus-line.svg"
             alt="minus"
             // onClick={() => HandleCartUpdate("minus")}
-            onClick={() => handleCountUpdate("minus", cart.cartId, cart.carttotal - 1)}
+            onClick={() => handleCountUpdate("minus", cart.cartId, cart.productNum - 1)}
           />
 
           <div className="count">
-            <span>{cart.carttotal}</span>
+            <span>{cart.productNum}</span>
           </div>
           <img
             className="plus"
             src="/images/icon-plus-line.svg"
             alt="plus"
             // onClick={() => HandleCartUpdate("plus")}
-            onClick={() => handleCountUpdate("plus", cart.cartId, cart.carttotal + 1)}
+            onClick={() => handleCountUpdate("plus", cart.cartId, cart.productNum + 1)}
           />
         </div>
 

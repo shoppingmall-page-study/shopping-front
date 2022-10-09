@@ -12,19 +12,23 @@ function ReviewContent({userReview, setUserReview, reviewSelect, setReviewSelect
     const NowReviewList = () => {
         setReviewSelect(userReview)
     }
-
     return(
         <section>
             <div  className="user_reviewlist_window">
-                <div className="user_reviewlist_title">
-                    <p>{userReview.title}</p>
+                <div className="reviewlist_look_img">
+                    <img src={userReview.imgUrl} alt="sample"/>
                 </div>
-                <div className="uer_reviewlist_line"></div>
-                <div className="user_reviewlist_content">
-                    <p>{userReview.content}</p>
+                <div className="reviewlist_title_content_view">
+                    <div className="user_reviewlist_title">
+                        <p>{userReview.title}</p>
+                    </div>
+                    <div className="uer_reviewlist_line"></div>
+                    <div className="user_reviewlist_content">
+                        <p>{userReview.content}</p>
+                    </div>
                     <div className="user_nickname_cal">
-                        <span>닉네임 : {userReview.userNickName}</span>
-                        <span>등록일 : {userReview.reviewCreateTime}</span>
+                            <span>닉네임 : {userReview.userNickName}</span>
+                            <span id="uplode_day">등록일 : {userReview.modifiedTime}</span>
                     </div>
                 </div>
             </div>

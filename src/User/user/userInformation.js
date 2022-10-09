@@ -10,10 +10,11 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
     // const addressState = window.location.pathname
     useEffect(() => {
         userGet().then((res) => {
-            setUser(res.data)
+            setUser(res.data.data)
         })
         console.log("회원정보 가져오기")
     },[])
+    console.log(user)
     return(
         <div>
             <div className="Header">

@@ -6,6 +6,7 @@ import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import "./userGoodsUp.css"
 import { userProductUpdate } from "../../Api/ApiService";
+import { Link } from "react-router-dom";
 
 function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}){
     const [count,setCount] = useState(productSelect.total)  //해당 등록상품의 개수를 저장할 Hooks
@@ -18,10 +19,10 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
         const title = data.get("title")
         const name = data.get("name")
         const content = data.get("content")
-        const amount = data.get("amount")
+        const price = data.get("price")
         const total = count
         
-        userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, amount: amount, total: total})
+        userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
         URL.revokeObjectURL(file);
     } 
 
@@ -47,7 +48,7 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
             </header>
             <div className="Content">
                 <div className="userGoodsModify_flex_content">
-                    <UserMenuBar/>
+                    {/* <UserMenuBar/> */}
                     <form onSubmit={HandleUpEvent} className="userGoodsModify_window">
                     <div className="goodsModify_info">
                         <div className="goodsModifyimg_look">
@@ -74,12 +75,12 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
                                 variant="outlined"
                                 defaultValue={productSelect.name}/>
                             <div className='floor'></div>
-                            <TextField name="amount"
+                            <TextField name="price"
                                 required
                                 label="가격"
                                 className="goodsModify_price"
                                 variant="outlined"
-                                defaultValue={productSelect.amount}/>
+                                defaultValue={productSelect.price}/>
                             <div className='floor'></div>
                             <div className='pay'>
                                 <span className='soo'>수량 : </span>
@@ -113,6 +114,7 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
                         </div>
                     </div>
                     <div className="success_wd">
+                        <Link to="/UserProducList" id="goodsup_modify_return">돌아가기</Link>
                         <button type="submit" className="success">완료</button>
                     </div>
                     </form>

@@ -19,7 +19,7 @@ function Product({product, convertPrice}){
         <span>{product.name}</span>
       </div>
       <div className="price_info">
-        <span className="price">{convertPrice(product.amount)}</span>
+        <span className="price">{convertPrice(product.price)}</span>
         <span className="unit">원</span>
       </div>
     </div>

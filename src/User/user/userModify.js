@@ -18,11 +18,12 @@ function UserModify({user, setUser, cart}){
         userUpdate({username: username, address: address, nickname: nickname, phoneNumber: phoneNumber, postCode: postCode})
     }
 
-    console.log(cart)
+    console.log(user)
     const HandlePhoneNumber = (e) => {
         e.target.value = e.target.value.substr(0,13)
         e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
     }
+
     return(
         <div>
             <div className="Header">
@@ -39,65 +40,62 @@ function UserModify({user, setUser, cart}){
                             <li><Link to="">등록 상품 목록</Link></li>
                         </ol>
                     </div> */}
-                    <UserMenuBar/>
-                    <div className="user_window">
-                        <ol>
-                            <h1><span id="user_bar">회원정보수정</span></h1>
-                        </ol>
-                        <div className="user_content">
-                            <ol>
-                                <li>이름:</li>
-                                {/* <li>배송주소:</li> */}
-                                <li>닉네임:</li>
-                                <li>전화번호:</li>
-                                {/* <li>우편번호:</li> */}
-                            </ol>
-                            <ol id="no_margin">
-                                <li>
-                                <TextField name="username"
-                                required
-                                label="이름"
-                                variant="outlined"
-                                defaultValue={user.username}/>
-                                </li>
-                                {/* <li>
-                                <TextField name="address"
-                                required
-                                fullWidth
-                                label="배송주소" 
-                                className="username_form"
-                                variant="outlined"
-                                defaultValue={user.address}/>
-                                </li> */}
-                                <li>
-                                <TextField name="nickname"
-                                required
-                                label="닉네임" 
-                                variant="outlined"
-                                defaultValue={user.nickname}/>
-                                </li>
-                                <li>
-                                <TextField name="phoneNumber"
-                                required
-                                label="전화번호" 
-                                variant="outlined"
-                                maxLength={13}
-                                defaultValue={user.phoneNumber}
-                                onChange={HandlePhoneNumber}/>
-                                </li>
-                                {/* <li>
-                                <TextField name="postCode"
-                                required
-                                label="우편번호" 
-                                variant="outlined"
-                                defaultValue={user.postCode}/>
-                                </li> */}
-                            </ol>
-                        </div>
+                    {/* <UserMenuBar/> */}
+                    <div className="user_window_modify">
+                        <h1><span id="user_bar_modify">회원정보수정</span></h1>
+                        <table className="user_content_modify">
+                            <tbody>
+                                <tr>
+                                    <th>이름</th>
+                                    <td>
+                                        <div className="td_flex">
+                                            <p>13</p>
+                                            <button>이름 변경</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>닉네임</th>
+                                    <td>
+                                        <div className="td_flex">
+                                            <p>13</p>
+                                            <button>닉네임 변경</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>전화번호</th>
+                                    <td>
+                                        <div className="td_flex">
+                                            <p>13</p>
+                                            <button>전화번호 변경</button>
+                                        </div>    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>나이</th>
+                                    <td>
+                                        <div className="td_flex">
+                                            <p>13</p>
+                                            <button>나이 변경</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td>
+                                        <div className="td_flex">
+                                            <p>13</p>
+                                            <button>주소 변경</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div className="btn_window">
                         {/* <Link to="./Modify" id='to_modify_btn'>회원정보수정</Link> */}
-                        <button type="submit" id='to_modify_btn'>회원정보수정</button>
+                        {/* <button type="submit" id='to_modify_btn'>회원정보수정</button> */}
                     </div>
                 </form>
             </div>
