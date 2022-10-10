@@ -8,12 +8,12 @@ import "./userInformation.css"
 function UserInformation({convertPhoneNumber, user, setUser, cart}){
     // const [user,setUser] = useState([])
     // const addressState = window.location.pathname
-    useEffect(() => {
-        userGet().then((res) => {
-            setUser(res.data.data)
-        })
-        console.log("회원정보 가져오기")
-    },[])
+    // useEffect(() => {
+    //     userGet().then((res) => {
+    //         setUser(res.data.data)
+    //     })
+    //     console.log("회원정보 가져오기")
+    // },[])
     console.log(user)
     return(
         <div>
