@@ -57,9 +57,11 @@ function UserRouter(){
             setCart(res.data.data)
         })
         console.log("홈에서 장바구니 개수 가져오기")
+        userGet().then((res)=> 
+            setUser(res.data.data)
+        )
     },[])
 
-    // console.log(token)
     return(
     <Routes>
         <Route path="/" element={token !== "" ? <Ahome cart={cart} setCart={setCart} products={products} setProducts={setProducts} convertPrice={convertPrice}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>

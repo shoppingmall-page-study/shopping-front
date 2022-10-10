@@ -1,23 +1,20 @@
-tbody{
-    display: table-row-group;
-    vertical-align: middle;
-    border-top-color: inherit;
-    border-right-color: inherit;
-    border-bottom-color: inherit;
-    border-left-color: inherit;
+
+th{
+    width: 100px;
+    /* border-right: 1px solid black; */
+    text-align: left;
+    padding: 14px 30px;
+    /* border-bottom: 1px solid black; */
 }
 
-tr{
-    display: table-row;
-    vertical-align: inherit;
-    border-top-color: inherit;
-    border-right-color: inherit;
-    border-bottom-color: inherit;
-    border-left-color: inherit;
-    font-size: 22px;
+td{
+    text-align: left;
+    padding: 14px 30px;
 }
 
-
+.user_window_modify{
+    width: 100%;
+}
 #user_title{
     /* padding-left: 40px; */
     margin-left: 40px;
@@ -25,12 +22,23 @@ tr{
     font-weight: bold;
 }
 
-.flex_content{
+.flex_content_userModify{
     text-align: left;
     padding-top: 80px;
     width: 100%;
 }
+.user_content_modify{
+    /* display: flex; */
+    /* justify-content: center; */
+    /* width: 100%; */
+    width: 900px;
+    margin: 0 auto;
+}
 
+#user_modify_postCode{
+    width: 350px;
+    /* border: none; */
+}
 /* .menu_bar a:hover{
     border-bottom: 2px solid #000;
 } */
@@ -43,41 +51,71 @@ tr{
     margin-top: 110px
 } */
 
-.td_flex{
+/* .td_flex{
     display: flex;
-}
+    justify-content: center;
+} */
 
 /* .user_content_modify{
     display: flex;
     
 } */
 
-.user_content_modify th{
-    width: 100px;
-    border: 1px solid black;
-}
-
 /* .user_content li{
     margin-bottom: 30px;
     font-weight: bold;
 } */
 
+.user_modify_btn_window{
+    display: flex;
+    justify-content: center;
+}
+
+#user_rmodify_return_btn{
+    width: 136px;
+    border: 1px solid black;
+    font-size: 22px;
+    /* height: 40px; */
+    text-align: center;
+    padding: 6px;
+    align-items: flex-start;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin-right: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#user_modify_btn{
+    width: 150px;
+    border: 1px solid black;
+    font-size: 22px;
+    height: 45px;
+    text-align: center;
+    padding: 6px;
+    align-items: flex-start;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin-left: 30px;
+    cursor: pointer
+}
+
 .btn_window{
-    position: relative;
+    /* position: relative; */
 }
 
 #to_modify_btn{
-    position: absolute;
-    font-size: 20px;
+    /* position: absolute; */
+    /* font-size: 20px;
     font-weight: bold;
     color: white;
     background-color: black;
     text-align: center;
     border: 2px solid black;
     width: 120px;
-    height: 30px;
-    bottom: 0;
-    left: 30px
+    height: 30px; */
 }
 
 #no_margin{

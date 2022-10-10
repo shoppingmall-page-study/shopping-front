@@ -147,7 +147,7 @@ export const cartUpdate = (cartDTO) => {
 }
 
 export const userUpdate = (userDTO) => {
-  return call("/user/update","PUT",userDTO).then((response) => {
+  return call("/api/user/update","PUT",userDTO).then((response) => {
     if(response.status === 200){
       alert("회원정보가 정상적으로 변경되었습니다.")
       window.location.href = "/user"
