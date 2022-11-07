@@ -221,6 +221,12 @@ export const order = () => {
   return call("/order","GET","")
 }
 
+//이메일 중복검사
+export const emailCheck = (emailDTO) => {
+  return call(`/api/join/email-check/${emailDTO}`,"GET","")
+}
+
+//닉네잉ㅁ 중복검사
 export const nicknameCheck = (nicknameDTO) => {
   return call(`/api/join/nickname-check/${nicknameDTO}`,"GET","")
 }
