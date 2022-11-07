@@ -14,7 +14,7 @@ import { emailCheck, nicknameCheck, signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
 
 const Join = () => {
-  const [emailText,setEmailText] = useState("")
+  const [emailText,setEmailText] = useState("17")
   useEffect(() => {
     const a = document.createElement("script");
     a.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
@@ -85,15 +85,16 @@ const Join = () => {
   //닉네임 중복검사 함수
   const HandleNicknameCheck = (e) => {
     nicknameCheck(e.target.value).then((res) => {
-      e.target.helperText=res.data.message
+      // e.target.helperText=res.data.message
+      console.log(res)
     })
   }
   
   //이메일 중복검사 함수
   const HandleEmailCheck = (e) => {
-    console.log(e.target.value)
-    emailCheck({email: e.target.value}).then((res) => {
-      setEmailText(res.data.message)
+    emailCheck(e.target.value).then((res) => {
+      // e.target.helperText=res.data.message
+      console.log(res)
     })
   }
 
