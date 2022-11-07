@@ -223,10 +223,10 @@ export const order = () => {
 
 //이메일 중복검사
 export const emailCheck = (emailDTO) => {
-  return call(`/api/join/email-check/${emailDTO}`,"GET","")
+  return call("/api/join/email-check","GET",emailDTO)
 }
 
 //닉네잉ㅁ 중복검사
 export const nicknameCheck = (nicknameDTO) => {
-  return call(`/api/join/nickname-check/${nicknameDTO}`,"GET","")
+  return call("/api/join/nickname-check","GET",nicknameDTO)
 }
