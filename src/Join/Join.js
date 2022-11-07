@@ -10,7 +10,7 @@ import {
   Typography,
   // DialogActions,
 } from "@material-ui/core";
-import { nicknameCheck, signup } from "../Api/ApiService";
+import { emailCheck, nicknameCheck, signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
 
 const Join = () => {
@@ -82,10 +82,17 @@ const Join = () => {
     e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
   }
 
-  const handleNicknameCheck = (e) => {
-    nicknameCheck(addrView.current[4].value).then((res) => {
+  //닉네임 중복검사 함수
+  const HandleNicknameCheck = (e) => {
+    nicknameCheck(e.target.value).then((res) => {
       console.log(res)
     })
+  }
+  
+  //이메일 중복검사 함수
+  const HandleEmailCheck = (e) => {
+    console.log(e.target.value)
+    emailCheck(e.target.value).then((res) => console.log(res))
   }
 
   return (
@@ -119,14 +126,15 @@ const Join = () => {
             <TextField
               variant="outlined"
               required
-              // fullWidth
+              fullWidth
               id="email"
               label="이메일 주소"
               name="email"
               autoComplete="email"
+              onChange={HandleEmailCheck}
               helperText=""
             />
-            <button type="button" id="email_check_btn">중복체크</button>
+            {/* <button type="button" id="email_check_btn">중복체크</button> */}
           {/* </div> */}
 
           </Grid>
@@ -159,9 +167,11 @@ const Join = () => {
               name="nickname"
               label="닉네임"
               id="nickname"
-              inputRef={el => (addrView.current[4] = el)}
+              fullWidth
+              onChange={HandleNicknameCheck}
+              // inputRef={el => (addrView.current[4] = el)}
             />
-            <button type="button" onClick={handleNicknameCheck} id="nickname_check_btn">중복체크</button>
+            {/* <button type="button" onClick={handleNicknameCheck} id="nickname_check_btn">중복체크</button> */}
           </Grid>
           <Grid item xs={12}>
             <TextField
