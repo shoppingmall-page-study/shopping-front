@@ -4,16 +4,18 @@ import Hafter from "../Header/HeaderAfter";
 import { payMent } from "../Api/ApiService";
 import { payMentComplete } from "../Api/ApiService";
 import PaymentInfo from "./paymentInfo"
-// import PaymentTrue from "./paymentTrue"
-// import PaymentFalse from "./paymentFalse";
+import PaymentTrue from "./paymentTrue"
+import PaymentFalse from "./paymentFalse";
 import "./Payment.css"
 
-function PaymentPage({cart, convertPhoneNumber, payList, setPayList}){
+function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists}){
     const [payUser, setPayUser] = useState([])
-    
+    const proId = payList.map((el) => el.product.productId)
+    const proNum = payList.map((el) => el.productNum)
+    console.log(proId, proNum)
     useEffect(() => {
         userGet().then((res) =>{
-            setPayUser(res.data)
+            setPayUser(res.data.data)
         })
         const jquery = document.createElement("script");
         jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";
@@ -26,8 +28,8 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList}){
           document.head.removeChild(iamport);
         }      
     },[]) //아임포트 라이브러리 설치
-    
     //걀제 개수 한개 가정
+    console.log(payList)
     const payment = () => { //구매하기 클릭 시 
     // var proId
     // var proNum
@@ -35,28 +37,24 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList}){
     //     proId = el.productId
     //     proNum = el.carttotal
     //   })
-    var proId;
-    var proNum;
-    payList.map((res)=> {
-        proId = res.productId
-        proNum = res.carttotal
-    })
-    payMent({productId: proId, productNumber: proNum}).then((res) => {
-        console.log(res.data)
+    console.log(proId, proNum)
+    // -> 리스트 형식으로
+    payMent({productsId: proId, productsNumber: proNum}).then((res) => {
+        // console.log(res.data.data.orderId)
         const { IMP } = window;
         IMP.init('imp54601326');
 
         const data = {
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: `${res.data.merchantUid}`,
-        name: res.data.name,
-        amount: res.data.amount,
-        buyer_email: res.data.buyerEmail,
-        buyer_name: res.data.buyerName,
-        buyer_tel: res.data.buyerTel,
-        buyer_addr: res.data.buyerAddr,
-        buyer_postcode: res.data.buyerPostcode
+        merchant_uid: res.data.data.orderId,
+        name: "a",
+        amount: res.data.data.amount,
+        buyer_email: "b",
+        buyer_name: "c",
+        buyer_tel: "d",
+        buyer_addr: "e",
+        buyer_postcode: "f"
         };
         console.log(data)
         IMP.request_pay(data, callback);
@@ -64,10 +62,11 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList}){
     }
     const callback = (response) => {
     const {success, error_msg, imp_uid, merchant_uid, pay_method, paid_amount, status} = response;
-    console.log(paid_amount)
+    console.log(response)
     if(success){
-        payMentComplete({impUid: imp_uid, productId: parseInt(merchant_uid)}).then((res) => {
-            // status ? alert("결제 성공") : alert(`결제 오류: ${error_msg}`)
+        payMentComplete({impUid: imp_uid, orderId: merchant_uid}).then((res) => {
+            console.log(res)
+            res.status == 200 ? <PaymentTrue/> : <PaymentFalse error_msg={error_msg}/>
         })
     }else{
         alert(`결제 실패: ${error_msg}`);
@@ -97,7 +96,7 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList}){
                         <h1><span id="pay_info_logo">결제 정보</span></h1>
                         <div className="pay_info">
                             {payList.map((payList) => {
-                                return <PaymentInfo key={`key-${payList.productId}`} payList={payList}/>
+                                return <PaymentInfo key={`key-${payList.product.productId}`} payList={payList}/>
                             })}
                         </div>
                         <button id="payBtn" onClick={payment}>결제하기</button>

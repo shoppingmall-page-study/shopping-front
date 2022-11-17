@@ -18,7 +18,7 @@ function Hbefore(){
           <a href="/">SHOP</a>
         </div>
         <div className='SearchBar'>
-          <form>
+          <form className='search_form'>
             {" "}
             {/* submit 버튼을 누르면 handleSubmit이 실행됨. */}
 
@@ -26,8 +26,8 @@ function Hbefore(){
             <TextField id= "searchparam" placeholder='검색' name="searchparam" fullWidth variant='outlined' autoComplete='none' onChange={handleChange}  InputProps={{
                endAdornment: (
                   <InputAdornment position="end">
-                     <Link to={`/product/search/${param}`}>
-                       <Button type='sumbit' fullWidth variant='outlined' color='default'>검색</Button>
+                     <Link id="S_btn" to={`/product/search/${param}`}>
+                       <Button id="S_btn1" type='sumbit' fullWidth variant='outlined' color='default'>검색</Button>
                       </Link>
             
                   </InputAdornment>

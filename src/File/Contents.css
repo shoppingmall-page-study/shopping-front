@@ -19,10 +19,12 @@
 }
 } */
 .flex_wrap{
+    width: 1440px;
+    margin: auto;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(5,1fr);
     place-items: center;
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 
 .search_product_count_a{

@@ -104,6 +104,7 @@ export const productGet = () => {
   return call("/api/products","GET","")
 }
 
+//장바구니 추가
 export const cartCreate = (cartDTO) => {
   return call(`/api/cart/create/${cartDTO.productId}`,"POST",cartDTO)
     // if(response.status === 200){
@@ -142,6 +143,7 @@ export const userGet = () => {
   return call("/api/user/info", "GET", "")
 }
 
+//장바구니 수정
 export const cartUpdate = (cartDTO) => {
   return call(`/api/cart/update/${cartDTO.cartId}`,"PUT",cartDTO)
 }
@@ -173,11 +175,11 @@ export const reviewDelete = (id) => {
 }
 
 export const userGoodsupGet = () => {
-  return call("/api/products/user","GET","")
+  return call("/api/products/user","GET","")  
 }
 
 export const searchPost = (searchDTO) =>{
-  return call("/product/search", "POST", searchDTO)
+  return call("/api/product/search", "POST", searchDTO)
 }
 
 export const userProductDelete = (id) => {
@@ -210,11 +212,11 @@ export const userProductUpdate = (productDTO) => {
 }
 
 export const payMent = (payDTO) => {
-  return call('/order/create', "POST", payDTO)
+  return call('/api/order/create', "POST", payDTO)
 }
 
 export const payMentComplete = (payCompleteDTO) => {
-  return call("/payments/complete", "POST", payCompleteDTO)
+  return call("/api/payments/complete", "POST", payCompleteDTO)
 }
 
 export const order = () => {

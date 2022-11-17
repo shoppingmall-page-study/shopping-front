@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 
 
-function Basket({cart, setCart, convertPrice, token, payList, setPayList, checkedLists, setCheckedLists}){
+function Basket({cart, setCart, convertPrice, token, payList, setPayList, checkedLists, setCheckedLists, cartCount, setCartCount}){
 const { id } = useParams();
 const address = window.location.pathname
 // const [cartlength, setCartLength] = useState(0)
@@ -56,6 +56,7 @@ const handleCountUpdate = (type, id, count) => {
   }
 }
 
+//해당 상품 삭제
 const HandleCartRemove = (id) => {
   cartDelete(id).then((res) =>{
     if(res.status === 200){
@@ -89,7 +90,13 @@ const found = checkedLists.map((checkedList) =>
   // cart.filter((el) => el.cartId === checkedList)
   cart.filter((el) => el.cartId === checkedList)
 ) //cart에서 체크된 리스트 목록 반환
+console.log(found)
 
+useEffect(() => {
+  const temp = found.map((el) => el[0])
+  setPayList(temp)
+},[checkedLists,cart])
+console.log(payList)
 // useEffect(() => {
 //   cartGet().then(res => {
 //     setCart(res.data.data)
@@ -102,14 +109,10 @@ const found = checkedLists.map((checkedList) =>
 // },[s])
 
 // useEffect(() => {
-//   var price = 0
-//   checkedList.map((el) => {
-//     price += (el.carttotal * el.productPrice)
-//   })
-//   setMoney(price)
-//   setPayList(checkedList)
-// },[checkedList])
-
+//   const found = checkedLists.map((check)=>
+//     cart.map((cart) => cart.cartId == check)
+//   )
+// },[checkedLists])
 
 // return cartlength === 0 ? <Hbefore/> : <Hafter/>
 // useEffect(() => {
@@ -132,11 +135,13 @@ return (
             <p>원하는 상품을 장바구니에 담아보세요!</p>
         </div>
       ) : cart.map((cart)=>{
-        return <CartList key={`key-${cart.productId}`} cart={cart} setCart={setCart} convertPrice={convertPrice} s={s} setS={setS} 
+        return <CartList key={`key-cart${cart.product.productId}`} cart={cart} setCart={setCart} convertPrice={convertPrice} s={s} setS={setS} 
         checkedLists={checkedLists} setCheckedLists={setCheckedLists} handleCheckList={handleCheckList} handleCountUpdate={handleCountUpdate}
         HandleCartRemove={HandleCartRemove}/>
       })}
-      {cart.length === 0 ? "" : <TotalCart cart={cart} setCart={setCart} convertPrice={convertPrice} checkedLists={checkedLists} setCheckedLists={setCheckedLists} s={s} total={total} setTotal={setTotal} found={found}/>}
+      {cart.length === 0 ? "" : <TotalCart cart={cart} setCart={setCart} convertPrice={convertPrice} checkedLists={checkedLists} 
+                                setCheckedLists={setCheckedLists} s={s} total={total} setTotal={setTotal} found={found} 
+                                payList={payList} setPayList={setPayList}/>}
       </div>
     </div>
   );

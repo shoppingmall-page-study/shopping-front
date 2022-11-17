@@ -3,7 +3,7 @@
 import Hbefore from "../Header/HeaderBefore";
 import SearchContents from "../File/SearchContents";
 
-function SearchBhome({ convertPrice, cart, setCart ,searchProducts ,setSearchProducts}){
+function SearchBhome({ convertPrice,searchProducts ,setSearchProducts}){
 
     // 변수 하나 설정해수 
     // <Hafter> 에 보내고 set 으로 여기서 다시 받고 
@@ -13,8 +13,7 @@ function SearchBhome({ convertPrice, cart, setCart ,searchProducts ,setSearchPro
     return(
         <div>
             <header className="Header">
-                <Hbefore cart={cart} setCart={setCart} /> 
-                
+                <Hbefore/> 
             </header>
             <div className="Content">
                 <SearchContents  convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts} />
