@@ -19,15 +19,14 @@ function SearchContents({convertPrice,searchProducts ,setSearchProducts}){
     
     useEffect(()=>{
        
-         console.log(params.name);
+        //  console.log(typeof(params.name));
 
-         searchPost({ searchparam: params.name}).then((response)=>{
-            console.log(response.data.data)
+         searchPost({keyword: params.name}).then((response)=>{
+            console.log(response)
             //setSearch(response.data.data)
             if(response.status === 200){
                 setSearchProducts(response.data.data);
-                setArrlength(response.data.length);
-
+                // setArrlength(response.data.length);
             }
     });
     
@@ -40,12 +39,11 @@ function SearchContents({convertPrice,searchProducts ,setSearchProducts}){
     
     return(
         <div>
-                <p  className="search_product_count_a">{arrlength}개 상품이 검색되었습니다</p>
+                <p  className="search_product_count_a">{searchProducts.length}개 상품이 검색되었습니다</p>
         <div className="flex_wrap">
             
             {searchProducts.length === 0 ?
-            <div className="not_userReivew"> <p>해당 상품이 존재 하지 않습니다.</p></div>:
-            
+            <div className="not_userReivew"> <p>해당 상품이 존재 하지 않습니다.</p></div>:            
             searchProducts.map((product) => {
                 return <Product key={`key-${product.productId}`} product={product} convertPrice={convertPrice}/>
             })}

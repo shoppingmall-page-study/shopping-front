@@ -22,7 +22,6 @@ function Contents({products, setProducts, convertPrice}){
         //     setProducts(res.data.data);
         // })
     }, [setProducts])
-
     return(
         <div className="flex_wrap">
             {products.map((product) => {

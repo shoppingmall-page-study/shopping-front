@@ -14,7 +14,8 @@ import { emailCheck, nicknameCheck, signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
 
 const Join = () => {
-  const [emailText,setEmailText] = useState("17")
+  const [emailText,setEmailText] = useState("")
+  const [nicknameText,setNicknameText] = useState("")
   useEffect(() => {
     const a = document.createElement("script");
     a.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
@@ -86,7 +87,7 @@ const Join = () => {
   const HandleNicknameCheck = (e) => {
     nicknameCheck(e.target.value).then((res) => {
       // e.target.helperText=res.data.message
-      console.log(res)
+      setNicknameText(res.data.msg)
     })
   }
   
@@ -94,7 +95,10 @@ const Join = () => {
   const HandleEmailCheck = (e) => {
     emailCheck(e.target.value).then((res) => {
       // e.target.helperText=res.data.message
-      console.log(res)
+      if(res.status==200){
+        setEmailText(res.data.msg)
+      }
+      // console.log(res.data.status)
     })
   }
 
@@ -136,7 +140,7 @@ const Join = () => {
               autoComplete="email"
               // inputRef={el => (addrView.current[4] = el)}
               onChange={HandleEmailCheck}
-              helperText=""
+              helperText={emailText}
             />
             {/* <button type="button" id="email_check_btn">중복체크</button> */}
           {/* </div> */}
@@ -173,6 +177,7 @@ const Join = () => {
               id="nickname"
               fullWidth
               onChange={HandleNicknameCheck}
+              helperText={nicknameText}
               // inputRef={el => (addrView.current[4] = el)}
             />
             {/* <button type="button" onClick={handleNicknameCheck} id="nickname_check_btn">중복체크</button> */}

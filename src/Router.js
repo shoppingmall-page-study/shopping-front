@@ -32,46 +32,48 @@ import PaymentFalse from "./PayMent/paymentFalse";
 
 function UserRouter(){
     const {id} = useParams()
-    const [products, setProducts] = useState([]);
     const [reviewSelect, setReviewSelect] = useState([]);   //리뷰 수정을 위해 선택된 리뷰목록을 저장하는 Hooks
-    const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
+    // const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
     const [user,setUser] = useState([]); //회원정보를 나타내는 Hooks
     const [searchProducts, setSearchProducts]  = useState([]); // 상품 검색한 리스트 
     const [productSelect, setProductSelect] = useState([]); //등록상품 수정이 클릭된 해당 등록상품을 저장하는 Hooks
-    const [cartCount, setCartCount] = useState(0) 
+    const [cartCount, setCartCount] = useState([]) 
     const [payList, setPayList] = useState([])
     const [checkedLists, setCheckedLists] = useState([])  //체크리스트 목록
-
-
+    const [cart, setCart] = useState([]);   //장바구니에 들어있는 거를 나타내는 변수
+    const [products, setProducts] = useState([]);
     const convertPrice = (price) => {
-        // console.log(price)
-        return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+      // console.log(price)
+      return (price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
+    
     const convertPhoneNumber = (phoneNumber) => {
         return (Object(phoneNumber).toString().replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
     }
     const token = localStorage.getItem("ACCESS_TOKEN")
-    // var cnt = 0
-    useEffect(()=>{
-        cartGet().then((res) => {
-            setCart(res.data.data)
-        })
-        console.log("홈에서 장바구니 개수 가져오기")
-        userGet().then((res)=> 
-            setUser(res.data.data)
-        )
-    },[])
+    var cnt = 0
+    // useEffect(()=>{
+    //     cartGet().then((res) => {
+    //         setCart(res.data.data)
+    //     })
+    //     console.log("홈에서 장바구니 개수 가져오기")
+    //     userGet().then((res)=> 
+    //         setUser(res.data.data)
+    //     )    
+    // },[])
 
     return(
     <Routes>
         <Route path="/" element={token !== "" ? <Ahome cart={cart} setCart={setCart} products={products} setProducts={setProducts} convertPrice={convertPrice}/> : <Bhome products={products} setProducts={setProducts}  convertPrice={convertPrice}/>}/>
+        {/* <Route path="/" element={<Ahome products={products} setProducts={setProducts} convertPrice={convertPrice}/>}/> */}
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
-        <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token} payList={payList} setPayList={setPayList} checkedLists={checkedLists} setCheckedLists={setCheckedLists}/>}/>
+        <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token} payList={payList} setPayList={setPayList} 
+                                        checkedLists={checkedLists} setCheckedLists={setCheckedLists} cartCount={cartCount} setCartCount={setCartCount}/>}/>
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
         {/* <Route path="/Orderlist" element={<Orderlist/>}/> */}
-        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token} cartCount={cartCount} setCartCount={setCartCount}/>}/>
+        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token}/>}/>
         <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
@@ -79,11 +81,11 @@ function UserRouter(){
         <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber} user={user} setUser={setUser} cart={cart}/>}/>
         <Route path="/User/Modify" element={<UserModify user={user} setUser={setUser} cart={cart}/>}/>
         <Route path="/UserReviewList" element={<ReviewList reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} cart={cart}/>}/>
-        <Route path="/product/search/:name" element={token ? <Searchhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
+        <Route path="/product/search/:name" element={token !== "" ? <Searchhome cart={cart} setCart={setCart} convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
         <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect} cart={cart}/>}/>
         <Route path="/UserReviewList/Modify" element={<ReviewModify reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} cart={cart}/>}/>
         <Route path="/UserProducList/Modify" element={<UserGoodsUpModify convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect} cart={cart}/>}/>
-        <Route path="/PayMent" element={<PaymentPage convertPhoneNumber={convertPhoneNumber} payList={payList} setPayList={setPayList} cart={cart}/>}/>
+        <Route path="/PayMent" element={<PaymentPage convertPhoneNumber={convertPhoneNumber} payList={payList} setPayList={setPayList} cart={cart} checkedLists={checkedLists}/>}/>
         <Route path="/order" element={<OrderList convertPrice={convertPrice} cart={cart}/>}/>
         {/* 확인용 */}
         <Route path="/payTrue" element={<PaymentFalse/>}/>

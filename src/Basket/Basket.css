@@ -19,7 +19,8 @@
 }
 
 .tab_title {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  width: 100%;
   height: 60px;
   /* background: #f2f2f2; */
   background-color: white;
@@ -61,7 +62,8 @@
 /* cartList*/
 .cart_product_list {
   position: relative;
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  width: 100%;
   height: 200px;
   /* border-radius: 10px; */
   /* border: 1px solid #c4c4c4; */
@@ -235,7 +237,8 @@
 
 /* total cart */
 .total {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  width: 100%;
   height: 150px;
   /* background: #f2f2f2; */
   background-color: white;

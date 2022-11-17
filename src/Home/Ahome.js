@@ -4,12 +4,12 @@ import Hafter from "../Header/HeaderAfter";
 import "./home.css";
 // import { cartGet } from "../Api/ApiService";
 
-function AHome({products, setProducts, convertPrice, cart, setCart}){
+function AHome({cart, products, setProducts, convertPrice}){
     
     return(
         <div>
             <header className="Header">
-                <Hafter cart={cart} setCart={setCart}/>
+                <Hafter cart={cart}/>
             </header>
             <div className="Content">
                 <div className="mt">
@@ -17,6 +17,7 @@ function AHome({products, setProducts, convertPrice, cart, setCart}){
                 </div>
             </div>
         </div>
+        // <Contents products={products} setProducts={setProducts} convertPrice={convertPrice}/>
     );        
 }
 export default AHome;

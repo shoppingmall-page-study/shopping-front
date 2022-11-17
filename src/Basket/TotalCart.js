@@ -2,25 +2,30 @@ import './Basket.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function TotalCart({cart, setCart, convertPrice, checkedLists, setCheckedLists, s, total, setTotal, found}){
+function TotalCart({cart, setCart, convertPrice, checkedLists, setCheckedLists, s, total, setTotal, found, payList, setPayList}){
   useEffect(() => {
     if(found){
       // const temp = found.filter((item) => item.length !== 0)
       const sum = found.map((item) =>  item[0].product.price * item[0].productNum)
       const reducer = (acc, cur) => acc + cur;
+      console.log(sum)
       if(sum.length === 0){
         setTotal(0)
         return
       }
       const itemTotal = sum.reduce(reducer)
       setTotal(itemTotal)
+      const temp = found.map((el) => el[0])
+      // setPayList(temp)
+        // console.log(temp)
+      // setPayList([])
     }else{
       setTotal(0)
+      console.log(found)
     }
     console.log("체크리스트 가격 정하기")
   },[cart,total,found,setTotal])
 // const [pay,setPay] = useState([])
-
 // useEffect(() => {
 //   const jquery = document.createElement("script");
 //   jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";

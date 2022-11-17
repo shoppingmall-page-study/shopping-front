@@ -45,12 +45,13 @@ function Detail({convertPrice, cart, setCart, token}){
         setFile("");
     };
 
+    console.log(cart)
+
     const handleCart = () => {  //장바구니에 추가하는 함수
         const found = cart.find((el) => el.product.productId === product.productId)
         if(found){
           const idx = cart.indexOf(found)
           cartUpdate({cartId: found.cartId, productNum: found.productNum + count}).then((res)=>{
-            console.log(res.data.data)
             if(res.status === 200){
               setCart([...cart.slice(0,idx), res.data.data, ...cart.slice(idx+1)])
             }
@@ -58,11 +59,10 @@ function Detail({convertPrice, cart, setCart, token}){
         }else{
           cartCreate({productNum: count, productId: product.productId}).then((res) => {
                       if(res.status === 200){
-                        setCart([...cart,res.data])
+                        setCart([...cart,res.data.data])
                       }
                     })
         }}
-        console.log(cart)
 
     const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
       return token ? <Hafter cart={cart}/> : <Hbefore/>
@@ -92,72 +92,74 @@ function Detail({convertPrice, cart, setCart, token}){
         </div>
         <div className='Content'>
           <div className='main'>
-            <section className='detail'>
-              <div className="detail_img">
-                {/* <img src={product.image} alt={product.id} /> */}
-                <img src={product.imgUrl} alt={product.productId} />
-              </div>
-            </section>
-            <section className='detail'>
-              <div className="detail_info">
-                <p className="detail_product_name">{product.name}</p>
-                <div className='line'></div>
-                <span className="detail_product_price">
-                  {convertPrice(product.price+"")}
-                  <span className="detail_product_unit">원</span>
+            <div className='main_wrap_grid'>
+              <section className='detail  '>
+                <div className="detail_img">
+                  {/* <img src={product.image} alt={product.id} /> */}
+                  <img src={product.imgUrl} alt={product.productId} />
+                </div>
+              </section>
+              <section className='detail'>
+                <div className="detail_info0">
+                  <p className="detail_product_name0">{product.name}</p>
                   <div className='line'></div>
-                </span>
-                {/* <div className='product_info'>{product.provider}</div> */}
-                <div className='product_info'>{product.content}</div>
-              </div>
-              <div className='pay'>
-                <span className='soo'>수량 : </span>
+                  <span className="detail_product_price0">
+                    {convertPrice(product.price+"")}
+                    <span className="detail_product_unit0">원</span>
+                    <div className='line'></div>
+                  </span>
+                  {/* <div className='product_info'>{product.provider}</div> */}
+                  <div className='product_info0'>{product.content}</div>
+                  <div className='line'></div>
+                </div>
+                <div className='pay0'>
+                  <span className='soo0'>수량 : </span>
+                  <div className="amount">
+                    <img
+                      className="minus"
+                      src="/images/icon-minus-line.svg"
+                      alt="minus"
+                      onClick={()=>handelQuantity("minus")}
+                    />
+
+                    <div className="count">
+                      <span>{count}</span>
+                    </div>
+
+                    <img
+                      className="plus"
+                      src="/images/icon-plus-line.svg"
+                      alt="plus"
+                      onClick={()=>handelQuantity("plus")}
+                    />
+                  </div>
+                </div>
                 <div className='line'></div>
-                <div className="amount">
-                  <img
-                    className="minus"
-                    src="/images/icon-minus-line.svg"
-                    alt="minus"
-                    onClick={()=>handelQuantity("minus")}
-                  />
-
-                  <div className="count">
-                    <span>{count}</span>
-                  </div>
-
-                  <img
-                    className="plus"
-                    src="/images/icon-plus-line.svg"
-                    alt="plus"
-                    onClick={()=>handelQuantity("plus")}
-                  />
-                </div>
-              </div>
-              <div className="sum">
-                <div className="total_info">
-                  <div className='sum_price_wd'><span className="sum_price">총 상품 금액</span></div>                
-                  <div className='total_price0'>
-                      <span className="total_count">총 수량 : {count}개</span>
-                      <span className="total_price1">
-                        {convertPrice(product.price*count)}                  
-                        <span className="total_unit">원</span>
-                      </span>
+                <div className="sum">
+                  <div className="total_info0">
+                    <div className='sum_price_wd0'><span className="sum_price0">총 상품 금액</span></div>                
+                    <div className='total_price0'>
+                        <span className="total_count0">총 수량 : {count}개</span>
+                        <span className="total_price1">
+                          {convertPrice(product.price*count)}                  
+                          <span className="total_unit1">원</span>
+                        </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="button">
-                <button className="button_buy">바로 구매</button>
-                <button className="button_cart" onClick={()=>handleCart()}>장바구니</button>
-              </div>
-            </section>
-          </div>
-          <div className="review-content">
-            <div className='review-title-box'>
-              <p className='review-title'>review</p>
+                <div className="button_detail">
+                  <button className="button_buy0">바로 구매</button>
+                  <button className="button_cart0" onClick={()=>handleCart()}>장바구니</button>
+                </div>
+              </section>
             </div>
-            <div className='review-btn'>
-              <button className='btn-review-up' onClick={()=>setState("up")}>등록</button>
-              <button className='btn-review-look' onClick={()=>setState("look")}>보기</button>
+            <div className="review-content0">
+            <div className='review-title-box0'>
+              <p className='review-title0'>review</p>
+            </div>
+            <div className='review-btn0'>
+              <button className='btn-review-up0' onClick={()=>setState("up")}>등록</button>
+              <button className='btn-review-look0' onClick={()=>setState("look")}>보기</button>
             </div>
             <div className='pop'>
               { state === "up" ?
@@ -173,7 +175,7 @@ function Detail({convertPrice, cart, setCart, token}){
                 <TextField name="title"
                   label="제목" 
                   fullWidth
-                  className="review-up-title"
+                  // className="review-up-title"
                   variant="outlined"
                   multiline
                   maxRows={2}/>
@@ -181,10 +183,10 @@ function Detail({convertPrice, cart, setCart, token}){
                 <TextField name="content"
                   label="내용" 
                   fullWidth
-                  className="review-up-content"
+                  // className="review-up-content"
                   variant="outlined"
                   multiline
-                  maxRows={4}/>
+                  maxRows={3}/>
                 <div className='review-up-btn-box'>
                   <button type='submit' onClick={deleteFileimage} className='review-up-btn'>등록하기</button>
                 </div>
@@ -201,6 +203,7 @@ function Detail({convertPrice, cart, setCart, token}){
               </div>
               }
             </div>
+          </div>
           </div>
         </div>
         <footer>

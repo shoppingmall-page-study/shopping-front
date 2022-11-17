@@ -4,6 +4,7 @@ import './Product.css'
 
 function Product({product, convertPrice}){
   return (
+    product&&(
     <div className="product">
       <div className="product_img">
         <Link to={`/product/${product.productId}`}>
@@ -23,6 +24,7 @@ function Product({product, convertPrice}){
         <span className="unit">원</span>
       </div>
     </div>
+    )
   );
 }
 export default Product;

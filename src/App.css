@@ -17,6 +17,8 @@ li{
 }
 
 .Content{
-    /* padding-top: 154px; */
-    padding-top: 50px;
+    width: 1440px;
+    margin: auto;
+    padding-top: 80px;
+    /* padding-top: 50px; */
 }
