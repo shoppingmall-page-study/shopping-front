@@ -66,7 +66,7 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
     if(success){
         payMentComplete({impUid: imp_uid, orderId: merchant_uid}).then((res) => {
             console.log(res)
-            res.status == 200 ? <PaymentTrue/> : <PaymentFalse error_msg={error_msg}/>
+            res.status == 200 ? window.location.href="/payTrue" : alert(`결제 실패: ${error_msg}`);
         })
     }else{
         alert(`결제 실패: ${error_msg}`);

@@ -63,6 +63,8 @@ const Join = () => {
     addrView.current[0].style.display = 'block';
   }
 
+ 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 바꿔줌.

@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
 // import getProducts from '../Service/Fetcher';
-import { productGet, cartCreate, cartGet, reviewCreate, reviewGet, cartUpdate } from '../Api/ApiService';
+import { productGet, cartCreate, cartGet, reviewCreate, reviewGet, cartUpdate} from '../Api/ApiService';
 import './Detail.css'
 import Review from '../review/review';
 
-function Detail({convertPrice, cart, setCart, token}){
+function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
     const { id } = useParams();
     const [product, setProduct] = useState({}); //상품
     const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
@@ -47,6 +47,15 @@ function Detail({convertPrice, cart, setCart, token}){
 
     console.log(cart)
 
+    const moveToPay = () => {
+      cartCreate({productNum: count, productId: product.productId}).then((res) => {
+        if(res.status === 200){
+          setCart([...cart,res.data.data])
+        }
+      })
+      window.location.href="../payment" //문제는 이렇게 하면 새로고침이 되기때문에 초기화가 된다...
+    }
+
     const handleCart = () => {  //장바구니에 추가하는 함수
         const found = cart.find((el) => el.product.productId === product.productId)
         if(found){
@@ -75,7 +84,6 @@ function Detail({convertPrice, cart, setCart, token}){
       const imgUrl = file
       reviewCreate({imgUrl: imgUrl, title: title, content: content, productId: product.productId})
     }
-
     const [state,setState] = useState("look"); //리뷰 창 상태 저장
     const [reviewlist,setReviewList] = useState([]) //리뷰 목록들
 
@@ -148,7 +156,7 @@ function Detail({convertPrice, cart, setCart, token}){
                   </div>
                 </div>
                 <div className="button_detail">
-                  <button className="button_buy0">바로 구매</button>
+                  <button className="button_buy0" onClick={()=>moveToPay()}>바로 구매</button>
                   <button className="button_cart0" onClick={()=>handleCart()}>장바구니</button>
                 </div>
               </section>

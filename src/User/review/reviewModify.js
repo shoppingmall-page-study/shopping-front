@@ -83,12 +83,12 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
                     <form onSubmit={HandleReviewUpdate} className="user_review_modify_window">
                     <div className="user_reviewModifylist_window">
                         <div className="reviewModifyimg_look">
-                            <div className="reviewModifysample_img_wd">
+                            {/* <div className="reviewModifysample_img_wd"> */}
                                 <img className="reviewModifysample_img"
                                     alt="sample"
                                     src={file}
                                 />
-                            </div>
+                            {/* </div> */}
                             <input type="file" name="GoodsModify_img_file" onChange={saveFileReviewimage} className="GoodsModifyupload"/>
                         </div>
                         <div className="reviewInfo_form">
@@ -97,14 +97,16 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
                                 label="제목" 
                                 // className="goodsModify_title"
                                 variant="outlined"
+                                fullWidth
                                 defaultValue={reviewSelect.title}/>
-                            <div className='floor'></div>
+                            <div className='floor1'></div>
                             <TextField name="content"
                                 required
                                 label="설명"
                                 // className="Goods_explain"
                                 variant="outlined"
                                 multiline
+                                fullWidth
                                 maxRows={2}
                                 defaultValue={reviewSelect.content}/>
                         </div>

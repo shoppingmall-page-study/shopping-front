@@ -1,9 +1,9 @@
 
 th{
-    width: 100px;
+    /* width: 100px; */
     /* border-right: 1px solid black; */
     text-align: left;
-    padding: 14px 30px;
+    /* padding: 14px 30px; */
     /* border-bottom: 1px solid black; */
 }
 
@@ -14,29 +14,44 @@ td{
 
 .user_window_modify{
     width: 100%;
+    
+    /* text-align: center; */
 }
 #user_title{
     /* padding-left: 40px; */
-    margin-left: 40px;
+    /* margin-left: 40px; */
+    margin: auto;
+    width: 1440px;
     font-size: 25px;
     font-weight: bold;
 }
 
 .flex_content_userModify{
-    text-align: left;
-    padding-top: 80px;
-    width: 100%;
+  
+    /* text-align: left; */
+    /* padding-top: 80px; */
+    /* width: 100%; */
 }
 .user_content_modify{
     /* display: flex; */
     /* justify-content: center; */
     /* width: 100%; */
-    width: 900px;
-    margin: 0 auto;
+    /* width: 900px; */
+    /* margin: auto; */
+    width: 40%;
+    margin: auto;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.style{
+    margin: auto;
+    /* height: 500px; */
+    /* width: 40%; */
 }
 
 #user_modify_postCode{
-    width: 350px;
+    /* width: 350px; */
     /* border: none; */
 }
 /* .menu_bar a:hover{
@@ -124,4 +139,15 @@ td{
 
 #no_margin li{
     /* margin-bottom: 9px; */
+}
+
+#Addr_btn0{
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    font-weight: bold;
 }

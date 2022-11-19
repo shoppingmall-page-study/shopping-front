@@ -1,9 +1,12 @@
 .menu_bar{
-    margin-top: 110px;
+    /* margin-top: 110px; */
+
 }
 
 .menu_bar ol{
-    margin-right: 40px;
+    /* margin-right: 40px; */
+    margin: 0;
+    padding: 0;
 }
 
 .menu_bar li{

@@ -73,6 +73,7 @@
     font-weight: bold;
     background-color: black;
     border: 2px solid black;
+    cursor: pointer;
 }
 
 /*paymentFalse*/

@@ -1,6 +1,8 @@
 
 /* basket.js */
 #basket_title{
+  width: 1440px;
+  margin: auto;
   font-size: 25px;
   font-weight: bold;
 }
@@ -367,10 +369,6 @@
   width: 20px;
   height: 15px;
   cursor: pointer;
-}
-
-#basket_title{
-  margin-left: 40px;
 }
 
 .payment_bar{

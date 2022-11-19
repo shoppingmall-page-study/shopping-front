@@ -19,7 +19,6 @@ import OauthJoinhandler from "./Oauth/OauthJoinhandler";
 import UserInformation from "./User/user/userInformation"
 import UserModify from "./User/user/userModify";
 import ReviewList from "./User/review/reviewList";
-import { cartGet, userGet } from "./Api/ApiService";
 import Searchhome from "./Home/Searchhome";
 import SearchBhome from "./Home/SearchBhome"
 import UserGoodsUp from "./User/UserGoodsUp/userGoodsup";
@@ -29,6 +28,8 @@ import PaymentPage from "./PayMent/paymentPage";
 import OrderList from "./User/order/orderList";
 //일단 확인 용
 import PaymentFalse from "./PayMent/paymentFalse";
+import PaymentTrue from "./PayMent/paymentTrue";
+// import User from "./features/user/User"
 
 function UserRouter(){
     const {id} = useParams()
@@ -52,15 +53,7 @@ function UserRouter(){
     }
     const token = localStorage.getItem("ACCESS_TOKEN")
     var cnt = 0
-    // useEffect(()=>{
-    //     cartGet().then((res) => {
-    //         setCart(res.data.data)
-    //     })
-    //     console.log("홈에서 장바구니 개수 가져오기")
-    //     userGet().then((res)=> 
-    //         setUser(res.data.data)
-    //     )    
-    // },[])
+    
 
     return(
     <Routes>
@@ -73,7 +66,7 @@ function UserRouter(){
         <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
         {/* <Route path="/Orderlist" element={<Orderlist/>}/> */}
-        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token}/>}/>
+        <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token} payList={payList} setPayList={setPayList}/>}/>
         <Route path="/oauth/:token" element={<GoogleOauthhandler/>}/>
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
@@ -88,7 +81,8 @@ function UserRouter(){
         <Route path="/PayMent" element={<PaymentPage convertPhoneNumber={convertPhoneNumber} payList={payList} setPayList={setPayList} cart={cart} checkedLists={checkedLists}/>}/>
         <Route path="/order" element={<OrderList convertPrice={convertPrice} cart={cart}/>}/>
         {/* 확인용 */}
-        <Route path="/payTrue" element={<PaymentFalse/>}/>
+        <Route path="/payTrue" element={<PaymentTrue cart={cart}/>}/>
+        {/* <Route path="/a" element={<User/>}/> */}
     </Routes>
     );
 }

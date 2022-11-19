@@ -8,12 +8,12 @@ import "./userInformation.css"
 function UserInformation({convertPhoneNumber, user, setUser, cart}){
     // const [user,setUser] = useState([])
     // const addressState = window.location.pathname
-    // useEffect(() => {
-    //     userGet().then((res) => {
-    //         setUser(res.data.data)
-    //     })
-    //     console.log("회원정보 가져오기")
-    // },[])
+    useEffect(() => {
+        userGet().then((res) => {
+            setUser(res.data.data)
+        })
+        console.log("회원정보 가져오기")
+    },[])
     console.log(user)
     return(
         <div>
@@ -31,7 +31,9 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
                             <li><Link to="">등록 상품 목록</Link></li>
                         </ol>
                     </div> */}
-                    <UserMenuBar/>
+                    <div className="menubar_flex">
+                        <UserMenuBar/>
+                    </div>
                     <div className="user_window">
                         <ol>
                             <h1><span id="user_bar">회원정보</span></h1>
@@ -43,7 +45,7 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
                                 <li>닉네임:</li>
                                 <li>전화번호:</li>
                             </ol>
-                            <ol>
+                            <ol id="space_pd">
                                 <li>{user.username}</li>
                                 <li>{user.postCode + " " + user.address}</li>
                                 <li>{user.nickname}</li>
@@ -51,9 +53,9 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
                             </ol>
                         </div>
                     </div>
-                    <div className="btn_window">
+                </div>
+                <div className="btn_window">
                         <Link to="./Modify" id='to_modify_btn'>회원정보수정</Link>
-                    </div>
                 </div>
             </div>
         </div>

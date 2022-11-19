@@ -4,6 +4,7 @@ import {Link, useParams} from 'react-router-dom'
 import {userGet,signout} from '../Api/ApiService'
 import React, {useEffect, useState } from 'react'
 import { TextField, InputAdornment, Button } from '@material-ui/core';
+// import { cartGet } from "../Api/ApiService";
 
 
 function Hafter({cart, a, setA, s}){
@@ -34,6 +35,7 @@ function Hafter({cart, a, setA, s}){
   //   // console.log("aaaa")
   // })
 
+// 
   const HandleUserState = () => {
     if(userState === "down"){
       setUserState("up")
