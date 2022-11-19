@@ -12,6 +12,7 @@ function ReviewContent({userReview, setUserReview, reviewSelect, setReviewSelect
     const NowReviewList = () => {
         setReviewSelect(userReview)
     }
+    console.log(userReview)
     return(
         <section>
             <div  className="user_reviewlist_window">
@@ -27,8 +28,8 @@ function ReviewContent({userReview, setUserReview, reviewSelect, setReviewSelect
                         <p>{userReview.content}</p>
                     </div>
                     <div className="user_nickname_cal">
-                            <span>닉네임 : {userReview.userNickName}</span>
-                            <span id="uplode_day">등록일 : {userReview.modifiedTime}</span>
+                            {/* <span>닉네임 : {userReview.userNickName}</span> */}
+                        <span id="uplode_day">등록일 : {userReview.modifiedTime}</span>
                     </div>
                 </div>
             </div>

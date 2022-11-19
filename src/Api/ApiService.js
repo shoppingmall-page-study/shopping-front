@@ -220,7 +220,7 @@ export const payMentComplete = (payCompleteDTO) => {
 }
 
 export const order = () => {
-  return call("/order","GET","")
+  return call("/api/order","GET","")
 }
 
 //이메일 중복검사

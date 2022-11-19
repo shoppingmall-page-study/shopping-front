@@ -25,7 +25,13 @@ function ReviewList({reviewSelect, setReviewSelect, cart}){
             </div>
             <div className="Content">
                 <div className="flex_userContent">
-                    <UserMenuBar/>
+                    <div className="menubar_flex">
+                        <UserMenuBar/>
+                    </div>
+                    <div className="review_list_wd">
+                    <ol>
+                        <h1><span id="review_bar">리뷰목록</span></h1>
+                    </ol>
                     <div className="user_review_window">
                     {userReview.length === 0 ?(
                         <div className="not_userReivew">
@@ -36,6 +42,7 @@ function ReviewList({reviewSelect, setReviewSelect, cart}){
                     })
                     }
                     </div>
+                </div>
                 </div>
             </div>
         </div>

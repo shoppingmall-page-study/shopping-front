@@ -1,13 +1,13 @@
 import Hafter from "../Header/HeaderAfter";
 import "./Payment.css"
-function PaymentTrue(){
+function PaymentTrue({cart}){
     const goHome = () => {
         window.location.href="/"  //쇼필계속하기 클릭스
       }
     return(
         <div>
             <div className="Header">
-                <Hafter/>
+                <Hafter cart={cart}/>
             </div>
             <div className="Content">
                 <div className="True_payment">

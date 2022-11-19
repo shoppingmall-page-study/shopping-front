@@ -4,14 +4,19 @@ import React, { useState } from "react";
 import Hafter from "../Header/HeaderAfter";
 import { productCreate } from "../Api/ApiService";
 import './Goodsup.css'
-
+import axios from "axios";
 function Goodsup({products, setProducts, cart}){
     const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
     const [goodscount,setGoodsCount] = useState(1);   //  개수를 나타내는 Hooks
+    const[files, setFiles] = useState([])
+
+    const API_KEY = process.env.REACT_APP_IMAGE_API_KEY
     
     const saveFileimage = (e) =>{   //파일 저장함수
         e.preventDefault();
         setFile(URL.createObjectURL(e.target.files[0]));
+        setFiles(e.target.files[0]);
+        console.log(files);
     };
 
     const deleteFileimage = () =>{
@@ -31,14 +36,45 @@ function Goodsup({products, setProducts, cart}){
     const HandleUpEvent = (e) =>{
         e.preventDefault();
         const data = new FormData(e.target)
-        const title = data.get("title")
-        const name = data.get("name")
-        const price = data.get("price")
-        const content = data.get("content")
-        const total = goodscount
-        const imgUrl = file
+
+        // 수정 
+    
+        console.log(files)
+        data.append("image",files)  // data에 파일 담기 
+
+        var instance = axios.create();
+        delete instance.defaults.headers.common['Authorization'];
+
+
+
+       
+        let headers = new Headers({
+         "Content-Type": "multipart/form-data",
+       });
+         instance.post(`https://api.imgbb.com/1/upload?key=${API_KEY}`,data,headers).then((response)=>{
+            
+            if(response.status === 200){
+                console.log(response.data)
+                console.log(response.data.data.url)
+                const title = data.get("title")
+                const name = data.get("name")
+                const price = data.get("price")
+                const content = data.get("content")
+                const total = goodscount
+                const imgUrl = response.data.data.url
+                productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
+
+
+            }else{
+                alert(response.status)
+            }
+         })
+       
+       
+        ///
+        
         // console.log(title, content, name, price, total, imgUrl)
-        productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
+        //productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
         // let formData = new FormData()
         // formData.append("file", e.target.Goods_img_file.files[0])
         // let dataSet = {
