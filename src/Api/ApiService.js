@@ -86,7 +86,7 @@ export const signup = (userDTO) => {
 }
 
 export const registration = (userDTO) => {
-  return call("/Oauth/join", "POST", userDTO);
+  return call("/api/Oauth/join", "POST", userDTO);
 }
  
 export const productCreate = (goodsDTO) => {
