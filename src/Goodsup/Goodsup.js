@@ -10,6 +10,7 @@ function Goodsup({products, setProducts, cart}){
     const [goodscount,setGoodsCount] = useState(1);   //  개수를 나타내는 Hooks
     const[files, setFiles] = useState([])
 
+    
     const API_KEY = process.env.REACT_APP_IMAGE_API_KEY
     
     const saveFileimage = (e) =>{   //파일 저장함수
