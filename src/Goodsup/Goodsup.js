@@ -52,7 +52,7 @@ function Goodsup({products, setProducts, cart}){
         let headers = new Headers({
          "Content-Type": "multipart/form-data",
        });
-         instance.post(`https://api.imgbb.com/1/upload?key=${API_KEY}`,data,headers).then((response)=>{
+         instance.post(`https://api.imgbb.com/1/upload?key=ccc9bce509b3db7fd500bb3d3e79f8d0`,data,headers).then((response)=>{
             
             if(response.status === 200){
                 console.log(response.data)
