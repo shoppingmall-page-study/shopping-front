@@ -2,11 +2,12 @@ import { TextField } from "@material-ui/core";
 import "./review.css"
 function Review({reviewlist, setReviewList}){
     console.log(reviewlist)
+    console.log(reviewlist.imgURL)
     return(
         <>
         <div className="review_window">
             <div className="review_uploaded_img">
-                <img src={reviewlist.imgUrl} id="review_uploaded_img_img" alt="sample"/>
+                <img src={reviewlist.imgURL} id="review_uploaded_img_img" alt="sample"/>
             </div>
             <div className="reviw_content_title_content">
                 {/* <div className="review_title">
