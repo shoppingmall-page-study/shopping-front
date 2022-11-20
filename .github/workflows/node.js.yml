@@ -32,6 +32,7 @@ jobs:
     - name: Setting .env
       run: 
           echo "REACT_APP_IMAGE_API_KEY=${{ secrets.REACT_APP_IMAGE_API_KEY }}" >> .env
+          cat .env
   docker:
       name: Deploy Docker Image
       runs-on: ubuntu-latest
