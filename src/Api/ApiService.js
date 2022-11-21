@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "./app-config";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 const ACCESS_TOKEN = "ACCESS_TOKEN";
-
 
 export const call = (api, method, request) => {
   let headers = new Headers({
@@ -48,10 +48,10 @@ export const call = (api, method, request) => {
         }
         else if(errorresponse === 401){
           console.log(1)
-          alert("비밀번호가 틀렸습니다.")
+          alert("로그인에 실패하였습니다.")
         }else if(errorresponse === 500){
           console.log(1)
-          alert("계정이 존재하지 않습니다.")
+          alert("로그인에 실패하였습니다.")
         }
 
       })
@@ -76,12 +76,16 @@ export const signout = () => {
 
 export const signup = (userDTO) => {
   return call("/api/join", "POST", userDTO).then((res) => {
+    console.log(res)
+    if(res === undefined){
+      alert("회원가입에 실패하였습니다.")
+    }else{
     if(res.status === 200){
       alert('회원가입 정상적으로 이루어졌습니다.')
       window.location.href = "./login"
     }else if(res.status === 400){
       alert('에러 발생')
-    }
+    }}
   })
 }
 
@@ -148,15 +152,9 @@ export const cartUpdate = (cartDTO) => {
   return call(`/api/cart/update/${cartDTO.cartId}`,"PUT",cartDTO)
 }
 
+// const navigate = useNavigate();
 export const userUpdate = (userDTO) => {
-  return call("/api/user/update","PUT",userDTO).then((response) => {
-    if(response.status === 200){
-      alert("회원정보가 정상적으로 변경되었습니다.")
-      window.location.href = "/user"
-    }else{
-      alert("오류")
-    }
-  })
+  return call("/api/user/update","PUT",userDTO)
 }
 
 export const userReviewGet = () => {

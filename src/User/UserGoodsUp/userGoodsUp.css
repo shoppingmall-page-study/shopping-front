@@ -1,19 +1,23 @@
 /* userGoodsup */
-#userGoodsup_title{
+#userGoodsup_title_nm{
     /* padding-left: 40px; */
-    margin-left: 40px;
+    /* margin-left: 40px; */
+    width: 1440px;
+    margin: auto;
     font-size: 25px;
     font-weight: bold;
 }
 
 .flex_userGooudsupContent{
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    place-items: center;
+    align-items: center;
 }
 
 .user_goodsup_window{
-    margin-top: 135px;
-    padding-left: 10%;
-    width: 60%;
+    width: 100%;
 }
 
 .not_userGoodsup{

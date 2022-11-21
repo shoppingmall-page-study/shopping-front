@@ -4,11 +4,11 @@ import { TextField } from '@material-ui/core';
 import "./userModify.css"
 import { userUpdate } from "../../Api/ApiService";
 import UserMenuBar from "../userMenuBar";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useRef } from "react";
 
 function UserModify({user, setUser, cart}){
-    
+    const navigate = useNavigate()
     useEffect(() => {
         const a = document.createElement("script");
         a.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
@@ -20,40 +20,35 @@ function UserModify({user, setUser, cart}){
     
       const addrView = useRef([]);
     
-      const foldDaumPostcode = () => {
-        addrView.current[0].style.display = 'none';
-      }
+    //   const foldDaumPostcode = () => {
+    //     addrView.current[0].style.display = 'none';
+    //   }
     
       const HandleOnclick = () => {
-        const currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
         new window.daum.Postcode({
           onComplete: (data) => {
-            let fullAddress = data.address;
-            let extraAddress = '';
+            var roadAddr = data.roadAddress;
+            var extraRoadAddr = '';
     
-            if (data.addressType === 'R') {
-              if (data.bname !== '') {
-                 extraAddress += data.bname;
-               }
-              if (data.buildingName !== '') {
-                extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-              }
-              fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+              extraRoadAddr += data.bname;
             }
-            // addrView.current[1].value = data.zonecode
-            addrView.current[2].value = fullAddress
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            if(roadAddr !== ''){
+                addrView.current[2].value = roadAddr + extraRoadAddr
+            }else{
+                addrView.current[2].value = roadAddr
+            }
     
-            addrView.current[3].focus()
-            addrView.current[0].style.display = 'none';
-            document.body.scrollTop = currentScroll;
+            // addrView.current[2].value = roadAddr;
+            addrView.current[3].focus();
           },
-          onresize: (size) => {
-            addrView.current[0].style.height = size.height+'px';
-          },
-          width: '100%',
-          height: '100%'
-        }).embed(addrView.current[0])
-        addrView.current[0].style.display = 'block';
+        }).open()
       }
       
     const HandleUserUpdate = (e) => {
@@ -65,12 +60,25 @@ function UserModify({user, setUser, cart}){
         const phoneNumber = data.get('phoneNumber')
         const postCode = data.get('postCode')
         const age = data.get('age')
-        userUpdate({username: username, address: address, age: age, nickname: nickname, phoneNumber: phoneNumber, postCode: postCode})
+        userUpdate({username: username, address: address, age: age, nickname: nickname, phoneNumber: phoneNumber, postCode: postCode}).then((response) => {
+            if(response === undefined){
+                alert("회원정보 변경에 실패하였습니다.")
+            }else{
+            if(response.status === 200){
+                alert("회원정보가 정상적으로 변경되었습니다.")
+                navigate('/User')
+              }
+            }
+        })
     }
 
     const HandlePhoneNumber = (e) => {
         e.target.value = e.target.value.substr(0,13)
         e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+    }
+
+    const moveUser = () => {
+        navigate('/User')
     }
 
     return(
@@ -206,11 +214,12 @@ function UserModify({user, setUser, cart}){
                             </tbody>
                         </table>
                         <div ref={el => (addrView.current[0] = el)} className='style'>
-                           <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" onClick={foldDaumPostcode} alt="취소"/>
+                           {/* <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" onClick={foldDaumPostcode} alt="취소"/> */}
                         </div>
                     </div>
                     <div className="user_modify_btn_window">
-                    <Link to="/user" id="user_rmodify_return_btn">돌아가기</Link>
+                    {/* <Link to="/user" id="user_rmodify_return_btn">돌아가기</Link> */}
+                    <button type="button" id="user_rmodify_return_btn" onClick={moveUser}>돌아가기</button>
                     <button type="submit" id="user_modify_btn">회원정보수정</button>
                     </div>
                     {/* <div className="btn_window"> */}

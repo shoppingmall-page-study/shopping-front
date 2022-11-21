@@ -83,16 +83,18 @@
     /* grid-template-columns: repeat(4,2fr); */
     /* place-items: center; */
     /* align-items: center; */
-    justify-content: right;
-    display: flex;
-    padding: 0;
-    margin: 0;
+    /* justify-content: right; */
+    /* display: flex; */
+    /* padding: 0;s */
+    /* margin: 0; */
     position: relative;
     /* padding-left: 40px; */
+    align-items: center;
+    /* place-items: center; */
 }
 
 #List li{
-    padding-left: 30px;
+    /* padding-left: 30px; */
     /* margin-left: 50px; */
 }
 
@@ -103,17 +105,20 @@
 
 #logoutbtn{
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.17em;
     background-color: white;
-    border: 2px solid black;
-    width: 80px;
-    height: 30px;
+    /* border: 2px solid black; */
+    border: none;
+    /* width: 70px; */
+    /* align-items: center; */
     color: black;
     font-weight: bold;
-    margin-top: 16px; 
+    /* margin-top: 16px;  */
     /* -> 수정요망 */
     /* align-items: center; */
     /* place-items: center; */
+    margin: 0;
+    padding: 0;
 }
 
 .userBox{
@@ -124,10 +129,10 @@
     /* left: 45%; */
     /* margin-top: 60px; */
     top: 100%;
-    right: 11%;
+    right: 12.5%;
     /* 수정해야함 */
     text-align: center;
-    /* font-size: 1.17em; */
+    font-size: 1.17em;
 }
 
 #textline{

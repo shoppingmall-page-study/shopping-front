@@ -78,7 +78,7 @@ function Hafter({cart, a, setA, s}){
                 <span id='new_shopping_cart'><p>{cart.length}</p></span>
               ) : ("")}
               <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
-              <li><h3 className='user'><Link to="" onClick={HandleUserState}>{user.nickname}<span id='name'>님</span></Link></h3></li>
+              <li><h3 className='user0'><Link to="" onClick={HandleUserState}>{user.nickname}<span id='name'>님</span></Link></h3></li>
               {
               userState === "up" ? (
               <div className='userBox'>

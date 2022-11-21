@@ -10,6 +10,7 @@ import Review from '../review/review';
 import axios from "axios";
 
 function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
+
   const { id } = useParams();
   const [product, setProduct] = useState({}); //상품
   const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
@@ -142,6 +143,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
                 <span className="detail_product_price0">
                   {convertPrice(product.price+"")}
                   <span className="detail_product_unit0">원</span>
+
                   <div className='line'></div>
                 </span>
                 {/* <div className='product_info'>{product.provider}</div> */}

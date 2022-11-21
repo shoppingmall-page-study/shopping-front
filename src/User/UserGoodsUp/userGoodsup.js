@@ -21,11 +21,13 @@ function UserGoodsUp({convertPrice, productSelect, setProductSelect, cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="userGoodsup_title">올린 상품 명</p>
+                <p id="userGoodsup_title_nm">올린 상품 명</p>
             </div>
             <div className="Content">
                 <div className="flex_userGooudsupContent">
-                    <UserMenuBar/>
+                    <div className="menubar_flex">
+                        <UserMenuBar/>
+                    </div>
                     <div className="user_goodsup_window">
                     {userGoodsup.length === 0 ?(
                         <div className="not_userGoodsup">
