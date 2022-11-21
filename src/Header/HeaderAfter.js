@@ -66,10 +66,10 @@ function Hafter({cart, a, setA, s}){
           
       </form>
       </div>
-      <div className="UserInf">
+      <div className="afterUserInf">
         <ul id="List">
           {/* <ul id="SemiList1"> */}
-              <li><h3><Link to="../Basket">장바구니</Link></h3></li>
+              <li id = 'cartText'><p><Link to="../Basket">장바구니</Link></p></li>
               {
               cart.length >= 1 ? (
                 // <div>
@@ -77,11 +77,11 @@ function Hafter({cart, a, setA, s}){
                 // </div>
                 <span id='new_shopping_cart'><p>{cart.length}</p></span>
               ) : ("")}
-              <li><h3><Link to="../Goodsup">상품등록</Link></h3></li>
-              <li><h3 className='user'><Link to="" onClick={HandleUserState}>{user.nickname}<span id='name'>님</span></Link></h3></li>
+              <li><p><Link to="../Goodsup">상품등록</Link></p></li>
+              <li><p className='user'><Link to="" onClick={HandleUserState}>{user.nickname}<span id='name'>님</span></Link></p></li>
               {
               userState === "up" ? (
-              <div className='userBox'>
+              <div className='AfteruserBox'>
                 <p><Link to="../user">회원정보</Link></p>
                 <div id='textline'></div>
                 <p><Link to="../UserReviewList">리뷰목록</Link></p>

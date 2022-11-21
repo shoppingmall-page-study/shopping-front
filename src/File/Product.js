@@ -16,9 +16,6 @@ function Product({product, convertPrice}){
         {/* <span>{product.provider}</span> */}
         <span>{product.title}</span>
       </div>
-      <div className="product_name">
-        <span>{product.name}</span>
-      </div>
       <div className="price_info">
         <span className="price">{convertPrice(product.price)}</span>
         <span className="unit">원</span>

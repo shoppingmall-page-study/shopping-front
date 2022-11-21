@@ -1,6 +1,6 @@
-.ul{
+ul{
     list-style: none;
-    padding: 0;
+    padding: 0 10px;
     margin: 0;
 }
 .Menu{
@@ -10,10 +10,10 @@
     align-items: center;
     height: 60px;
     padding-top: 9px; */
+    margin: 10px 0;
     display: grid;
-    width: 1440px;
-    margin: auto;
-    grid-template-columns: 1fr 1.5fr 1fr;
+    width:100%;
+    grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
     align-items: center;
     /* height: 100px; */
@@ -23,13 +23,19 @@
 .Logo{
     /* height: 100%; */
     width: 100%;
+    display:flex;
 }
 
 .Logo a{
+    padding-left: 50px;
     color: black;
     font-size: 35px;
     font-weight: bold;
     /* align-items: center; */
+}
+
+#cartText{
+    margin-right: 0;
 }
 
 .SearchBar{
@@ -70,8 +76,10 @@
     font-weight: bold;
 } */
 
-.UserInf{
+.afterUserInf{
     width: 100%;
+    font-size: 15px;
+    font-weight: 700;
     /* text-align: right; */
 }
 
@@ -83,7 +91,7 @@
     /* grid-template-columns: repeat(4,2fr); */
     /* place-items: center; */
     /* align-items: center; */
-    justify-content: right;
+    justify-content: center;
     display: flex;
     padding: 0;
     margin: 0;
@@ -91,10 +99,9 @@
     /* padding-left: 40px; */
 }
 
-#List li{
-    padding-left: 30px;
-    /* margin-left: 50px; */
-}
+/* #List li{
+    padding-right: 30px;
+   */
 
 /* #SemiList1{  
     display: flex;
@@ -103,20 +110,19 @@
 
 #logoutbtn{
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     background-color: white;
     border: 2px solid black;
     width: 80px;
     height: 30px;
     color: black;
     font-weight: bold;
-    margin-top: 16px; 
     /* -> 수정요망 */
     /* align-items: center; */
     /* place-items: center; */
 }
 
-.userBox{
+.AfteruserBox{
     background-color: white;
     position: absolute;
     width: 150px;
@@ -129,13 +135,19 @@
     text-align: center;
     /* font-size: 1.17em; */
 }
-
-#textline{
-    border: solid 1px black;
+.afterUserInf > ul >  li{
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 p{
-    margin: 8px;
+    margin: 0;
+}
+
+#textline{
+    border: solid 1px black;
 }
 
 #name{
@@ -145,12 +157,11 @@ p{
 #new_shopping_cart{
     color: white;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 9px;
     background-color: black;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    margin-top: 3%;
     /* 수정요망 */
 }
 
@@ -159,7 +170,6 @@ p{
     height: 100%;
     margin: 0;
     text-align: center;
-    margin-top: 3px;
 }
 /* 수정요망 */
 

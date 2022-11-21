@@ -19,7 +19,7 @@
 }
 } */
 .flex_wrap{
-    /* width: 1440px; */
+    min-width: 1024px;
     /* margin: auto; */
     display: grid;
     grid-template-columns: repeat(5,1fr);

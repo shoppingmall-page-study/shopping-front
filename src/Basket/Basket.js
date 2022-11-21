@@ -125,9 +125,11 @@ return (
     <div>
       <header className="Header">
         {TokenHeaderView(token)}
-        <p id='basket_title'>장바구니</p>
       </header>
       <div className='Content'>
+
+      <p id='basket_title'>장바구니</p>
+
       <CartHeader cart={cart} checkedLists={checkedLists} setCheckedLists={setCheckedLists} handleAllCheck={handleAllCheck} isAllChecked={isAllChecked}/>
       {cart.length === 0 ? (
         <div className="not">

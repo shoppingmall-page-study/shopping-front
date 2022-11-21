@@ -1,5 +1,5 @@
 .main {
-  width: 1440px;
+  min-width: 1024px;
   margin: auto;
 }
 
@@ -365,7 +365,7 @@
 }
 
 
-@media (max-width: 1440px) {
+@media (min-width:1024px) {
   .main {
     flex-direction: column;
   }

@@ -1,16 +1,23 @@
 import { TextField } from "@material-ui/core";
 // import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hafter from "../Header/HeaderAfter";
 import { productCreate } from "../Api/ApiService";
+import { userGet } from "../Api/ApiService";
 import './Goodsup.css'
 import axios from "axios";
 function Goodsup({products, setProducts, cart}){
     const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
     const [goodscount,setGoodsCount] = useState(1);   //  개수를 나타내는 Hooks
     const[files, setFiles] = useState([])
+    const[user, setUser] = useState([]);
 
-    
+    useEffect(() => {
+        userGet().then((res) =>{
+            setUser(res.data.data);
+        })
+    }, [])
+
     const API_KEY = process.env.REACT_APP_IMAGE_API_KEY
     
     const saveFileimage = (e) =>{   //파일 저장함수
@@ -57,8 +64,8 @@ function Goodsup({products, setProducts, cart}){
             if(response.status === 200){
                 console.log(response.data)
                 console.log(response.data.data.url)
-                const title = data.get("title")
-                const name = data.get("name")
+                const title = data.get("title") 
+                const name = user.nickname;
                 const price = data.get("price")
                 const content = data.get("content")
                 const total = goodscount
@@ -111,14 +118,10 @@ function Goodsup({products, setProducts, cart}){
                     </div>
                     <div className="form_goodsup">
                         <TextField name="title" 
-                            label="제목" 
+                            label="상품이름" 
                             className="goods_title"
                             variant="outlined"/>
                         <div className='floor'></div>
-                        <TextField name="name" 
-                            label="상품이름"                           
-                            className="goods_name"
-                            variant="outlined"/>
                         <div className='floor'></div>
                         <TextField name="price"
                             label="가격"

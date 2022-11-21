@@ -38,7 +38,7 @@ function Hbefore(){
           
           </form>
         </div>
-        <div className="UserInf">
+        <div className="UserInfBefore">
           <ul id="List">
             <li><h3><Link to="../Login">로그인</Link></h3></li>
             <li><h3><Link to="../Join">회원가입</Link></h3></li>
