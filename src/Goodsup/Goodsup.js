@@ -125,11 +125,12 @@ function Goodsup({products, setProducts, cart}){
                         <div className='floor'></div>
                         <TextField name="price"
                             label="가격"
+                            fullWidth
                             className="goods_price"
                             variant="outlined"/>
                         <div className='floor'></div>
-                        <div className='pay'>
-                            <span className='soo'>수량 : </span>
+                        <div className='pay0'>
+                            <span className='soo0'>수량 : </span>
                             <div className="amount">
                                 <img
                                 className="minus"
@@ -153,6 +154,7 @@ function Goodsup({products, setProducts, cart}){
                         <div className='floor'></div>
                         <TextField name="content"
                             label="설명"
+                            fullWidth
                             className="Goods_explain"
                             variant="outlined"
                             multiline

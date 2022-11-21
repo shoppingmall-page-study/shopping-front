@@ -1,5 +1,5 @@
 import { useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userGet } from "../../Api/ApiService";
 import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
@@ -8,6 +8,8 @@ import "./userInformation.css"
 function UserInformation({convertPhoneNumber, user, setUser, cart}){
     // const [user,setUser] = useState([])
     // const addressState = window.location.pathname
+    const navigate = useNavigate();
+
     useEffect(() => {
         userGet().then((res) => {
             setUser(res.data.data)
@@ -15,6 +17,11 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
         console.log("회원정보 가져오기")
     },[])
     console.log(user)
+
+    const MoveUserModify = () => {
+        navigate('/User/Modify')
+    }
+
     return(
         <div>
             <div className="Header">
@@ -55,7 +62,8 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
                     </div>
                 </div>
                 <div className="btn_window">
-                        <Link to="./Modify" id='to_modify_btn'>회원정보수정</Link>
+                        {/* <Link to="./Modify" id='to_modify_btn'>회원정보수정</Link> */}
+                        <button type="button" id='to_modify_btn' onClick={MoveUserModify}>회원정보수정</button>
                 </div>
             </div>
         </div>

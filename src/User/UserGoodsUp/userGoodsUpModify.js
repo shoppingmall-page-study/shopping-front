@@ -7,22 +7,52 @@ import UserMenuBar from "../userMenuBar";
 import "./userGoodsUp.css"
 import { userProductUpdate } from "../../Api/ApiService";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}){
     const [count,setCount] = useState(productSelect.total)  //해당 등록상품의 개수를 저장할 Hooks
     const [file,setFile] = useState(productSelect.imgUrl) //해당 등록상품의 이미지를 미리 보여줄 저장 Hooks
+    const[files, setFiles] = useState([])
 
     const HandleUpEvent = (e) => {
         e.preventDefault();
         const data = new FormData(e.target)
-        const imgUrl = file
-        const title = data.get("title")
-        const name = data.get("name")
-        const content = data.get("content")
-        const price = data.get("price")
-        const total = count
+
+
+        console.log(files)
+        data.append("image",files)  // data에 파일 담기 
+
+        var instance = axios.create();
+        delete instance.defaults.headers.common['Authorization'];
+
+
+
+       
+        let headers = new Headers({
+         "Content-Type": "multipart/form-data",
+       });
+       instance.post(`https://api.imgbb.com/1/upload?key=ccc9bce509b3db7fd500bb3d3e79f8d0`,data,headers).then((response)=>{
+            if(response.status === 200){
+                const title = data.get("title")
+                const name = data.get("name")
+                const content = data.get("content")
+                const price = data.get("price")
+                const total = count
+                const imgUrl = response.data.data.url
+                userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
+            }else{
+                alert(response.status)
+            }
+       })
+
+        //const imgUrl = file
+        //const title = data.get("title")
+        //const name = data.get("name")
+       // const content = data.get("content")
+        //const price = data.get("price")
+        //const total = count
         
-        userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
+        //userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
         URL.revokeObjectURL(file);
     } 
 
@@ -38,6 +68,7 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
     const saveFileimage = (e) => {
         e.preventDefault();
         setFile(URL.createObjectURL(e.target.files[0]));
+        setFiles(e.target.files[0]);
     }
 
     return(

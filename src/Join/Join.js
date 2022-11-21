@@ -9,6 +9,7 @@ import {
   Container,
   Typography,
   // DialogActions,
+  makeStyles
 } from "@material-ui/core";
 import { emailCheck, nicknameCheck, signup } from "../Api/ApiService";
 import Hbefore from "../Header/HeaderBefore";
@@ -16,6 +17,8 @@ import Hbefore from "../Header/HeaderBefore";
 const Join = () => {
   const [emailText,setEmailText] = useState("")
   const [nicknameText,setNicknameText] = useState("")
+  const [emailError,setEmailError] = useState(false)
+  const [nicknameError, setNicknameError] = useState(false)
   useEffect(() => {
     const a = document.createElement("script");
     a.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
@@ -27,41 +30,62 @@ const Join = () => {
 
   const addrView = useRef([]);
 
-  const foldDaumPostcode = () => {
-    addrView.current[0].style.display = 'none';
-  }
+  // const foldDaumPostcode = () => {
+  //   addrView.current[0].style.display = 'none';
+  // }
+
+  // const HandleOnclick = () => {
+  //   const currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+  //   new window.daum.Postcode({
+  //     onComplete: (data) => {
+  //       let fullAddress = data.address;
+  //       let extraAddress = '';
+
+  //       if (data.addressType === 'R') {
+  //         if (data.bname !== '') {
+  //            extraAddress += data.bname;
+  //          }
+  //         if (data.buildingName !== '') {
+  //           extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+  //         }
+  //         fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+  //       }
+  //       addrView.current[1].value = data.zonecode
+  //       addrView.current[2].value = fullAddress
+
+  //       addrView.current[3].focus()
+  //       addrView.current[0].style.display = 'none';
+  //       document.body.scrollTop = currentScroll;
+  //     },
+  //     onresize: (size) => {
+  //       addrView.current[0].style.height = size.height+'px';
+  //     },
+  //     width: '100%',
+  //     height: '100%'
+  //   }).embed(addrView.current[0])
+  //   addrView.current[0].style.display = 'block';
+  // }
 
   const HandleOnclick = () => {
-    const currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     new window.daum.Postcode({
       onComplete: (data) => {
-        let fullAddress = data.address;
-        let extraAddress = '';
+        var roadAddr = data.roadAddress;
+        var extraRoadAddr = '';
 
-        if (data.addressType === 'R') {
-          if (data.bname !== '') {
-             extraAddress += data.bname;
-           }
-          if (data.buildingName !== '') {
-            extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-          }
-          fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+          extraRoadAddr += data.bname;
         }
-        addrView.current[1].value = data.zonecode
-        addrView.current[2].value = fullAddress
+        if(data.buildingName !== '' && data.apartment === 'Y'){
+          extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+        }
 
-        addrView.current[3].focus()
-        addrView.current[0].style.display = 'none';
-        document.body.scrollTop = currentScroll;
+        addrView.current[1].value = data.zonecode;
+        addrView.current[2].value = roadAddr;
+        addrView.current[3].focus();
       },
-      onresize: (size) => {
-        addrView.current[0].style.height = size.height+'px';
-      },
-      width: '100%',
-      height: '100%'
-    }).embed(addrView.current[0])
-    addrView.current[0].style.display = 'block';
+    }).open()
   }
+
 
  
 
@@ -89,28 +113,45 @@ const Join = () => {
   const HandleNicknameCheck = (e) => {
     nicknameCheck(e.target.value).then((res) => {
       // e.target.helperText=res.data.message
-      setNicknameText(res.data.msg)
+      // setNicknameText(res.data.msg)
+      if(res === undefined && e.target.value == ""){
+        setNicknameText("")
+      }else if(res === undefined){
+        setNicknameText("이미 존재하는 닉네임입니다.")
+        setNicknameError(true)
+      }else{
+         if(res.status==200){
+          setNicknameText(res.data.msg)
+          setNicknameError(false)
+         }
+      }
     })
   }
   
   //이메일 중복검사 함수
   const HandleEmailCheck = (e) => {
     emailCheck(e.target.value).then((res) => {
-      // e.target.helperText=res.data.message
-      if(res.status==200){
+      console.log(res)
+      if(res === undefined && e.target.value == ""){
+        setEmailText("")
+      }else if(res === undefined){
+        setEmailText("이미 존재하는 닉네임입니다.")
+        setEmailError(true)
+      }else{
+         if(res.status==200){
         setEmailText(res.data.msg)
+        setEmailError(false)
+         }
       }
-      // console.log(res.data.status)
     })
   }
-
   return (
     <>
     <header className="Header">
             <Hbefore/>
         </header>
      <Container className="Content" component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
-      <form noValidate onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography component="h1" variant="h5">
@@ -142,7 +183,8 @@ const Join = () => {
               autoComplete="email"
               // inputRef={el => (addrView.current[4] = el)}
               onChange={HandleEmailCheck}
-              helperText={emailText}
+              helperText={emailText} //aria-helper-text
+              error={emailError} //aria-invalid
             />
             {/* <button type="button" id="email_check_btn">중복체크</button> */}
           {/* </div> */}
@@ -180,6 +222,7 @@ const Join = () => {
               fullWidth
               onChange={HandleNicknameCheck}
               helperText={nicknameText}
+              error={nicknameError}
               // inputRef={el => (addrView.current[4] = el)}
             />
             {/* <button type="button" onClick={handleNicknameCheck} id="nickname_check_btn">중복체크</button> */}
@@ -197,11 +240,12 @@ const Join = () => {
               onChange={HandlePhoneNumber}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid  className="postcode_flex" item xs={12}>
             <TextField
               variant="outlined"
               required
               size="small"
+              // fullWidth
               placeholder="우편번호"
               id="num"
               inputRef={el => (addrView.current[1] = el)}
@@ -230,7 +274,7 @@ const Join = () => {
             />
             </Grid>
             <div ref={el => (addrView.current[0] = el)} className='style'>
-              <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" onClick={foldDaumPostcode} alt="취소"/>
+              {/* <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" onClick={foldDaumPostcode} alt="취소"/> */}
             </div>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">

@@ -87,33 +87,34 @@ td{
 }
 
 #user_rmodify_return_btn{
-    width: 136px;
-    border: 1px solid black;
-    font-size: 22px;
-    /* height: 40px; */
+    width: 180px;
+    /* border: 1px solid black; */
+    border: none;
+    font-size: 20px;
+    height: 50px;
     text-align: center;
-    padding: 6px;
-    align-items: flex-start;
+    /* padding: 6px; */
+    /* align-items: flex-start; */
     background-color: black;
     color: white;
     font-weight: bold;
-    margin-right: 30px;
-    vertical-align: middle;
+    margin-right: 15px;
+    /* vertical-align: middle; */
     cursor: pointer;
 }
 
 #user_modify_btn{
-    width: 150px;
-    border: 1px solid black;
-    font-size: 22px;
-    height: 45px;
+    width: 180px;
+    border: none;
+    font-size: 20px;
+    height: 50px;
     text-align: center;
-    padding: 6px;
-    align-items: flex-start;
+    /* padding: 6px; */
+    /* align-items: flex-start; */
     background-color: black;
     color: white;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 15px;
     cursor: pointer
 }
 

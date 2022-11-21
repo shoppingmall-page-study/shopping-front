@@ -7,16 +7,39 @@ import Hafter from '../../Header/HeaderAfter';
 import UserMenuBar from "../userMenuBar";
 // import ReviewContent from "./reviewContent"
 import "./reviewModify.css"
+import axios from "axios";
 
 function ReviewModify({reviewSelect, setReviewSelect, cart}){
     const [file,setFile] = useState(reviewSelect.imgUrl)
+    const[files, setFiles] = useState([])
     const HandleReviewUpdate = (e) => {
         e.preventDefault()
         const data = new FormData(e.target)
-        const imgUrl = file
-        const title = data.get("title")
-        const content = data.get("content")
-        reviewUpdate({reviewId: reviewSelect.reviewId, imgUrl: file, title: title, content: content})
+
+
+        data.append("image",files)
+      var instance = axios.create();
+      delete instance.defaults.headers.common['Authorization'];
+
+
+      let headers = new Headers({
+        "Content-Type": "multipart/form-data",
+      });
+      instance.post(`https://api.imgbb.com/1/upload?key=ccc9bce509b3db7fd500bb3d3e79f8d0`,data,headers).then((response)=>{
+        if(response.status === 200){
+            const title = data.get("title")
+            const content = data.get("content")
+            const imgUrl = response.data.data.url
+            reviewUpdate({reviewId: reviewSelect.reviewId, imgUrl: imgUrl, title: title, content: content})
+
+
+        }else{
+            alert(response.status)
+        }
+      })
+        
+    
+       
         deleteFileimage()
     }
 
@@ -24,6 +47,8 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
         e.preventDefault();
         console.log(e.target.files[0])
         setFile(URL.createObjectURL(e.target.files[0]));
+        setFiles(e.target.files[0]);
+
     }
 
     const deleteFileimage = () =>{
