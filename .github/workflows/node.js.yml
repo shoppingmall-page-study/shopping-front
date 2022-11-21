@@ -29,6 +29,10 @@ jobs:
     - run: npm install --force
     # - run: npm run build --if-present
     # - run: npm test 
+    - name: Setting .env
+      run: 
+          echo "REACT_APP_IMAGE_API_KEY=${{ secrets.REACT_APP_IMAGE_API_KEY }}" >> .env
+          cat .env
   docker:
       name: Deploy Docker Image
       runs-on: ubuntu-latest
@@ -60,5 +64,5 @@ jobs:
           
             docker login -u ${{secrets.DOCKER_ID}} -p ${{secrets.DOCKER_PASSWORD}}
             docker pull typoon0820/shopping_front
-            cd shopping_front
-            ./deploy.sh
+            cd shopping
+            ./deploy_front.sh
