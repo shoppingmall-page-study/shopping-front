@@ -104,7 +104,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
               <section className='detail  '>
                 <div className="detail_img">
                   {/* <img src={product.image} alt={product.id} /> */}
-                  <img src={product.imgUrl} alt={product.productId} />
+                  <img id="detail_img_wd" src={product.imgUrl} alt={product.productId} />
                 </div>
               </section>
               <section className='detail'>
