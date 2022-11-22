@@ -20,11 +20,13 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
   const[files, setFiles] = useState([]);
   const [payUser, setPayUser] = useState([]);
   // const [s,setS] = useState("a")
-
-  useEffect(() => {
+  const getUserInfo = () => {
     userGet().then((res) =>{
-        setPayUser(res.data.data)
-    })
+      return res.data.data
+  })
+  }
+  useEffect(() => {
+
     const jquery = document.createElement("script");
     jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";
     const iamport = document.createElement("script");
@@ -242,7 +244,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
                 </div>
               </div>
               <div className="button_detail">
-                <button className="button_buy0" onClick={()=>payment([product.productId], [count], product, payUser)}>바로 구매</button>
+                <button className="button_buy0" onClick={()=>payment([product.productId], [count], product, getUserInfo)}>바로 구매</button>
                 <button className="button_cart0" onClick={()=>handleCart()}>장바구니</button>
               </div>
             </section>

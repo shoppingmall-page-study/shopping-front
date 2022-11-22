@@ -48,7 +48,6 @@ export const call = (api, method, request) => {
         }
         else if(errorresponse === 401){
           console.log(1)
-          alert("로그인에 실패하였습니다.");
           localStorage.setItem(ACCESS_TOKEN,"");
           window.location.href = "/login";
         }else if(errorresponse === 500){
@@ -62,13 +61,21 @@ export const call = (api, method, request) => {
 }
 
 export const signin = (userDTO) => {
-  return call("/api/login", 'POST', userDTO).then((response) => {
+  return axios.post("https://hannam.shop/api/login", userDTO).then((response) => {
+    console.log("실행됨");
+
     let jwt = response.headers.authorization;
     if(jwt !== null){
+
       localStorage.setItem(ACCESS_TOKEN, jwt);
       window.location.href = "/";
     }
-  });
+  }).catch(function(err){
+    if(err.status !== 200){
+      alert("로그인에 실패했습니다.");
+      window.location.href = "/login";
+    }
+  })
 }
 
 export const signout = () => {

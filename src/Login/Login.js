@@ -80,10 +80,7 @@ const Login = () => {
           </Grid>
         </Grid>
       </form>
-      
-     
     </Container>
-    
     </>
     
   );
