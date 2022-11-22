@@ -85,9 +85,9 @@ function UserModify({user, setUser, cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="user_title">회원정보수정</p>
             </div>
             <div className="Content">
+                <p id="user_title">회원정보수정</p>
                 <form className="flex_content_userModify" onSubmit={HandleUserUpdate}>
                     {/* <div className="menu_bar">
                         <ol>

@@ -2,16 +2,16 @@
 .flex_userContent{
     /* display: flex; */
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 4fr;
     place-items: center;
-    align-items: center;
+    align-items: start;
 }
 
 #review_title{
     min-width: 1080px;
-    margin: auto;
+    margin-left: 50px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     /* padding-left: 40px; */
     /* margin-left: 40px; */
 }
@@ -20,9 +20,9 @@
     border-bottom: 3px solid #000;
 }
 
-/* .menubar_flex{
-    width: 100%;
-} */
+.menubar_flex{
+    margin: 50px 0 0 15px;
+}
 
 .not_userReivew{
     position: absolute;
@@ -57,24 +57,30 @@
 
 /*reviewContent*/
 .user_reviewlist_window{
-    border-bottom: 2px solid black;
     margin-bottom: 10px;
     font-weight: bold;
     display: flex;
 }
 
 .reviewlist_look_img{
-    width: 177px;
-    height: 150px;
     border: 1px solid black;
-    border-bottom: none;
+    width: 152px;
+    height: 152px;
+    display: block;
     /* margin-bottom: 10px */
 }
 
 .reviewlist_title_content_view{
+    border: 1px solid black;
     /* padding-left: 10px; */
     width: 100%;
     position: relative;
+}
+
+.user_review_window > section{
+    max-width: 1024px;
+    min-width: 700px;
+    margin: 10px 100px;
 }
 
 .user_reviewlist_title{
@@ -138,7 +144,8 @@
     background-color: black;
     font-weight: bold;
     cursor: pointer;
-    border: 1px solid black;
+    margin-top: 2px;
+    height: 28px;
 }
 
 .user_reivewlist_a_form{
@@ -157,6 +164,4 @@
     font-size: 22px;
     background-color: black;
     font-weight: bold;
-    padding: 2px;
-    padding-top: 3px;
 }

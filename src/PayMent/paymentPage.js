@@ -48,13 +48,13 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
         pg: "html5_inicis",
         pay_method: "card",
         merchant_uid: res.data.data.orderId,
-        name: "a",
+        name: payList[0].product.name + " 등 " + payList.length +"개",
         amount: res.data.data.amount,
-        buyer_email: "b",
-        buyer_name: "c",
-        buyer_tel: "d",
-        buyer_addr: "e",
-        buyer_postcode: "f"
+        buyer_email: payUser.email,
+        buyer_name: payUser.username,
+        buyer_tel: payUser.phoneNumber,
+        buyer_addr: payUser.address,
+        buyer_postcode: payUser.postCode
         };
         console.log(data)
         IMP.request_pay(data, callback);
@@ -75,9 +75,9 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <h1 id="review_title">결제페이지</h1>
             </div>
             <div className="Content">
+                <h1 id="review_title">결제페이지</h1>
                 <div className="payment_page_content">
                     <h1><span id="pay_user">구매자 정보</span></h1>
                     <div className="pay_user_info">

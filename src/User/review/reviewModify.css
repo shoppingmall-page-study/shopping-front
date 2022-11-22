@@ -10,6 +10,7 @@
     /* margin-left: 40px; */
     width: 1080px;
     margin: auto;
+    margin-bottom:20px;
 }
 
 .user_review_modify_window{
@@ -26,9 +27,11 @@
     place-items: center; */
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin: auto;
+    margin: 0 100px;
     /* place-items: center; */
     align-items: center;
+    min-width: 824px;
+    max-width: 1440px;
 }
 
 .reviewModifyimg_look{
@@ -46,8 +49,8 @@
 } */
 
 .reviewModifysample_img{
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
 }
 
 .reviewInfo_form{

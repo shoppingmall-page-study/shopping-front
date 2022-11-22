@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
+import { payMent } from "../Api/ApiService";
+import { payMentComplete } from "../Api/ApiService";
 // import getProducts from '../Service/Fetcher';
-import { productGet, cartCreate, cartGet, reviewCreate, reviewGet, cartUpdate} from '../Api/ApiService';
+import { productGet, cartCreate, userGet, cartGet, reviewCreate, reviewGet, cartUpdate} from '../Api/ApiService';
 import './Detail.css'
 import Review from '../review/review';
 import axios from "axios";
@@ -15,10 +17,29 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
   const [product, setProduct] = useState({}); //상품
   const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
   const [count,setCount] = useState(1);   //  개수를 나타내는 Hooks
-  const[files, setFiles] = useState([])
+  const[files, setFiles] = useState([]);
+  const [payUser, setPayUser] = useState([]);
   // const [s,setS] = useState("a")
 
+  useEffect(() => {
+    userGet().then((res) =>{
+        setPayUser(res.data.data)
+    })
+    const jquery = document.createElement("script");
+    jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";
+    const iamport = document.createElement("script");
+    iamport.src = "https://cdn.iamport.kr/js/iamport.payment-1.2.0.js";
+    document.head.appendChild(jquery);
+    document.head.appendChild(iamport);
+    return () => {
+      document.head.removeChild(jquery);
+      document.head.removeChild(iamport);
+    }      
+},[])
+
   const handelQuantity = (type) => {  //  -,+버튼을 눌렀을때 개수 변화는 함수
+    console.log(type + " " + count + " " + product.total);
+
       if(type === "plus"){
         if(count === product.total)return;
           setCount(count+1);
@@ -51,6 +72,41 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
   };
 
   console.log(cart)
+
+  const payment = (proId, proNum, product, buyer) => { 
+    payMent({productsId: proId, productsNumber: proNum}).then((res) => {
+        // console.log(res.data.data.orderId)
+        const { IMP } = window;
+        IMP.init('imp54601326');
+
+        const data = {
+        pg: "html5_inicis",
+        pay_method: "card",
+        merchant_uid: res.data.data.orderId,
+        name: product.name,
+        amount: res.data.data.amount,
+        buyer_email: buyer.email,
+        buyer_name: buyer.username,
+        buyer_tel: buyer.phoneNumber,
+        buyer_addr: buyer.address,
+        buyer_postcode: buyer.postCode
+        };
+        console.log(data)
+        IMP.request_pay(data, callback);
+    })
+    }
+
+    const callback = (response) => {
+      const {success, error_msg, imp_uid, merchant_uid, pay_method, paid_amount, status} = response;
+      console.log(response)
+      if(success){
+          payMentComplete({impUid: imp_uid, orderId: merchant_uid}).then((res) => {
+              console.log(res)
+              res.status == 200 ? window.location.href="/payTrue" : alert(`결제 실패: ${error_msg}`);
+          })
+      }else{
+          alert(`결제 실패: ${error_msg}`);
+      }}
 
   const moveToPay = () => {
     cartCreate({productNum: count, productId: product.productId}).then((res) => {
@@ -133,12 +189,12 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
             <section className='detail  '>
               <div className="detail_img">
                 {/* <img src={product.image} alt={product.id} /> */}
-                <img src={product.imgUrl} alt={product.productId} />
+                <img className = "detail_img"src={product.imgUrl} alt={product.productId} />
               </div>
             </section>
             <section className='detail'>
               <div className="detail_info0">
-                <p className="detail_product_name0">{product.name}</p>
+                <p className="detail_product_name0">{product.title}</p>
                 <div className='line'></div>
                 <span className="detail_product_price0">
                   {convertPrice(product.price+"")}
@@ -186,7 +242,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
                 </div>
               </div>
               <div className="button_detail">
-                <button className="button_buy0" onClick={()=>moveToPay()}>바로 구매</button>
+                <button className="button_buy0" onClick={()=>payment([product.productId], [count], product, payUser)}>바로 구매</button>
                 <button className="button_cart0" onClick={()=>handleCart()}>장바구니</button>
               </div>
             </section>

@@ -26,9 +26,9 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="userinformaion_title">회원정보</p>
             </div>
             <div className="Content">
+                <p id="userinformaion_title">회원정보</p>
                 <div className="flex_content">
                     {/* <div className="menu_bar">
                         <ol>

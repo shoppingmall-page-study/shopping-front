@@ -9,7 +9,7 @@ const KakaoOauth = () => {
 
   return (
     <>
-    <Link href={GOOGLE_AUTH_URL}>카카오 로그인</Link>
+    <Link href={GOOGLE_AUTH_URL}><img className = "auth_img"  src="./images/kakao.svg"></img></Link>
     </>
     
   );

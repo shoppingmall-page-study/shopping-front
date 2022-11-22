@@ -48,10 +48,13 @@ export const call = (api, method, request) => {
         }
         else if(errorresponse === 401){
           console.log(1)
-          alert("로그인에 실패하였습니다.")
+          alert("로그인에 실패하였습니다.");
+          localStorage.setItem(ACCESS_TOKEN,"");
+          window.location.href = "/login";
         }else if(errorresponse === 500){
           console.log(1)
-          alert("로그인에 실패하였습니다.")
+          localStorage.setItem(ACCESS_TOKEN,"");
+          window.location.href = "/";
         }
 
       })

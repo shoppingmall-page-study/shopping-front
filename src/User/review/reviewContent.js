@@ -16,8 +16,8 @@ function ReviewContent({userReview, setUserReview, reviewSelect, setReviewSelect
     return(
         <section>
             <div  className="user_reviewlist_window">
-                <div className="reviewlist_look_img">
-                    <img src={userReview.imgUrl} alt="sample"/>
+                <div>
+                    <img className="reviewlist_look_img" src={userReview.imgUrl} alt="sample"/>
                 </div>
                 <div className="reviewlist_title_content_view">
                     <div className="user_reviewlist_title">

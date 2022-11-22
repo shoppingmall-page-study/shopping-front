@@ -20,7 +20,7 @@
 }
 
 .tab_title {
-  max-width: 1280px;
+  max-width: 1024px;
   width: 100%;
   height: 60px;
   /* background: #f2f2f2; */
@@ -63,7 +63,7 @@
 /* cartList*/
 .cart_product_list {
   position: relative;
-  max-width: 1280px;
+  max-width: 1024px;
   width: 100%;
   height: 200px;
   /* border-radius: 10px; */
@@ -239,7 +239,7 @@
 
 /* total cart */
 .total {
-  max-width: 1280px;
+  max-width: 1024px;
   width: 100%;
   height: 150px;
   /* background: #f2f2f2; */
@@ -372,7 +372,7 @@
 }
 
 .payment_bar{
-  max-width: 1280px;
+  max-width: 1024px;
   margin: 35px auto;
   display: flex;
   justify-content: center;
@@ -391,7 +391,7 @@
   margin: 0 30px;
   cursor: pointer;
 }
-@media (max-width: 1280px) {
+@media (max-width: 1024px) {
   .tab_title,
   .cart_product_list,
   .total {

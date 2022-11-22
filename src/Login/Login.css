@@ -6,3 +6,19 @@
 #not_id{
     padding-left: 10px;
 }
+
+.auth_img{
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.MuiGrid-spacing-xs-2{
+    padding: 0;
+}
+
+#oauth_login_text{
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 20px;
+}

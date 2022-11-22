@@ -21,16 +21,15 @@ function ReviewList({reviewSelect, setReviewSelect, cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="review_title">리뷰목록</p>
             </div>
             <div className="Content">
+                <p id="review_title">리뷰목록</p>
                 <div className="flex_userContent">
                     <div className="menubar_flex">
                         <UserMenuBar/>
                     </div>
                     <div className="review_list_wd">
                     <ol>
-                        <h1><span id="review_bar">리뷰목록</span></h1>
                     </ol>
                     <div className="user_review_window">
                     {userReview.length === 0 ?(

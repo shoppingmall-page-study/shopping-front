@@ -20,10 +20,10 @@ td{
 #user_title{
     /* padding-left: 40px; */
     /* margin-left: 40px; */
-    margin: auto;
-    width: 1440px;
+    margin: auto 100px;
     font-size: 25px;
     font-weight: bold;
+    margin-bottom: 100px;
 }
 
 .flex_content_userModify{
@@ -84,6 +84,7 @@ td{
 .user_modify_btn_window{
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 #user_rmodify_return_btn{

@@ -97,16 +97,16 @@ useEffect(() => {
   setPayList(temp)
 },[checkedLists,cart])
 console.log(payList)
-// useEffect(() => {
-//   cartGet().then(res => {
-//     setCart(res.data.data)
-//     // setCartLength(res.data.data.length)
-//     // setPrice(res.data.totalsum)
-//     // res.data.data.length >= 1 ? setCheckedState("On") : setCheckedState("Off")
-//     setCheckedList(res.data.data.filter((el) => ErrorFix(el.cartId)))
-//   })
-//   console.log("상품삭제 및 수정")
-// },[s])
+useEffect(() => {
+  cartGet().then(res => {
+    setCart(res.data.data)
+    // setCartLength(res.data.data.length)
+    // setPrice(res.data.totalsum)
+    // res.data.data.length >= 1 ? setCheckedState("On") : setCheckedState("Off")
+    // setCheckedList(res.data.data.filter((el) => ErrorFix(el.cartId)))
+  })
+  console.log("상품삭제 및 수정")
+},[])
 
 // useEffect(() => {
 //   const found = checkedLists.map((check)=>

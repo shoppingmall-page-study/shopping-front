@@ -1,8 +1,7 @@
 /*paymentPage*/
 .payment_page_content{
-    margin-top: 110px;
+    margin: 110px auto;
     width: 60%;
-    padding-left: 30%;
 }
 
 #pay_user{
@@ -21,6 +20,10 @@
 
 .pay_info_window{
     position: relative;
+}
+
+.pay_info_window > h1{
+    margin-bottom: 30px;
 }
 #pay_info_logo{
     border-bottom: 3px solid black;
@@ -144,6 +147,7 @@
     font-weight: bold;
     position: relative;
 }
+
 
 #paymentInfo_count{
     position: absolute;

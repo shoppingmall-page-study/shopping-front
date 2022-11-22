@@ -74,6 +74,7 @@ const Login = () => {
             <Grid item id="not_id">계정이 없습니까? 여기서 가입 하세요.</Grid>
           </Link>
           <Grid item xs={12}>
+            <p id = "oauth_login_text">간편 로그인</p>
             <GoogleOauth/>
             <KakaoOauth/>
           </Grid>

@@ -11,7 +11,7 @@ const GoogleOauth = () => {
   return (
     <>
     <img/>
-    <Link href={GOOGLE_AUTH_URL} >구글 로그인</Link>
+    <Link href={GOOGLE_AUTH_URL} ><img className = "auth_img" src="./images/googlesvg.svg"/></Link>
     </>
     
   );

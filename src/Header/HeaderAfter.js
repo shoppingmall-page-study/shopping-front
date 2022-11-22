@@ -23,6 +23,9 @@ function Hafter({cart, a, setA, s}){
 
   useEffect(() => {
     userGet().then((res) => {
+      // if(res.status === 404){
+      //   window.localStorage.clear();
+      // }
       setUser(res.data.data)
    })
    console.log("헤더에 사용자 닉네임 가져오기")

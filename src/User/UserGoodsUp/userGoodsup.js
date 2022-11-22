@@ -21,10 +21,10 @@ function UserGoodsUp({convertPrice, productSelect, setProductSelect, cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="userGoodsup_title_nm">올린 상품 명</p>
             </div>
             <div className="Content">
-                <div className="flex_userGooudsupContent">
+                <p id="userGoodsup_title_nm">등록 상품 목록</p>
+                <div className="flex_userGoodsupContent">
                     <div className="menubar_flex">
                         <UserMenuBar/>
                     </div>

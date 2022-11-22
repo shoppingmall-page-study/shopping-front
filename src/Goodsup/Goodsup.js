@@ -119,6 +119,7 @@ function Goodsup({products, setProducts, cart}){
                     <div className="form_goodsup">
                         <TextField name="title" 
                             label="상품이름" 
+                            fullWidth
                             className="goods_title"
                             variant="outlined"/>
                         <div className='floor'></div>

@@ -11,7 +11,7 @@ function OrderList({convertPrice,cart}){
     useEffect(() => {
         order().then((res) => {
         setList(res.data.data)
-       }) 
+        }) 
     },[])
 
 
@@ -19,17 +19,14 @@ function OrderList({convertPrice,cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="userGoodsup_title">주문목록</p>
             </div>
             <div className="Content">
+                <p id="userGoodsup_title">주문목록</p>
                 <div className="flex_userGooudsupContent">
                     <div className="menubar_flex">
                         <UserMenuBar/>
                     </div>
                     <div className="order_list_wd">
-                    <ol>
-                        <h1><span id="order_bar">주문목록</span></h1>
-                    </ol>
                     <div className="user_orderlist_window">
                     {list.length === 0 ? (
                         <div className="not_userGoodsup">

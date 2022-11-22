@@ -60,9 +60,9 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
         <div>
             <div className="Header">
                 <Hafter cart={cart}/>
-                <p id="review_modify_title">리뷰수정</p>
             </div>
             <div className="Content">
+            <p id="review_modify_title">리뷰수정</p>
                 <div className="flex_reviewModifyContent">
                     {/* <UserMenuBar/> */}
                     {/* <div className="user_review_window">

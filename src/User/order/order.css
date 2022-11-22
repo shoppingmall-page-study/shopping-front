@@ -2,16 +2,15 @@
 .flex_userGooudsupContent{
     /* display: flex; */
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 4fr;
     place-items: center;
-    align-items: center;
+    align-items: start;
 }
 
 #userGoodsup_title{
-    min-width: 1080px;
-    margin: auto;
+    margin-left: 50px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     /* padding-left: 40px; */
     /* margin-left: 40px; */
 }
@@ -41,6 +40,12 @@
     width: 100%;
 }
 
+.user_orderlist_window > section {
+    max-width: 1024px;
+    min-width: 700px;
+    margin: 10px 100px;
+}
+
 .order_list_wd ol{
     padding: 0;
     margin: 0;
@@ -57,23 +62,20 @@
 
 /*orderContent*/
 .user_orderlist_window1{
-    border-bottom: 2px solid black;
     margin-bottom: 10px;
     font-weight: bold;
     display: flex;
 }
 
 .user_order_img{
-    width: 177px;
-    height: 150px;
+    width: 152px;
+    height: 152px;
     border: 1px solid black;
-    border-bottom: none;
-    /* margin-bottom: 10px */
 }
 
 .user_order_list_view{
-    /* padding-left: 10px; */
-    width: 100%;
+    border: 1px solid black;
+    width: 80%;
     position: relative;
 }
 
@@ -109,4 +111,9 @@
 
 #user_orderlist_orderTime{
     text-align: right;
+    padding: 20px 10px 0 0;
+}
+
+#order_status{
+    margin-top: 10px
 }

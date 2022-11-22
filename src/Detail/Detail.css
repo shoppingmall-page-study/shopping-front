@@ -96,7 +96,7 @@
 .pay0{
   /* position: relative; */
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: 1fr 4fr;
   margin: auto;
   /* align-items: center; */
   place-items: center;
@@ -252,8 +252,7 @@
 }
 
 .review-content0{
-  width: 100%;
-  margin: auto;
+  margin: 0 100px ;
   /* margin: 20px 20%; */
   /* justify-content: space-between; */
   /* align-items: center; */
@@ -265,6 +264,7 @@
   font-weight: bold;
   display: inline-block;
   border-bottom: 2px solid black;
+  margin-bottom: 40px
 }
 
 .review-btn0{
@@ -336,10 +336,10 @@
 } */
 
 #review-look-form{
-  position: absolute;
   width: 100%;
   top: 0;
   display: block;
+  margin-bottom: 100px;
 }
 
 #review-up-form{
@@ -347,6 +347,7 @@
   width: 100%;
   /* top: 0; */
   display: flex;
+  margin-bottom: 100px;
 }
 .review-up-btn-box{
   margin-top: 20px;

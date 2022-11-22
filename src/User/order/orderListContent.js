@@ -7,7 +7,7 @@ function OrderListContent({list, convertPrice}){
         <section>
             <div  className="user_orderlist_window1">
                 <div className="user_order_img">
-                    <img id="as" src={list.imgUrl} alt="product_img"/>
+                    <img id="as" src={list.products[0].imgUrl} alt="product_img"/>
                 </div>
                 <div className="user_order_list_view">
                     <div className="user_orderlist_title">
@@ -19,6 +19,7 @@ function OrderListContent({list, convertPrice}){
                         <p>가격 : {convertPrice(list.amount)}원</p>
                         <p>수량 : {list.products[0].productNum}</p>
                         </div>
+                        <p id="order_status">주문상태 : {list.orderComplete}</p>
                         <p id="user_orderlist_orderTime">구매날짜 : {list.orderTime}</p>
                         {/* <div className="user_nickname_cal">
                             <span>{userGoodsup.userNickname}</span>

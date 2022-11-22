@@ -75,9 +75,9 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
         <div className="GoodsUp">
             <header className="Header">
                 <Hafter cart={cart}/>
-                <p id="user_goodsup_modify_title">등록상품수정</p>
             </header>
             <div className="Content">
+                <p id="user_goodsup_modify_title">등록상품수정</p>
                 <div className="userGoodsModify_flex_content">
                     {/* <UserMenuBar/> */}
                     <form onSubmit={HandleUpEvent} className="userGoodsModify_window">
