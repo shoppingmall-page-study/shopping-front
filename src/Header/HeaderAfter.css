@@ -164,13 +164,16 @@ p{
 }
 
 #new_shopping_cart{
+    border: none;
     color: white;
     font-weight: bold;
-    font-size: 9px;
+    font-size: 11px;
     background-color: black;
     width: 15px;
     height: 15px;
     border-radius: 50%;
+    place-items: center;
+    align-items: center;
     /* 수정요망 */
 }
 

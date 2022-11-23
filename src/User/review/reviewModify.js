@@ -1,6 +1,6 @@
 import { TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import {Link, useParams} from "react-router-dom";
 import { reviewUpdate } from "../../Api/ApiService";
 import Hafter from '../../Header/HeaderAfter';
@@ -11,7 +11,8 @@ import axios from "axios";
 
 function ReviewModify({reviewSelect, setReviewSelect, cart}){
     const [file,setFile] = useState(reviewSelect.imgUrl)
-    const[files, setFiles] = useState([])
+    const[files, setFiles] = useState(reviewSelect.imgUrl)
+    const navigate = useNavigate()
     const HandleReviewUpdate = (e) => {
         e.preventDefault()
         const data = new FormData(e.target)
@@ -30,32 +31,35 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
             const title = data.get("title")
             const content = data.get("content")
             const imgUrl = response.data.data.url
-            reviewUpdate({reviewId: reviewSelect.reviewId, imgUrl: imgUrl, title: title, content: content})
-
-
+            reviewUpdate({reviewId: reviewSelect.reviewId, imgUrl: imgUrl, title: title, content: content}).then((response) => {
+                if(response === undefined){
+                    alert("리뷰수정에 실패하였습니다.")
+                }else{
+                if(response.status === 200){
+                  alert(response.data.msg)
+                  navigate("/UserReviewList")
+                }
+              }})
         }else{
-            alert(response.status)
+            alert(response.data.msg)
         }
       })
-        
-    
-       
         deleteFileimage()
     }
 
     const saveFileReviewimage = (e) => {
         e.preventDefault();
-        console.log(e.target.files[0])
         setFile(URL.createObjectURL(e.target.files[0]));
         setFiles(e.target.files[0]);
-
     }
 
     const deleteFileimage = () =>{
         URL.revokeObjectURL(file);
-        setFile("");
     };
-    console.log(file)
+
+    const HandleMoveReviewListPage = () =>{
+        navigate("/UserReviewList")
+    }
     return(
         <div>
             <div className="Header">
@@ -137,7 +141,8 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
                         </div>
                     </div>
                     <div className="review_success_wd1">
-                        <Link to="/UserReviewList" className="reviewList_return">돌아가기</Link>
+                        {/* <Link to="/UserReviewList" className="reviewList_return">돌아가기</Link> */}
+                        <button type="button" className="success0" onClick={HandleMoveReviewListPage}>돌아가기</button>
                         <button type="submit" className="success1">완료</button>
                     </div>
                     </form>
