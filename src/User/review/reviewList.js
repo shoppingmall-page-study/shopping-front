@@ -29,15 +29,15 @@ function ReviewList({reviewSelect, setReviewSelect, cart}){
                         <UserMenuBar/>
                     </div>
                     <div className="review_list_wd">
-                    <ol>
-                    </ol>
+                    {/* <ol>
+                    </ol> */}
                     <div className="user_review_window">
                     {userReview.length === 0 ?(
                         <div className="not_userReivew">
                             <p>사용자가 등록한 리뷰목록이 존재하지 않습니다.</p>
                         </div>
-                    ): userReview.map((userReview) => {
-                        return <ReviewContent key={`userreviewkey-${userReview.reviewId}`} userReview={userReview} setUserReview={setUserReview} reviewSelect={reviewSelect} setReviewSelect={setReviewSelect}/> 
+                    ): userReview.map((Review) => {
+                        return <ReviewContent key={`userreviewkey-${Review.reviewId}`} userReview={userReview} Review={Review} setUserReview={setUserReview} reviewSelect={reviewSelect} setReviewSelect={setReviewSelect}/> 
                     })
                     }
                     </div>

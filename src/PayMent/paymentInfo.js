@@ -9,7 +9,7 @@ function PaymentInfo({payList}){
             </div>
             <div className="payment_info">
                 <div className="paymentInfo_title">
-                    <p>{payList.product.name}</p>
+                    <p>{payList.product.title}</p>
                 </div>
                 <div className="paymentInfo_content">
                     <p>가격 : {payList.product.price*payList.productNum}원</p>

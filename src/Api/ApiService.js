@@ -33,7 +33,6 @@ export const call = (api, method, request) => {
         return response
       }
       }).catch((error)=>{
-
         console.log(error.response)
         console.log(error.response.status)
         let errorresponse = error.response.status;
@@ -104,14 +103,7 @@ export const registration = (userDTO) => {
 }
  
 export const productCreate = (goodsDTO) => {
-  return call("/api/product/create", "POST", goodsDTO).then((response)=>{
-    if(response.status === 200){
-      alert(response.data.msg)
-      window.location.href = "/"
-    }else{
-      alert("오류")
-    }
-  })
+  return call("/api/product/create", "POST", goodsDTO)
 }
 
 export const productGet = () => {
@@ -135,14 +127,7 @@ export const cartGet = () => {
 }
 
 export const reviewCreate = (reviewDTO) => {
-  return call(`/api/review/create/${reviewDTO.productId}`,"POST",reviewDTO).then((response) => {
-    if(response.status === 200){
-      alert("성공적으로 리뷰가 등록되었습니다.")
-      window.location.reload()
-    }else{
-      alert("오류")
-    }
-  })
+  return call(`/api/review/create/${reviewDTO.productId}`,"POST",reviewDTO)
 }
 
 export const reviewGet = (id) => {
@@ -172,14 +157,7 @@ export const userReviewGet = () => {
 }
 
 export const reviewDelete = (id) => {
-  return call(`/api/review/delete/${id}`,"DELETE","").then((response) => {
-    if(response.status === 200){
-      alert("성공적으로 삭제되었습니다.")
-      window.location.reload()
-    }else{
-      alert("오류")
-    }
-  })
+  return call(`/api/review/delete/${id}`,"DELETE","")
 }
 
 export const userGoodsupGet = () => {
@@ -191,32 +169,15 @@ export const searchPost = (searchDTO) =>{
 }
 
 export const userProductDelete = (id) => {
-  return call(`/api/product/delete/${id}`,"DELETE","").then((response) => {
-    if(response.status === 200){
-      alert("해당상품이 정상적으로 삭제되었습니다.")
-      window.location.reload()
-    }else{
-      alert("오류")
-    }
-  })
+  return call(`/api/product/delete/${id}`,"DELETE","")
 }
 
 export const reviewUpdate = (reviewDTO) => {
-  return call(`/api/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO).then((response) => {
-    if(response.status === 200){
-      alert("리뷰가 정상적으로 변경되었습니다.")
-      window.location.href = "/UserReviewList"
-    }
-  })
+  return call(`/api/review/update/${reviewDTO.reviewId}`,"PUT",reviewDTO)
 }
 
 export const userProductUpdate = (productDTO) => {
-  return call(`/api/product/update/${productDTO.productId}`,"PUT",productDTO).then((response) => {
-    if(response.status === 200){
-      alert("해당 등록상품이 정상적으로 수정되었습니다.")
-      window.location.href = "/UserProducList"
-    }
-  })
+  return call(`/api/product/update/${productDTO.productId}`,"PUT",productDTO)
 }
 
 export const payMent = (payDTO) => {

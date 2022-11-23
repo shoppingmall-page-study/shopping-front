@@ -41,10 +41,13 @@ const handleCountUpdate = (type, id, count) => {
   if(type === "plus"){
     if(count === found.productTotal + 1) return;
     cartUpdate({cartId: found.cartId, productNum: count}).then((res) => {
+      if(res === undefined){
+        alert("상품의 구매한도를 초과했습니다.")
+      }else{
       if(res.status === 200){
         setCart([...cart.slice(0, idx), res.data.data, ...cart.slice(idx+1)])
       }
-    })
+    }})
   }else{
     if(count === 0) return;
     cartUpdate({cartId: found.cartId, productNum: count}).then((res) => {
@@ -62,6 +65,7 @@ const HandleCartRemove = (id) => {
     if(res.status === 200){
       setCart(cart.filter((el) => el.cartId !== id))
       setCheckedLists(checkedLists.filter((check) => check !== id))
+      alert("해당 상품이 삭제되었습니다.")
     }
   })
 }

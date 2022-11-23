@@ -6,12 +6,13 @@ import { productCreate } from "../Api/ApiService";
 import { userGet } from "../Api/ApiService";
 import './Goodsup.css'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Goodsup({products, setProducts, cart}){
     const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
     const [goodscount,setGoodsCount] = useState(1);   //  개수를 나타내는 Hooks
     const[files, setFiles] = useState([])
     const[user, setUser] = useState([]);
-
+    const navigate = useNavigate()
     useEffect(() => {
         userGet().then((res) =>{
             setUser(res.data.data);
@@ -70,7 +71,18 @@ function Goodsup({products, setProducts, cart}){
                 const content = data.get("content")
                 const total = goodscount
                 const imgUrl = response.data.data.url
-                productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl})
+                productCreate({title: title, content: content, name: name, price: price, total: total, imgUrl: imgUrl}).then((response)=>{
+                    if(response === undefined){
+                        alert("상품등록에 실패하였습니다.")
+                    }else{
+                    if(response.status === 200){
+                      alert(response.data.msg)
+                      navigate("/")
+                    }else{
+                      alert(response.data.msg)
+                    }
+                  }
+                })
 
 
             }else{
@@ -122,7 +134,7 @@ function Goodsup({products, setProducts, cart}){
                             fullWidth
                             className="goods_title"
                             variant="outlined"/>
-                        <div className='floor'></div>
+                        {/* <div className='floor'></div> */}
                         <div className='floor'></div>
                         <TextField name="price"
                             label="가격"

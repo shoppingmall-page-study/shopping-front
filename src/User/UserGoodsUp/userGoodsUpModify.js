@@ -6,14 +6,15 @@ import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import "./userGoodsUp.css"
 import { userProductUpdate } from "../../Api/ApiService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}){
     const [count,setCount] = useState(productSelect.total)  //해당 등록상품의 개수를 저장할 Hooks
     const [file,setFile] = useState(productSelect.imgUrl) //해당 등록상품의 이미지를 미리 보여줄 저장 Hooks
-    const[files, setFiles] = useState([])
+    const[files, setFiles] = useState(productSelect.imgUrl)
 
+    const navigate = useNavigate()
     const HandleUpEvent = (e) => {
         e.preventDefault();
         const data = new FormData(e.target)
@@ -39,7 +40,17 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
                 const price = data.get("price")
                 const total = count
                 const imgUrl = response.data.data.url
-                userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total})
+                userProductUpdate({productId: productSelect.productId, imgUrl: imgUrl, title: title, name: name, content: content, price: price, total: total}).then((response) => {
+                    if(response === undefined){
+                        alert("해당 등록상품의 삭제에 실패하였습니다.")
+                    }else{
+                    if(response.status === 200){
+                      alert(response.data.msg)
+                      navigate("/UserProducList")
+                    }else{
+                        alert(response.data.msg)
+                    }
+                  }})
             }else{
                 alert(response.status)
             }
@@ -71,6 +82,9 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
         setFiles(e.target.files[0]);
     }
 
+    const HandleMoveGoodsListPage = () => {
+        navigate("/UserProducList")
+    }
     return(
         <div className="GoodsUp">
             <header className="Header">
@@ -78,13 +92,13 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
             </header>
             <div className="Content">
                 <p id="user_goodsup_modify_title">등록상품수정</p>
-                <div className="userGoodsModify_flex_content">
+                {/* <div className="userGoodsModify_flex_content"> */}
                     {/* <UserMenuBar/> */}
-                    <form onSubmit={HandleUpEvent} className="userGoodsModify_window">
+                    <form onSubmit={HandleUpEvent}>
                     <div className="goodsModify_info">
                         <div className="goodsModifyimg_look">
                             <div className="goodsModifysample_img_wd">
-                                <img className="goodsModifysample_img"
+                                <img className="goodsModifyimg_look0"
                                     alt="sample"
                                     src={file}
                                 />
@@ -94,27 +108,30 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
                         <div className="ModifyInfo_form">
                             <TextField name="title"
                                 required
-                                label="제목" 
-                                className="goodsModify_title"
+                                label="상품이름" 
+                                fullWidth
+                                // className="goodsModify_title"
                                 variant="outlined"
                                 defaultValue={productSelect.title}/>
                             <div className='floor'></div>
                             <TextField name="name"
                                 required
-                                label="상품이름"                           
-                                className="goodsModify_name"
+                                fullWidth
+                                label="판매자"                           
+                                // className="goodsModify_name"
                                 variant="outlined"
                                 defaultValue={productSelect.name}/>
                             <div className='floor'></div>
                             <TextField name="price"
                                 required
+                                fullWidth
                                 label="가격"
-                                className="goodsModify_price"
+                                // className="goodsModify_price"
                                 variant="outlined"
                                 defaultValue={productSelect.price}/>
                             <div className='floor'></div>
-                            <div className='pay'>
-                                <span className='soo'>수량 : </span>
+                            <div className='pay0'>
+                                <span className='soo0'>수량 : </span>
                                 <div className="amount">
                                     <img
                                     className="minus"
@@ -137,19 +154,20 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
                             <TextField name="content"
                                 required
                                 label="설명"
-                                className="Goods_explain"
+                                fullWidth
+                                // className="Goods_explain"
                                 variant="outlined"
                                 multiline
                                 maxRows={2}
                                 defaultValue={productSelect.content}/>
                         </div>
                     </div>
-                    <div className="success_wd">
-                        <Link to="/UserProducList" id="goodsup_modify_return">돌아가기</Link>
-                        <button type="submit" className="success">완료</button>
+                    <div className="success_wd0">
+                        <button type="button" className="GoodsUpdate_Btn0" onClick={HandleMoveGoodsListPage}>돌아가기</button>
+                        <button type="submit" className="GoodsUpdate_Btn1">완료</button>
                     </div>
                     </form>
-                </div>
+                {/* </div> */}
             </div>
         </div>
     );    

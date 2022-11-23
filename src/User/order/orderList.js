@@ -10,7 +10,10 @@ function OrderList({convertPrice,cart}){
 
     useEffect(() => {
         order().then((res) => {
-        setList(res.data.data)
+        // console.log(res.data.data)
+        // res.data.data.orderComplete === "complete"
+        // if(res.data.data == "su")
+        setList(res.data.data.filter((el) => el.orderComplete === "complete"))
         }) 
     },[])
 
@@ -34,7 +37,7 @@ function OrderList({convertPrice,cart}){
                         </div>
                     ) : 
                     list.map((list) => {
-                        return <OrderListContent key={`orderkey-${list.productId}`} list={list} convertPrice={convertPrice}/>
+                        return <OrderListContent key={`orderkey-${list.orderId}`} list={list} convertPrice={convertPrice}/>
                     })}
                     </div>
                 </div>

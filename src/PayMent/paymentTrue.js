@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import Hafter from "../Header/HeaderAfter";
 import "./Payment.css"
 function PaymentTrue({cart}){
+    const navigate = useNavigate()
     const goHome = () => {
-        window.location.href="/"  //쇼필계속하기 클릭스
+        navigate("/")  //쇼필계속하기 클릭스
       }
     return(
         <div>

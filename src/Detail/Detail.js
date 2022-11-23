@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Hafter from '../Header/HeaderAfter';
 import Hbefore from '../Header/HeaderBefore';
 import { payMent } from "../Api/ApiService";
@@ -10,6 +10,7 @@ import { productGet, cartCreate, userGet, cartGet, reviewCreate, reviewGet, cart
 import './Detail.css'
 import Review from '../review/review';
 import axios from "axios";
+import {useRef} from 'react'
 
 function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
 
@@ -17,9 +18,11 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
   const [product, setProduct] = useState({}); //상품
   const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
   const [count,setCount] = useState(1);   //  개수를 나타내는 Hooks
-  const[files, setFiles] = useState([]);
+  const[files, setFiles] = useState("");
   const [payUser, setPayUser] = useState([]);
   // const [s,setS] = useState("a")
+  const navigate = useNavigate()
+  const Point = useRef([]);
   const getUserInfo = () => {
     userGet().then((res) =>{
       return res.data.data
@@ -70,7 +73,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
 
   const deleteFileimage = () =>{
       URL.revokeObjectURL(file);
-      setFile("");
+      
   };
 
   console.log(cart)
@@ -104,7 +107,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
       if(success){
           payMentComplete({impUid: imp_uid, orderId: merchant_uid}).then((res) => {
               console.log(res)
-              res.status == 200 ? window.location.href="/payTrue" : alert(`결제 실패: ${error_msg}`);
+              res.status == 200 ? navigate("/payTrue") : alert(`결제 실패: ${error_msg}`);
           })
       }else{
           alert(`결제 실패: ${error_msg}`);
@@ -124,10 +127,13 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
       if(found){
         const idx = cart.indexOf(found)
         cartUpdate({cartId: found.cartId, productNum: found.productNum + count}).then((res)=>{
+          if(res === undefined){
+            alert("상품의 구매한도를 초과했습니다.")
+          }else{
           if(res.status === 200){
             setCart([...cart.slice(0,idx), res.data.data, ...cart.slice(idx+1)])
-          }
-        })
+          } 
+        }})
       }else{
         cartCreate({productNum: count, productId: product.productId}).then((res) => {
                     if(res.status === 200){
@@ -159,7 +165,19 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
         const title = data.get("title")
         const content = data.get("content")
         const imgUrl = response.data.data.url
-        reviewCreate({imgUrl: imgUrl, title: title, content: content, productId: product.productId})
+        reviewCreate({imgUrl: imgUrl, title: title, content: content, productId: product.productId}).then((response) => {
+          if(response === undefined){
+            alert("리뷰등록에 실패하였습니다.")
+          }else{
+          if(response.status === 200){
+            alert(response.data.msg)
+            setFile("");
+            setFiles("");
+            setState("look")
+          }else{
+            alert(response.data.msg)
+          }
+        }})
 
 
       }else{
@@ -265,7 +283,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
                               // alt="sample"
                               src={file}
                           />
-              <input type="file" name='imgUrl' onChange={saveFileimage} className='review_img_upload' multiple="multiple"/>
+              <input required type="file" name='imgUrl' onChange={saveFileimage} className='review_img_upload' multiple="multiple"/>
             </div>
             <div className='input_review'>
               <TextField name="title"
@@ -274,6 +292,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
                 // className="review-up-title"
                 variant="outlined"
                 multiline
+                required
                 maxRows={2}/>
               <div className='review-up-line'></div>
               <TextField name="content"
@@ -281,6 +300,7 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
                 fullWidth
                 // className="review-up-content"
                 variant="outlined"
+                required
                 multiline
                 maxRows={3}/>
               <div className='review-up-btn-box'>

@@ -129,25 +129,34 @@
 }
 
 .user_reivewlist_btn{
-    text-align: right;
+    /* display: flex; */
+    /* text-align: right; */
 }
 
 .user_reivewlist_form{
-    display: flex;
-    justify-content: end;
+    /* display: flex; */
+    /* justify-content: end; */
 }
 
 .user_reivewlist_btn button{
     width: 100px;
+    height: 30px;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     background-color: black;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 2px;
-    height: 28px;
+    /* margin-top: 2px; */
 }
 
+#review_update_btn0{
+    margin-right: 10px;
+}
+
+#review_delete_btn0{
+    margin-left: 10px;
+}
+/* 
 .user_reivewlist_a_form{
     margin-top: 2px;
     width: 100px;
@@ -164,4 +173,4 @@
     font-size: 22px;
     background-color: black;
     font-weight: bold;
-}
+} */

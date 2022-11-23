@@ -29,14 +29,18 @@ function UserGoodsUp({convertPrice, productSelect, setProductSelect, cart}){
                         <UserMenuBar/>
                     </div>
                     <div className="user_goodsup_window">
+                    <div className="user_goodsup_window1">
                     {userGoodsup.length === 0 ?(
                         <div className="not_userGoodsup">
                             <p>사용자가 등록한 상품이 존재하지 않습니다.</p>
                         </div>
-                    ): userGoodsup.map((userGoodsup) => {
-                        return <GoodsUpContent key={`userGoodsupkey-${userGoodsup.productId}`} userGoodsup={userGoodsup} setUserGoodsup={setUserGoodsup} convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect}/> 
+                    ): userGoodsup.map((Goodsup) => {
+                        return <GoodsUpContent key={`userGoodsupkey-${Goodsup.productId}`} userGoodsup={userGoodsup} 
+                        setUserGoodsup={setUserGoodsup} convertPrice={convertPrice} productSelect={productSelect} 
+                        setProductSelect={setProductSelect} Goodsup={Goodsup}/> 
                     })
                     }
+                    </div>
                     </div>
                 </div>
             </div>

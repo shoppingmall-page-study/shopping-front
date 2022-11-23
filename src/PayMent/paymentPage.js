@@ -7,11 +7,13 @@ import PaymentInfo from "./paymentInfo"
 import PaymentTrue from "./paymentTrue"
 import PaymentFalse from "./paymentFalse";
 import "./Payment.css"
+import { useNavigate } from "react-router-dom";
 
 function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists}){
     const [payUser, setPayUser] = useState([])
     const proId = payList.map((el) => el.product.productId)
     const proNum = payList.map((el) => el.productNum)
+    const navigate = useNavigate()
     console.log(proId, proNum)
     useEffect(() => {
         userGet().then((res) =>{
@@ -43,7 +45,7 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
         // console.log(res.data.data.orderId)
         const { IMP } = window;
         IMP.init('imp54601326');
-
+        console.log(res.data)
         const data = {
         pg: "html5_inicis",
         pay_method: "card",
@@ -66,7 +68,7 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
     if(success){
         payMentComplete({impUid: imp_uid, orderId: merchant_uid}).then((res) => {
             console.log(res)
-            res.status == 200 ? window.location.href="/payTrue" : alert(`결제 실패: ${error_msg}`);
+            res.status == 200 ? navigate("/payTrue") : alert(`결제 실패: ${error_msg}`);
         })
     }else{
         alert(`결제 실패: ${error_msg}`);
@@ -88,7 +90,7 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
                         </ol>
                         <ol>
                             <li>{payUser.username}</li>
-                            <li>{payUser.address}</li>
+                            <li>{payUser.postCode+" "+payUser.address}</li>
                             <li>{payUser.phoneNumber}</li>
                         </ol>
                     </div>
