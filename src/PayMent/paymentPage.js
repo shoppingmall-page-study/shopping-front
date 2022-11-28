@@ -15,6 +15,7 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
     const proNum = payList.map((el) => el.productNum)
     const navigate = useNavigate()
     console.log(proId, proNum)
+    console.log(checkedLists)
     useEffect(() => {
         userGet().then((res) =>{
             setPayUser(res.data.data)
@@ -45,12 +46,13 @@ function PaymentPage({cart, convertPhoneNumber, payList, setPayList,checkedLists
         // console.log(res.data.data.orderId)
         const { IMP } = window;
         IMP.init('imp54601326');
-        console.log(res.data)
+        console.log(res)
+        console.log(res.data.data.products[0].productName)
         const data = {
         pg: "html5_inicis",
         pay_method: "card",
         merchant_uid: res.data.data.orderId,
-        name: payList[0].product.name + " 등 " + payList.length +"개",
+        name: res.data.data.products[0].productName + " 등 " + payList.length +"개",
         amount: res.data.data.amount,
         buyer_email: payUser.email,
         buyer_name: payUser.username,

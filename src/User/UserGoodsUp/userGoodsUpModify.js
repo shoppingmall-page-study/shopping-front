@@ -9,7 +9,7 @@ import { userProductUpdate } from "../../Api/ApiService";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}){
+function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart, setCart}){
     const [count,setCount] = useState(productSelect.total)  //해당 등록상품의 개수를 저장할 Hooks
     const [file,setFile] = useState(productSelect.imgUrl) //해당 등록상품의 이미지를 미리 보여줄 저장 Hooks
     const[files, setFiles] = useState(productSelect.imgUrl)
@@ -88,7 +88,7 @@ function UserGoodsUpModify({convertPrice, productSelect, setProductSelect, cart}
     return(
         <div className="GoodsUp">
             <header className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </header>
             <div className="Content">
                 <p id="user_goodsup_modify_title">등록상품수정</p>

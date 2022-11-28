@@ -5,7 +5,7 @@ import Hafter from "../../Header/HeaderAfter";
 import UserMenuBar from "../userMenuBar";
 import "./userInformation.css"
 
-function UserInformation({convertPhoneNumber, user, setUser, cart}){
+function UserInformation({convertPhoneNumber, user, setUser, cart, setCart}){
     // const [user,setUser] = useState([])
     // const addressState = window.location.pathname
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ function UserInformation({convertPhoneNumber, user, setUser, cart}){
     return(
         <div>
             <div className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </div>
             <div className="Content">
                 <p id="userinformaion_title">회원정보</p>

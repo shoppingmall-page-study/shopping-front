@@ -1,13 +1,13 @@
 import './HeaderAfter.css'
 import {Link, useParams} from 'react-router-dom'
 // import AHome from '../Home/Ahome';
-import {userGet,signout} from '../Api/ApiService'
+import {userGet,signout, cartGet} from '../Api/ApiService'
 import React, {useEffect, useState } from 'react'
 import { TextField, InputAdornment, Button } from '@material-ui/core';
 // import { cartGet } from "../Api/ApiService";
 
 
-function Hafter({cart, a, setA, s}){
+function Hafter({cart, setCart, a, setA, s}){
   // const {id} = useParams()
   // const address = window.location.pathname
   const [userState,setUserState] = useState("down");
@@ -28,6 +28,8 @@ function Hafter({cart, a, setA, s}){
       // }
       setUser(res.data.data)
    })
+   cartGet().then((res) => 
+   setCart(res.data.data))
    console.log("헤더에 사용자 닉네임 가져오기")
   },[])
 

@@ -91,7 +91,7 @@ function CartList({cart, setCart, convertPrice, s, setS, checkedLists, setChecke
             <p className="price">{convertPrice(cart.product.price * cart.productNum)}원</p>
             <p className="delivery">택배배송 / 무료배송</p>
           </div>
-        </div>
+        </div> 
 
         <div className="cart_product_count">
           <img

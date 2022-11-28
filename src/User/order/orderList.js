@@ -5,7 +5,7 @@ import UserMenuBar from "../userMenuBar";
 import OrderListContent from "./orderListContent";
 import "./order.css"
 
-function OrderList({convertPrice,cart}){
+function OrderList({convertPrice,cart, setCart}){
     const [list,setList] = useState([])
 
     useEffect(() => {
@@ -17,11 +17,12 @@ function OrderList({convertPrice,cart}){
         }) 
     },[])
 
+    console.log(list.map((el) => el.products))
 
     return(
         <div>
             <div className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </div>
             <div className="Content">
                 <p id="userGoodsup_title">주문목록</p>
