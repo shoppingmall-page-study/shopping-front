@@ -63,7 +63,7 @@ function UserRouter(){
         <Route path="/join" element={<Join/>}/>
         <Route path="/Basket" element={<Basket cart={cart} setCart={setCart} convertPrice={convertPrice} token={token} payList={payList} setPayList={setPayList} 
                                         checkedLists={checkedLists} setCheckedLists={setCheckedLists} cartCount={cartCount} setCartCount={setCartCount}/>}/>
-        <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart}/>}/>
+        <Route path="/Goodsup" element={<Goodsup products={products} setProducts={setProducts} cart={cart} setCart={setCart}/>}/>
         <Route path="/Uplist" element={<Uplist/>}/>
         {/* <Route path="/Orderlist" element={<Orderlist/>}/> */}
         <Route path="/product/:id" element={<Detail convertPrice={convertPrice} cart={cart} setCart={setCart} token={token} payList={payList} setPayList={setPayList}/>}/>
@@ -71,15 +71,17 @@ function UserRouter(){
         <Route path="/oauth/:token" element={<KakaoOauthhandler/>}/>
         <Route path="/registration/:token" element={<OauthJoinhandler/>}/>
         <Route path="/registration" element={<OauthJoin/>}/>
-        <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber} user={user} setUser={setUser} cart={cart}/>}/>
-        <Route path="/User/Modify" element={<UserModify user={user} setUser={setUser} cart={cart}/>}/>
-        <Route path="/UserReviewList" element={<ReviewList reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} cart={cart}/>}/>
+        <Route path="/User" element={<UserInformation convertPhoneNumber={convertPhoneNumber} user={user} setUser={setUser} cart={cart} setCart={setCart}/>}/>
+        <Route path="/User/Modify" element={<UserModify user={user} setUser={setUser} cart={cart} setCart={setCart}/>}/>
+        <Route path="/UserReviewList" element={<ReviewList reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} cart={cart} setCart={setCart}/>}/>
         <Route path="/product/search/:name" element={token !== "" ? <Searchhome cart={cart} setCart={setCart} convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>:<SearchBhome convertPrice={convertPrice} searchProducts={searchProducts} setSearchProducts={setSearchProducts}/>}/>
-        <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect} cart={cart}/>}/>
-        <Route path="/UserReviewList/Modify" element={<ReviewModify reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} cart={cart}/>}/>
-        <Route path="/UserProducList/Modify" element={<UserGoodsUpModify convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect} cart={cart}/>}/>
+        <Route path="/UserProducList" element={<UserGoodsUp convertPrice={convertPrice} productSelect={productSelect} setProductSelect={setProductSelect}
+                                                            cart={cart} setCart={setCart}/>}/>
+        <Route path="/UserReviewList/Modify" element={<ReviewModify reviewSelect={reviewSelect} setReviewSelect={setReviewSelect} cart={cart} setCart={setCart}/>}/>
+        <Route path="/UserProducList/Modify" element={<UserGoodsUpModify convertPrice={convertPrice} productSelect={productSelect} 
+                                                                        setProductSelect={setProductSelect} cart={cart} setCart={setCart}/>}/>
         <Route path="/PayMent" element={<PaymentPage convertPhoneNumber={convertPhoneNumber} payList={payList} setPayList={setPayList} cart={cart} checkedLists={checkedLists}/>}/>
-        <Route path="/order" element={<OrderList convertPrice={convertPrice} cart={cart}/>}/>
+        <Route path="/order" element={<OrderList convertPrice={convertPrice} cart={cart} setCart={setCart}/>}/>
         {/* 확인용 */}
         <Route path="/payTrue" element={<PaymentTrue cart={cart}/>}/>
         {/* <Route path="/a" element={<User/>}/> */}

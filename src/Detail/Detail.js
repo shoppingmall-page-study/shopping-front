@@ -137,13 +137,14 @@ function Detail({convertPrice, cart, setCart, token, payList, setPayList }){
       }else{
         cartCreate({productNum: count, productId: product.productId}).then((res) => {
                     if(res.status === 200){
+                      alert(res.data.msg)
                       setCart([...cart,res.data.data])
                     }
                   })
       }}
 
   const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
-    return token ? <Hafter cart={cart}/> : <Hbefore/>
+    return token ? <Hafter cart={cart} setCart={setCart}/> : <Hbefore/>
   }
   const HandleReivewUp = (e) => {
     e.preventDefault();

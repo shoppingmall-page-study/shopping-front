@@ -6,7 +6,7 @@ import UserMenuBar from "../userMenuBar";
 import ReviewContent from "./reviewContent"
 import "./reviewList.css"
 
-function ReviewList({reviewSelect, setReviewSelect, cart}){
+function ReviewList({reviewSelect, setReviewSelect, cart, setCart}){
     const [userReview, setUserReview] = useState([])    //사용자가 단 리뷰 목로들이 저장될 Hooks
     // const {id} = useParams();
     // const addressState = window.location.pathname
@@ -20,7 +20,7 @@ function ReviewList({reviewSelect, setReviewSelect, cart}){
     return(
         <div>
             <div className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </div>
             <div className="Content">
                 <p id="review_title">리뷰목록</p>

@@ -22,7 +22,7 @@ const [s,setS] = useState("a")
 // const [money,setMoney] = useState(0)
 const [total, setTotal] = useState(0) //체크리스트 가격을 나타내는 Hooks
 const TokenHeaderView = (token) => {  //토큰 유무에 따른 헤더뷰어 함수
-    return token ? <Hafter cart={cart}/> : <Hbefore/>
+    return token ? <Hafter cart={cart} setCart={setCart}/> : <Hbefore/>
 }
 
 // const ErrorFix = (item) => {
@@ -32,7 +32,7 @@ useEffect(() => {
   const found = cart.map((el) => el.cartId)
   setCheckedLists(found)
   console.log("처음에는 카트목록에 있는 것들이 다 checkLists에 추가")
-},[])
+},[cart])
 
 const handleCountUpdate = (type, id, count) => {
   const found = cart.filter((el) => el.cartId === id)[0]
@@ -102,13 +102,13 @@ useEffect(() => {
 },[checkedLists,cart])
 console.log(payList)
 useEffect(() => {
-  cartGet().then(res => {
-    setCart(res.data.data)
+  // cartGet().then(res => {
+  //   setCart(res.data.data)
     // setCartLength(res.data.data.length)
     // setPrice(res.data.totalsum)
     // res.data.data.length >= 1 ? setCheckedState("On") : setCheckedState("Off")
     // setCheckedList(res.data.data.filter((el) => ErrorFix(el.cartId)))
-  })
+  // })
   console.log("상품삭제 및 수정")
 },[])
 

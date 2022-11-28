@@ -7,7 +7,7 @@ import { userGet } from "../Api/ApiService";
 import './Goodsup.css'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-function Goodsup({products, setProducts, cart}){
+function Goodsup({products, setProducts, cart, setCart}){
     const [file, setFile] = useState("");   //파일 미리볼 url을 저장해줄 state
     const [goodscount,setGoodsCount] = useState(1);   //  개수를 나타내는 Hooks
     const[files, setFiles] = useState([])
@@ -113,7 +113,7 @@ function Goodsup({products, setProducts, cart}){
     return(
         <div className="GoodsUp">
             <header className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </header>
             <div className="Content">
                 <form onSubmit={HandleUpEvent}>

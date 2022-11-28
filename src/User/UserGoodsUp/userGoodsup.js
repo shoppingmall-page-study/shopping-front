@@ -6,7 +6,7 @@ import UserMenuBar from "../userMenuBar";
 import GoodsUpContent from "./goodsUpContent"
 import "./userGoodsUp.css"
 
-function UserGoodsUp({convertPrice, productSelect, setProductSelect, cart}){
+function UserGoodsUp({convertPrice, productSelect, setProductSelect, cart, setCart}){
     const [userGoodsup, setUserGoodsup] = useState([])    //사용자가 단 등록한 상품들이 저장될 Hooks
     // const {id} = useParams();
     // const addressState = window.location.pathname
@@ -20,7 +20,7 @@ function UserGoodsUp({convertPrice, productSelect, setProductSelect, cart}){
     return(
         <div>
             <div className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </div>
             <div className="Content">
                 <p id="userGoodsup_title_nm">등록 상품 목록</p>

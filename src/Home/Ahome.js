@@ -6,7 +6,7 @@ import "./home.css";
 import {UserDataAction} from "../features/user/actionCreators"
 // import { cartGet } from "../Api/ApiService";
 
-function AHome({cart, products, setProducts, convertPrice}){
+function AHome({cart, setCart, products, setProducts, convertPrice}){
     // const number = useSelector(state => state.number);
     // const dispatch = useDispatch();
     const userData = useSelector(store => store.userData)
@@ -17,7 +17,7 @@ function AHome({cart, products, setProducts, convertPrice}){
     return(
         <div>
             <header className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </header>
             <div className="Content">
                 {/* <p>{number}</p> */}

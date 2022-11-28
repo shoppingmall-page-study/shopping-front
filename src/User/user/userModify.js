@@ -2,14 +2,15 @@
 import Hafter from "../../Header/HeaderAfter";
 import { TextField } from '@material-ui/core';
 import "./userModify.css"
-import { userUpdate } from "../../Api/ApiService";
+import { userGet, userUpdate } from "../../Api/ApiService";
 import UserMenuBar from "../userMenuBar";
 import { Link , useNavigate} from "react-router-dom";
 import { useEffect, useRef } from "react";
 
-function UserModify({user, setUser, cart}){
+function UserModify({user, setUser, cart, setCart}){
     const navigate = useNavigate()
     useEffect(() => {
+        
         const a = document.createElement("script");
         a.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
         document.head.appendChild(a);
@@ -17,13 +18,12 @@ function UserModify({user, setUser, cart}){
           document.head.removeChild(a);
         }      
       },[]) //우편번호 스크립트 주소추가 및 삭제
-    
       const addrView = useRef([]);
     
     //   const foldDaumPostcode = () => {
     //     addrView.current[0].style.display = 'none';
     //   }
-    
+    console.log(user)
       const HandleOnclick = () => {
         new window.daum.Postcode({
           onComplete: (data) => {
@@ -81,10 +81,11 @@ function UserModify({user, setUser, cart}){
         navigate('/User')
     }
 
+    console.log(user)
     return(
         <div>
             <div className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </div>
             <div className="Content">
                 <p id="user_title">회원정보수정</p>
@@ -115,6 +116,8 @@ function UserModify({user, setUser, cart}){
                                         // label="제목" 
                                         // className="goodsModify_title"
                                         variant="outlined"
+                                        // value={user.username}
+                                        // onChange={re}
                                         defaultValue={user.username}
                                         />
                                     </td>
@@ -132,6 +135,7 @@ function UserModify({user, setUser, cart}){
                                         // className="goodsModify_title"
                                         fullWidth
                                         variant="outlined"
+                                        // value={user.nickname}
                                         defaultValue={user.nickname}
                                         />
                                     </td>
@@ -149,6 +153,7 @@ function UserModify({user, setUser, cart}){
                                         // label="제목" 
                                         // className="goodsModify_title"
                                         variant="outlined"
+                                        // value={user.phoneNumber}
                                         defaultValue={user.phoneNumber}
                                         />
                                     </td>
@@ -166,6 +171,7 @@ function UserModify({user, setUser, cart}){
                                         // label="제목" 
                                         // className="goodsModify_title"
                                         variant="outlined"
+                                        // value={user.age}
                                         defaultValue={user.age}
                                         />
                                     </td>
@@ -187,7 +193,6 @@ function UserModify({user, setUser, cart}){
                                         inputRef={el => (addrView.current[1] = el)}
                                         /> */}
                                         <button type='button' onClick={HandleOnclick} id="Addr_btn0">우편번호 찾기</button>
-                                        <tr></tr>
                                         <TextField name="postCode"
                                         required
                                         // label="제목" 
@@ -196,15 +201,16 @@ function UserModify({user, setUser, cart}){
                                         variant="outlined"
                                         fullWidth
                                         id="user_modify_postCode"
+                                        // value={user.postCode}
                                         defaultValue={user.postCode}
                                         />
-                                        <tr></tr>
                                         <TextField name="address"
                                         required
                                         // label="제목" 
                                         // className="goodsModify_title"
                                         variant="outlined"
                                         fullWidth
+                                        // value={user.address}
                                         defaultValue={user.address}
                                         inputRef={el => (addrView.current[3] = el)}
                                         />

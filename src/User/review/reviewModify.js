@@ -9,7 +9,7 @@ import UserMenuBar from "../userMenuBar";
 import "./reviewModify.css"
 import axios from "axios";
 
-function ReviewModify({reviewSelect, setReviewSelect, cart}){
+function ReviewModify({reviewSelect, setReviewSelect, cart, setCart}){
     const [file,setFile] = useState(reviewSelect.imgUrl)
     const[files, setFiles] = useState(reviewSelect.imgUrl)
     const navigate = useNavigate()
@@ -63,7 +63,7 @@ function ReviewModify({reviewSelect, setReviewSelect, cart}){
     return(
         <div>
             <div className="Header">
-                <Hafter cart={cart}/>
+                <Hafter cart={cart} setCart={setCart}/>
             </div>
             <div className="Content">
             <p id="review_modify_title">리뷰수정</p>
